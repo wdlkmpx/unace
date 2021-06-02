@@ -1,0 +1,8 @@
+#ifndef _APPS_EXE_EXTERN_COMMENTS_H_INCLUDED
+#define _APPS_EXE_EXTERN_COMMENTS_H_INCLUDED
+
+
+void    APPS_EXE_EXTERN_COMMENTS_StdOutput(void);
+
+
+#endif
