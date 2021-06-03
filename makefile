@@ -29,8 +29,8 @@ endif
 all: unace
 
 clean:
-	rm unace
-	rm linunace25.tgz
+	rm -f unace
+	rm -f linunace25.tgz
 	
 include $(MAKE_DIR)base.mk
 include $(MAKE_DIR)apps.mk

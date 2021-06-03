@@ -427,9 +427,7 @@ BASE_OS2_OBJS                     =                                       \
 ##############################################################################
 
 ifndef ISWMAKE
-include $(MAKE_DIR)baseace.mk
 include $(MAKE_DIR)baseuace.mk
 else
-!include $(MAKE_DIR)baseace.mk
 !include $(MAKE_DIR)baseuace.mk
 endif

@@ -27,8 +27,6 @@ APPS_UNACE_OBJS                     =                                       \
 
 ifndef ISWMAKE
 include $(MAKE_DIR)unaceexe.mk
-include $(MAKE_DIR)unacedll.mk
 else
 !include $(MAKE_DIR)unaceexe.mk
-!include $(MAKE_DIR)unacedll.mk
 endif
