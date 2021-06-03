@@ -27,7 +27,7 @@
 
 void    APPS_EXE_ACEFUNCS_List(BOOL Verbose)
 {
-CHAR      ShortStr[80],
+CHAR      ShortStr[BASE_LFN_MAXLEN],
           SizeStr1[80],
           SizeStr2[80],
           OutputStr[160];
