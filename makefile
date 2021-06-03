@@ -42,8 +42,3 @@ UNACEEXENT_CFILES =					\
 
 unace: $(UNACEEXELIN_CFILES)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(INCLS) -I$(SRCSsl) $(DEFINES) $(UNACEEXELIN_CFILES) -o$(EXECS_DIR)unace
-ifndef DEBUG
-	tar cfvz linunace25.tgz unace file_id.diz licence
-	#sh linpack.sh
-endif
-
