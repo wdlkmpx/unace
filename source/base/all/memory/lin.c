@@ -22,6 +22,7 @@ struct 	  rusage ru;
 
   Buf = NULL;
 
+#if 0
   while (Size < BASE_MEMORY_EXTERN_MaxMemoryRequirement()
          && (NewBuf = (char*) realloc(Buf, Size + STEP)))
   {
@@ -48,6 +49,8 @@ struct 	  rusage ru;
 
   free(Buf);
   BASE_MEMORY.MaxAllocate  = Size;
+#endif
+  BASE_MEMORY.MaxAllocate  = BASE_MEMORY_EXTERN_MaxMemoryRequirement();
 
   BASE_MEMORY_InitAlloc();
 }
