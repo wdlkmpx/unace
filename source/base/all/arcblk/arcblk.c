@@ -218,8 +218,8 @@ void    BASE_ARCBLK_ConvertHeader32ToHeader64(void)
           memmove(&BASE_ARCBLK.Header.File.FTIME,
                   &BASE_ARCBLK.Header.File32.FTIME,
                   sizeof(BASE_ARCBLK.Header)
-                  - ((ULONG)&BASE_ARCBLK.Header.File.FTIME
-                     - (ULONG)&BASE_ARCBLK.Header));
+                  - ((PCHAR)&BASE_ARCBLK.Header.File.FTIME
+                     - (PCHAR)&BASE_ARCBLK.Header));
 
           BASE_ARCBLK.Header.File.PSIZE = PSIZE;
           BASE_ARCBLK.Header.File.SIZE = SIZE;
@@ -239,8 +239,8 @@ void    BASE_ARCBLK_ConvertHeader32ToHeader64(void)
           memmove(&BASE_ARCBLK.Header.Recovery.CLUSTER,
                   &BASE_ARCBLK.Header.Recovery32.CLUSTER,
                   sizeof(BASE_ARCBLK.Header)
-                  - ((ULONG)&BASE_ARCBLK.Header.Recovery.CLUSTER
-                     - (ULONG)&BASE_ARCBLK.Header));
+                  - ((PCHAR)&BASE_ARCBLK.Header.Recovery.CLUSTER
+                     - (PCHAR)&BASE_ARCBLK.Header));
 
           BASE_ARCBLK.Header.Recovery.REC_BLK_SIZE = REC_BLK_SIZE;
           BASE_ARCBLK.Header.Recovery.REL_STRT = REL_STRT;
@@ -259,8 +259,8 @@ void    BASE_ARCBLK_ConvertHeader32ToHeader64(void)
               memmove(&BASE_ARCBLK.Header.Basic.other,
                 &BASE_ARCBLK.Header.Basic32.other,
                 sizeof(BASE_ARCBLK.Header)
-                  - ((ULONG)&BASE_ARCBLK.Header.Basic.other
-                  - (ULONG)&BASE_ARCBLK.Header));
+                  - ((PCHAR)&BASE_ARCBLK.Header.Basic.other
+                  - (PCHAR)&BASE_ARCBLK.Header));
 
             BASE_ARCBLK.Header.Basic.ADDSIZE = ADDSIZE; 
 

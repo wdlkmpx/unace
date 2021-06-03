@@ -169,6 +169,7 @@ CHAR      ShortStr1[80],
           TempStr[200];
 INT       TimeCount;
 UINT      ButtonNumber;
+PCHAR     ButtonPtr;
 PCHAR     Output;
 
   APPS_EXE_CONVERT_MakeStrShorter(ShortStr1, Description1, 79);
@@ -207,11 +208,11 @@ PCHAR     Output;
       APPS_EXE_INPUT.LastKey = APPS_EXE_MESSAGES.YANC[3];
     }
   }
-  while (!(ButtonNumber =
-             (LONG) strchr(APPS_EXE_MESSAGES.YANC, APPS_EXE_INPUT.LastKey))
+  while (!(ButtonPtr =
+             strchr(APPS_EXE_MESSAGES.YANC, APPS_EXE_INPUT.LastKey))
          && !BASE_ERROR_EXTERN_HandleCancel(0));
 
-  ButtonNumber -= (LONG) APPS_EXE_MESSAGES.YANC;
+  ButtonNumber = ButtonPtr - APPS_EXE_MESSAGES.YANC;
 
   if (!BASE_ERROR.ErrorCode)
   {

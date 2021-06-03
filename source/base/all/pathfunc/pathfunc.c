@@ -195,18 +195,18 @@ INT       SourceIndex,
 
   if (WildcardPos < PointPos && WildcardPos)
   {
-    SourceIndex = (LONG) WildcardPos - (LONG) SourceStr;
+    SourceIndex = WildcardPos - SourceStr;
   }
   else
   {
     if (PointPos)
     {
-      SourceIndex = (LONG) PointPos - (LONG) SourceStr;
+      SourceIndex = PointPos - SourceStr;
     }
     else
     {
       SourceIndex = WildcardPos ?
-                      (LONG) WildcardPos - (LONG) SourceStr :
+                      WildcardPos - SourceStr :
                       strlen(SourceStr);
     }
   }
@@ -227,7 +227,7 @@ INT       SourceIndex,
 
   if (PointPos)
   {
-    SourceIndex = (INT) PointPos - (INT) SourceStr + 1;
+    SourceIndex = PointPos - SourceStr + 1;
     CharsToCopy = 0;
 
     while (SourceStr[SourceIndex] && SourceStr[SourceIndex] != '*')
@@ -276,7 +276,7 @@ INT       Result;
         return 0;
       }
 
-      Result = (UINT) SlashPos - (UINT) Path + 1;
+      Result = SlashPos - Path + 1;
     }
     else
     {
@@ -323,7 +323,7 @@ PCHAR     SlashPos;
   }
 
   *SlashPos = 0;
-  SlashPos  = SlashPos - (UINT) Dir + (UINT) FileName;
+  SlashPos  = SlashPos - Dir + FileName;
 
   if (*SlashPos == BASE_PATHFUNC_SEPARATOR)
   {

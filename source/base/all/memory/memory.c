@@ -238,8 +238,8 @@ INT       I, J;
 
   BASE_MEMORY_EXTERN_OptimizeOtherMemory();
 
-  I             = (INT) BASE_FILELIST.Last - (INT) BASE_FILELIST.List;
-  J             = (INT) BASE_FILELIST.Pos  - (INT) BASE_FILELIST.List;
+  I             = BASE_FILELIST.Last - BASE_FILELIST.List;
+  J             = BASE_FILELIST.Pos  - BASE_FILELIST.List;
   BASE_FILELIST.List = (PCHAR)BASE_MEMORY_ReAllocSameSize(BASE_FILELIST.List);
   BASE_FILELIST.Last = BASE_FILELIST.List + I;
   BASE_FILELIST.Pos  = BASE_FILELIST.List + J;

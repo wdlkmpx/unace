@@ -35,12 +35,12 @@ ULONGLONG FilePos,
     if (!memcmp(&BASE_ARCHIVES_TEST.TestBuffer[I], BASE_ACESTRUC_ACESIGN,
                 BASE_ACESTRUC_ACESIGNLEN)
         && (FilePos = BASE_DIRDATA_Dir1.ArchiveBegin + I
-                      - ((INT) BASE_ARCBLK.Header.Main.ACESIGN
-                      - (INT) &BASE_ARCBLK.Header))
+                      - ((PCHAR) BASE_ARCBLK.Header.Main.ACESIGN
+                       - (PCHAR) &BASE_ARCBLK.Header))
             >= 0)
     {
-      Flags = ((INT) BASE_ARCBLK.Header.Main.ACESIGN - (INT) &BASE_ARCBLK.Header);
-      Flags = ((INT) &BASE_ARCBLK.Header.Main.ACESIGN - (INT) &BASE_ARCBLK.Header);
+      Flags = ((PCHAR) BASE_ARCBLK.Header.Main.ACESIGN - (PCHAR) &BASE_ARCBLK.Header);
+      Flags = ((PCHAR) &BASE_ARCBLK.Header.Main.ACESIGN - (PCHAR) &BASE_ARCBLK.Header);
 
       BASE_DOSFUNCS_LSeek(BASE_ARCHIVES_TEST.ArchiveHandle, FilePos, SEEK_SET);
       read(BASE_ARCHIVES_TEST.ArchiveHandle, (PCHAR) &BASE_ARCBLK.Header, 4);

@@ -131,7 +131,7 @@ CHAR      NumberStr[8];
     CharPos1 = &Name[strlen(Name)];
   }
 
-  Len = (UINT) CharPos1 - (UINT) Name;
+  Len = (PCHAR) CharPos1 - (PCHAR) Name;
 
   for (I = 0; I < Len; I++)
   {

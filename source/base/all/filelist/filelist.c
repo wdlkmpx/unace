@@ -314,6 +314,7 @@ INT     BASE_FILELIST_Create(BOOL DoAddDirFirst, INT Mode,
                              BOOL DoOutputNoFilesError)
 {
 PVOID     SavedScreenPtr;
+ULONG     PosIndex, LastIndex;
 
   BASE_MSGOUT_EXTERN_ListCreateBegin(&SavedScreenPtr);
 
@@ -344,14 +345,14 @@ PVOID     SavedScreenPtr;
                                 BASE_FILELIST.Number
                                   * sizeof(tBASE_FILELIST_FileData));
 
-  BASE_FILELIST.Pos  -= (ULONG) BASE_FILELIST.List;
-  BASE_FILELIST.Last -= (ULONG) BASE_FILELIST.List;
-
+  PosIndex  = BASE_FILELIST.Pos  - BASE_FILELIST.List;
+  LastIndex = BASE_FILELIST.Last - BASE_FILELIST.List;
+  
   BASE_FILELIST.List  = (PCHAR) BASE_MEMORY_ReAlloc(BASE_FILELIST.List,
-                                      (ULONG) BASE_FILELIST.Last);
+                                                    LastIndex);
 
-  BASE_FILELIST.Pos  += (ULONG) BASE_FILELIST.List;
-  BASE_FILELIST.Last += (ULONG) BASE_FILELIST.List;
+  BASE_FILELIST.Pos   = BASE_FILELIST.List + PosIndex;
+  BASE_FILELIST.Last  = BASE_FILELIST.List + LastIndex;
 
   BASE_MEMORY_Optimize();
 

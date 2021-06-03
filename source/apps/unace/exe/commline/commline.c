@@ -42,15 +42,17 @@
 
 void    APPS_UNACE_EXE_COMMLINE_Init(void)
 {
+  INT SearchExcludeListMax;
+  
   APPS_EXE_COMMLINE.TimeOutLimit = 600;
 
   BASE_FILELIST.SearchExcludeListEnd =
     BASE_FILELIST.SearchExcludeList  =
-        (PCHAR) BASE_MEMORY_GetMemBase2((PINT)
-                                        &BASE_FILELIST.SearchExcludeListMax,
+        (PCHAR) BASE_MEMORY_GetMemBase2(&SearchExcludeListMax,
                                         1);
 
-  BASE_FILELIST.SearchExcludeListMax += (INT) BASE_FILELIST.SearchExcludeList;
+  BASE_FILELIST.SearchExcludeListMax = SearchExcludeListMax + 
+                                       BASE_FILELIST.SearchExcludeList;
 
   APPS_EXE_OUTPUT.DoUseStdOutput = 1;
 
@@ -265,12 +267,12 @@ INT       Handle,
 
 void    APPS_UNACE_EXE_COMMLINE_GetFileListInit(void)
 {
+  INT SearchListMax;
   BASE_FILELIST.SearchListEnd =
     BASE_FILELIST.SearchList  =
-       (PCHAR) BASE_MEMORY_GetMemBase2((PINT)
-                                       &BASE_FILELIST.SearchListMax, 1);
+       (PCHAR) BASE_MEMORY_GetMemBase2(&SearchListMax,1);
 
-  BASE_FILELIST.SearchListMax += (INT) BASE_FILELIST.SearchListEnd;
+  BASE_FILELIST.SearchListMax = SearchListMax + BASE_FILELIST.SearchListEnd;
 }
 
 /*-----------------APPS_UNACE_EXE_COMMLINE_GetFileListDone---------------*/
