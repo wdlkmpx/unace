@@ -23,6 +23,8 @@ INCLS		=
 endif
 
 DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__ -U__HAS_IO_H__
+#DEFINES	= -D__MACOSX__ -D__unix__ -D__GCC__
+#DEFINES	= -D__unix__ -D__GCC__ -D__BIG_ENDIAN__ -D__EMULATE_UNALIGNED__
 
 ##############################################################################
 all: unace
