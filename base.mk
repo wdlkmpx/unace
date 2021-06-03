@@ -3,204 +3,204 @@ BASE_ALL_SRCS                     = $(BASE_SRCS)all/
 BASE_OBJ_DIR                      = $(OBJ_DIR)base/
 
 ##############################################################################
-all.obj          : $(BASE_ALL_SRCS)all.c                  .AUTODEPEND
+all.obj          : $(BASE_ALL_SRCS)all.c
 
 ##############################################################################
-allacl.obj       : $(BASE_ALL_SRCS)allacl.c               .AUTODEPEND
+allacl.obj       : $(BASE_ALL_SRCS)allacl.c
 
 ##############################################################################
-arcblk.obj       : $(BASE_ALL_SRCS)arcblk/arcblk.c        .AUTODEPEND
+arcblk.obj       : $(BASE_ALL_SRCS)arcblk/arcblk.c
 
 ##############################################################################
 BASE_ARCHIVE_SRCS                 = $(BASE_ALL_SRCS)archives/#################
-arcace.obj       : $(BASE_ARCHIVE_SRCS)ace/ace.c          .AUTODEPEND
-arcread.obj      : $(BASE_ARCHIVE_SRCS)read/read.c        .AUTODEPEND
-arctest.obj      : $(BASE_ARCHIVE_SRCS)test/test.c        .AUTODEPEND
+arcace.obj       : $(BASE_ARCHIVE_SRCS)ace/ace.c
+arcread.obj      : $(BASE_ARCHIVE_SRCS)read/read.c
+arctest.obj      : $(BASE_ARCHIVE_SRCS)test/test.c
 
 ##############################################################################
-arcinfo.obj      : $(BASE_ALL_SRCS)arcinfo/arcinfo.c      .AUTODEPEND
+arcinfo.obj      : $(BASE_ALL_SRCS)arcinfo/arcinfo.c
 
 ##############################################################################
-bitwidth.obj     : $(BASE_ALL_SRCS)bitwidth/bitwidth.c    .AUTODEPEND
+bitwidth.obj     : $(BASE_ALL_SRCS)bitwidth/bitwidth.c
 
 ##############################################################################
-bufread.obj      : $(BASE_ALL_SRCS)bufread/bufread.c      .AUTODEPEND
+bufread.obj      : $(BASE_ALL_SRCS)bufread/bufread.c
 
 ##############################################################################
-comments.obj     : $(BASE_ALL_SRCS)comments/comments.c    .AUTODEPEND
+comments.obj     : $(BASE_ALL_SRCS)comments/comments.c
 
 ##############################################################################
 BASE_CONVERT_SRCS	          = $(BASE_ALL_SRCS)convert/##################
 
-convert.obj      : $(BASE_CONVERT_SRCS)convert.c          .AUTODEPEND
+convert.obj      : $(BASE_CONVERT_SRCS)convert.c
 
-connolin.obj     : $(BASE_CONVERT_SRCS)nolin.c            .AUTODEPEND
+connolin.obj     : $(BASE_CONVERT_SRCS)nolin.c
 
-connont.obj      : $(BASE_CONVERT_SRCS)nont.c             .AUTODEPEND
+connont.obj      : $(BASE_CONVERT_SRCS)nont.c
 
-connt.obj        : $(BASE_CONVERT_SRCS)nt.c               .AUTODEPEND
+connt.obj        : $(BASE_CONVERT_SRCS)nt.c
 	$(CC_WIN32)
 
 ##############################################################################
 BASE_CPRDCPR_SRCS	          = $(BASE_ALL_SRCS)cprdcpr/##################
 
-cdhuff.obj       : $(BASE_CPRDCPR_SRCS)huff/huff.c        .AUTODEPEND
+cdhuff.obj       : $(BASE_CPRDCPR_SRCS)huff/huff.c
 
-cdpic.obj        : $(BASE_CPRDCPR_SRCS)pic/pic.c          .AUTODEPEND
+cdpic.obj        : $(BASE_CPRDCPR_SRCS)pic/pic.c
 
-cdsound.obj      : $(BASE_CPRDCPR_SRCS)sound/sound.c      .AUTODEPEND
+cdsound.obj      : $(BASE_CPRDCPR_SRCS)sound/sound.c
 
 
 ##############################################################################
-crc.obj          : $(BASE_ALL_SRCS)crc/crc.c              .AUTODEPEND
-crcasm.obj       : $(BASE_ALL_SRCS)crc/asm/crc.asm        .AUTODEPEND
+crc.obj          : $(BASE_ALL_SRCS)crc/crc.c
+crcasm.obj       : $(BASE_ALL_SRCS)crc/asm/crc.asm
 	$(COMPILE_A)
 
 
 ##############################################################################
-crypt.obj        : $(BASE_ALL_SRCS)crypt/crypt.c          .AUTODEPEND
+crypt.obj        : $(BASE_ALL_SRCS)crypt/crypt.c
 
 ##############################################################################
 BASE_DCPR_SRCS	                  = $(BASE_ALL_SRCS)dcpr/#####################
 
-dcpr.obj         : $(BASE_DCPR_SRCS)dcpr.c                .AUTODEPEND
+dcpr.obj         : $(BASE_DCPR_SRCS)dcpr.c
 
-dcprcomm.obj     : $(BASE_DCPR_SRCS)comments/comments.c   .AUTODEPEND
+dcprcomm.obj     : $(BASE_DCPR_SRCS)comments/comments.c
 
-dcprhuff.obj     : $(BASE_DCPR_SRCS)huff/huff.c           .AUTODEPEND
+dcprhuff.obj     : $(BASE_DCPR_SRCS)huff/huff.c
 
-dcprlz77.obj     : $(BASE_DCPR_SRCS)lz77/lz77.c           .AUTODEPEND
+dcprlz77.obj     : $(BASE_DCPR_SRCS)lz77/lz77.c
 
-dcprpic.obj      : $(BASE_DCPR_SRCS)pic/pic.c             .AUTODEPEND
+dcprpic.obj      : $(BASE_DCPR_SRCS)pic/pic.c
 
-dcprsnd.obj      : $(BASE_DCPR_SRCS)sound/sound.c         .AUTODEPEND
+dcprsnd.obj      : $(BASE_DCPR_SRCS)sound/sound.c
 
-soundasm.obj     : $(BASE_DCPR_SRCS)sound/asm/sound.asm   .AUTODEPEND
+soundasm.obj     : $(BASE_DCPR_SRCS)sound/asm/sound.asm
 	$(COMPILE_A)
 
-picasm.obj       : $(BASE_DCPR_SRCS)pic/asm/pic.asm       .AUTODEPEND
+picasm.obj       : $(BASE_DCPR_SRCS)pic/asm/pic.asm
 	$(COMPILE_A)
 
-lz77asm.obj      : $(BASE_DCPR_SRCS)lz77/asm/lz77.asm     .AUTODEPEND
+lz77asm.obj      : $(BASE_DCPR_SRCS)lz77/asm/lz77.asm
 	$(COMPILE_A)
 
 ##############################################################################
-dirdata.obj      : $(BASE_ALL_SRCS)dirdata/dirdata.c      .AUTODEPEND
+dirdata.obj      : $(BASE_ALL_SRCS)dirdata/dirdata.c
 
 ##############################################################################
 BASE_DOSFUNCS_SRCS                = $(BASE_ALL_SRCS)dosfuncs/#################
 
-dosfuncs.obj     : $(BASE_DOSFUNCS_SRCS)dosfuncs.c        .AUTODEPEND
+dosfuncs.obj     : $(BASE_DOSFUNCS_SRCS)dosfuncs.c
 
-dosfi64.obj      : $(BASE_DOSFUNCS_SRCS)i64.c             .AUTODEPEND
+dosfi64.obj      : $(BASE_DOSFUNCS_SRCS)i64.c
 
-dosfni64.obj     : $(BASE_DOSFUNCS_SRCS)noi64.c           .AUTODEPEND
+dosfni64.obj     : $(BASE_DOSFUNCS_SRCS)noi64.c
 
-dfni64wt.obj     : $(BASE_DOSFUNCS_SRCS)noi64wat.c        .AUTODEPEND
+dfni64wt.obj     : $(BASE_DOSFUNCS_SRCS)noi64wat.c
 
-dosfnocw.obj     : $(BASE_DOSFUNCS_SRCS)nocw.c            .AUTODEPEND
+dosfnocw.obj     : $(BASE_DOSFUNCS_SRCS)nocw.c
 
-dosfnont.obj     : $(BASE_DOSFUNCS_SRCS)nont.c            .AUTODEPEND
+dosfnont.obj     : $(BASE_DOSFUNCS_SRCS)nont.c
 
-dosfnt.obj       : $(BASE_DOSFUNCS_SRCS)nt.c              .AUTODEPEND
+dosfnt.obj       : $(BASE_DOSFUNCS_SRCS)nt.c
 	$(CC_WIN32)
 
-dfnocwnt.obj     : $(BASE_DOSFUNCS_SRCS)nocwnt.c          .AUTODEPEND
+dfnocwnt.obj     : $(BASE_DOSFUNCS_SRCS)nocwnt.c
 
-dfnolin.obj      : $(BASE_DOSFUNCS_SRCS)nolin.c           .AUTODEPEND
-
-##############################################################################
-error.obj        : $(BASE_ALL_SRCS)error/error.c          .AUTODEPEND
+dfnolin.obj      : $(BASE_DOSFUNCS_SRCS)nolin.c
 
 ##############################################################################
-errorout.obj     : $(BASE_ALL_SRCS)errorout/errorout.c    .AUTODEPEND
+error.obj        : $(BASE_ALL_SRCS)error/error.c
 
 ##############################################################################
-extract.obj      : $(BASE_ALL_SRCS)extract/extract.c      .AUTODEPEND
+errorout.obj     : $(BASE_ALL_SRCS)errorout/errorout.c
 
 ##############################################################################
-filelist.obj     : $(BASE_ALL_SRCS)filelist/filelist.c    .AUTODEPEND
+extract.obj      : $(BASE_ALL_SRCS)extract/extract.c
 
 ##############################################################################
-funcs.obj        : $(BASE_ALL_SRCS)funcs/funcs.c          .AUTODEPEND
+filelist.obj     : $(BASE_ALL_SRCS)filelist/filelist.c
+
+##############################################################################
+funcs.obj        : $(BASE_ALL_SRCS)funcs/funcs.c
 
 ##############################################################################
 BASE_LFN_SRCS                     = $(BASE_ALL_SRCS)lfn/######################
 
-lfn.obj          : $(BASE_LFN_SRCS)lfn.c                  .AUTODEPEND
+lfn.obj          : $(BASE_LFN_SRCS)lfn.c
 
-lfndos.obj       : $(BASE_LFN_SRCS)dos32.c                .AUTODEPEND
+lfndos.obj       : $(BASE_LFN_SRCS)dos32.c
 
-lfndosas.obj     : $(BASE_LFN_SRCS)dos32.asm              .AUTODEPEND
+lfndosas.obj     : $(BASE_LFN_SRCS)dos32.asm
 	$(COMPILE_A)
 
-lfnnt.obj        : $(BASE_LFN_SRCS)nt.c                   .AUTODEPEND
+lfnnt.obj        : $(BASE_LFN_SRCS)nt.c
 	$(CC_WIN32)
 
-lfnntdos.obj     : $(BASE_LFN_SRCS)nont.c                 .AUTODEPEND
+lfnntdos.obj     : $(BASE_LFN_SRCS)nont.c
 
-lfnntos2.obj     : $(BASE_LFN_SRCS)nont.c                 .AUTODEPEND
+lfnntos2.obj     : $(BASE_LFN_SRCS)nont.c
 	$(CC_OS2)
 
-lfnnodos.obj     : $(BASE_LFN_SRCS)nodos32.c              .AUTODEPEND
+lfnnodos.obj     : $(BASE_LFN_SRCS)nodos32.c
 
-lfnos2.obj       : $(BASE_LFN_SRCS)os2.c                  .AUTODEPEND
+lfnos2.obj       : $(BASE_LFN_SRCS)os2.c
 	$(CC_OS2)
 
 
 ##############################################################################
 BASE_MEMORY_SRCS                  = $(BASE_ALL_SRCS)memory/###################
 
-memory.obj       : $(BASE_MEMORY_SRCS)memory.c            .AUTODEPEND
+memory.obj       : $(BASE_MEMORY_SRCS)memory.c
 
-memdos.obj       : $(BASE_MEMORY_SRCS)dos32.c             .AUTODEPEND
+memdos.obj       : $(BASE_MEMORY_SRCS)dos32.c
 
-memdosas.obj     : $(BASE_MEMORY_SRCS)dos32.asm           .AUTODEPEND
+memdosas.obj     : $(BASE_MEMORY_SRCS)dos32.asm
 	$(COMPILE_A)
 
-memndos.obj      : $(BASE_MEMORY_SRCS)nodos32.c           .AUTODEPEND
+memndos.obj      : $(BASE_MEMORY_SRCS)nodos32.c
 	$(CC_WIN32)
 
-memnt.obj        : $(BASE_MEMORY_SRCS)nt.c                .AUTODEPEND
+memnt.obj        : $(BASE_MEMORY_SRCS)nt.c
 	$(CC_WIN32)
 
-memos2.obj       : $(BASE_MEMORY_SRCS)os2.c               .AUTODEPEND
+memos2.obj       : $(BASE_MEMORY_SRCS)os2.c
 	$(CC_OS2)
 
-memnocw.obj      : $(BASE_MEMORY_SRCS)wat.c               .AUTODEPEND
+memnocw.obj      : $(BASE_MEMORY_SRCS)wat.c
 
 ##############################################################################
-msgout.obj       : $(BASE_ALL_SRCS)msgout/msgout.c        .AUTODEPEND
+msgout.obj       : $(BASE_ALL_SRCS)msgout/msgout.c
 
 ##############################################################################
-options.obj      : $(BASE_ALL_SRCS)options/options.c      .AUTODEPEND
+options.obj      : $(BASE_ALL_SRCS)options/options.c
 
 ##############################################################################
-pathfunc.obj     : $(BASE_ALL_SRCS)pathfunc/pathfunc.c    .AUTODEPEND
+pathfunc.obj     : $(BASE_ALL_SRCS)pathfunc/pathfunc.c
 
 ##############################################################################
-qsort.obj        : $(BASE_ALL_SRCS)qsort/qsort.c          .AUTODEPEND
+qsort.obj        : $(BASE_ALL_SRCS)qsort/qsort.c
 
-qsortasm.obj     : $(BASE_ALL_SRCS)qsort/asm/qsort.asm    .AUTODEPEND
+qsortasm.obj     : $(BASE_ALL_SRCS)qsort/asm/qsort.asm
 	$(COMPILE_A)
 
 ##############################################################################
-state.obj        : $(BASE_ALL_SRCS)state/state.c          .AUTODEPEND
+state.obj        : $(BASE_ALL_SRCS)state/state.c
 
 ##############################################################################
-sysdos32.obj     : $(BASE_ALL_SRCS)system/dos32.c         .AUTODEPEND
+sysdos32.obj     : $(BASE_ALL_SRCS)system/dos32.c
 
-sysd32as.obj     : $(BASE_ALL_SRCS)system/dos32.asm       .AUTODEPEND
+sysd32as.obj     : $(BASE_ALL_SRCS)system/dos32.asm
 	$(COMPILE_A)
 
 ##############################################################################
-uninorm.obj       : $(BASE_ALL_SRCS)uninorm/uninorm.c     .AUTODEPEND
+uninorm.obj       : $(BASE_ALL_SRCS)uninorm/uninorm.c
 
 ##############################################################################
-unincore.obj       : $(BASE_ALL_SRCS)uninorm/unincore.c   .AUTODEPEND
+unincore.obj       : $(BASE_ALL_SRCS)uninorm/unincore.c
 
 ##############################################################################
-volume.obj       : $(BASE_ALL_SRCS)volume/volume.c        .AUTODEPEND
+volume.obj       : $(BASE_ALL_SRCS)volume/volume.c
 
 
 ##############################################################################
@@ -314,13 +314,13 @@ BASE_UNACE_EXT_OBJ_DIR                = $(BASE_UNACE_OBJ_DIR)ext/
 
 ##############################################################################
 BASE_UNACE_EXT_SRCS                   = $(BASE_UNACE_SRCS)extern/#############
-$(BASE_UNACE_EXT_OBJ_DIR)arcace.obj   : $(BASE_UNACE_EXT_SRCS)arcace/arcace.c     .AUTODEPEND
-$(BASE_UNACE_EXT_OBJ_DIR)arcblk.obj   : $(BASE_UNACE_EXT_SRCS)arcblk/arcblk.c     .AUTODEPEND
-$(BASE_UNACE_EXT_OBJ_DIR)arcinfo.obj  : $(BASE_UNACE_EXT_SRCS)arcinfo/arcinfo.c   .AUTODEPEND
-$(BASE_UNACE_EXT_OBJ_DIR)dcpr.obj     : $(BASE_UNACE_EXT_SRCS)dcpr/dcpr.c         .AUTODEPEND
-$(BASE_UNACE_EXT_OBJ_DIR)extract.obj  : $(BASE_UNACE_EXT_SRCS)extract/extract.c   .AUTODEPEND
-$(BASE_UNACE_EXT_OBJ_DIR)filelist.obj : $(BASE_UNACE_EXT_SRCS)filelist/filelist.c .AUTODEPEND
-$(BASE_UNACE_EXT_OBJ_DIR)memory.obj   : $(BASE_UNACE_EXT_SRCS)memory/memory.c     .AUTODEPEND
+$(BASE_UNACE_EXT_OBJ_DIR)arcace.obj   : $(BASE_UNACE_EXT_SRCS)arcace/arcace.c
+$(BASE_UNACE_EXT_OBJ_DIR)arcblk.obj   : $(BASE_UNACE_EXT_SRCS)arcblk/arcblk.c
+$(BASE_UNACE_EXT_OBJ_DIR)arcinfo.obj  : $(BASE_UNACE_EXT_SRCS)arcinfo/arcinfo.c
+$(BASE_UNACE_EXT_OBJ_DIR)dcpr.obj     : $(BASE_UNACE_EXT_SRCS)dcpr/dcpr.c
+$(BASE_UNACE_EXT_OBJ_DIR)extract.obj  : $(BASE_UNACE_EXT_SRCS)extract/extract.c
+$(BASE_UNACE_EXT_OBJ_DIR)filelist.obj : $(BASE_UNACE_EXT_SRCS)filelist/filelist.c
+$(BASE_UNACE_EXT_OBJ_DIR)memory.obj   : $(BASE_UNACE_EXT_SRCS)memory/memory.c
 ##############################################################################
 
 BASE_UNACE_CFILES =									  \

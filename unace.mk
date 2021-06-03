@@ -5,10 +5,10 @@ UNACE_EXT_OBJ_DIR                   = $(UNACE_OBJ_DIR)ext/
 
 ##############################################################################
 UNACE_EXT_SRCS                      = $(UNACEALL_SRCS)extern/#################
-$(UNACE_EXT_OBJ_DIR)arctest.obj     : $(UNACE_EXT_SRCS)arctest/arctest.c   .AUTODEPEND
+$(UNACE_EXT_OBJ_DIR)arctest.obj     : $(UNACE_EXT_SRCS)arctest/arctest.c
 
 ##############################################################################
-$(UNACE_EXT_OBJ_DIR)funcs.obj       : $(UNACE_EXT_SRCS)funcs/funcs.c       .AUTODEPEND
+$(UNACE_EXT_OBJ_DIR)funcs.obj       : $(UNACE_EXT_SRCS)funcs/funcs.c
 
 
 ##############################################################################
