@@ -12,6 +12,18 @@
 
 #include "base/all/includes.h"
 
+/* not implemented? */
+static BOOL BASE_ARCHIVES_TEST_EXTERN_ArchiveTestBreak(BOOL IgnoreKeys, INT Sectors)
+{
+  return 1;
+}
+static void BASE_ARCHIVES_TEST_EXTERN_ArchiveTestOtherFormats(PINT IsArchive,
+                                                          INT FilePos,
+                                                          pBASE_DIRDATA_DirData TempDir)
+{
+}
+
+
 /*-----------------BASE_ARCHIVES_TEST_ArchiveTest------------------------*/
 
 INT     BASE_ARCHIVES_TEST_ArchiveTest(PCHAR FileName, INT MaxTestSecs,

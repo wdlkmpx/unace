@@ -15,7 +15,6 @@ arcblk.obj       : $(BASE_ALL_SRCS)arcblk/arcblk.c
 BASE_ARCHIVE_SRCS                 = $(BASE_ALL_SRCS)archives/#################
 arcace.obj       : $(BASE_ARCHIVE_SRCS)ace/ace.c
 arcread.obj      : $(BASE_ARCHIVE_SRCS)read/read.c
-arctest.obj      : $(BASE_ARCHIVE_SRCS)test/test.c
 
 ##############################################################################
 arcinfo.obj      : $(BASE_ALL_SRCS)arcinfo/arcinfo.c
@@ -198,7 +197,7 @@ BASE_DCPR_OBJS                    =                                       \
 BASE_ALL_OBJS_NO_ALL_OBJ          =                                       \
   $(BASE_DCPR_OBJS)                                                       \
   arcace.obj          arcread.obj       \
-  arcblk.obj          arctest.obj       \
+  arcblk.obj                 \
   arcinfo.obj         bitwidth.obj      \
   bufread.obj         comments.obj      \
   convert.obj         cdhuff.obj        \

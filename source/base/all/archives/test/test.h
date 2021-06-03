@@ -24,14 +24,6 @@ DECLEXT tBASE_ARCHIVES_TEST
 INT     BASE_ARCHIVES_TEST_ArchiveTest(PCHAR FileName, INT MaxTestSecs,
                                        BOOL IgnoreKeys);
 
-BOOL    BASE_ARCHIVES_TEST_EXTERN_ArchiveTestBreak(BOOL IgnoreKeys,
-                                                   INT Sectors);
-
-void    BASE_ARCHIVES_TEST_EXTERN_ArchiveTestOtherFormats(PINT IsArchive,
-                                                          INT FilePos,
-                                       pBASE_DIRDATA_DirData TempDirData);
-
-
 #undef DECLEXT
 
 #endif
