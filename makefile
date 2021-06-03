@@ -14,16 +14,15 @@ PACKAGES_DIRsl  =
 SRCSsl          = $(BASIC_DIR)source
 SRCS            = $(SRCSsl)/
 
+ifdef SYSINC
 INCLSYSDIR 	= //usr/include/sys
 INCLDIR 	= //usr/include
+INCLS		= -I$(INCLDIR) -idirafter $(INCLSYSDIR)
+else
+INCLS		=
+endif
 
 DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__ -U__HAS_IO_H__
-
-ifdef DEBUG
-LSWITCHES	=
-else
-LSWITCHES	= -Wl,-s
-endif
 
 ##############################################################################
 all: unace
@@ -47,7 +46,7 @@ UNACEEXENT_CFILES =					\
   $(APPS_UNACEEXE_CFILES)
 
 unace: $(UNACEEXELIN_CFILES)
-	gcc $(LSWITCHES) -Wl,-lncurses -static -I$(INCLDIR) -I$(INCLSYSDIR) -I$(SRCSsl) $(DEFINES) $(UNACEEXELIN_CFILES) -ggdb -o$(EXECS_DIR)unace
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(INCLS) -I$(SRCSsl) $(DEFINES) $(UNACEEXELIN_CFILES) -o$(EXECS_DIR)unace
 ifndef DEBUG
 	tar cfvz linunace25.tgz unace file_id.diz licence
 	#sh linpack.sh
