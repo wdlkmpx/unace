@@ -31,8 +31,11 @@
 
 typedef struct
 {
-  tBASE_DOSFUNCS_FileTime
-          Time;
+  union {
+    tBASE_DOSFUNCS_FileTime
+          Fields;
+    ULONG Raw;
+  } Time;
   ULONGLONG
           Size,
           PackedSize;

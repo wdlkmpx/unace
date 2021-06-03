@@ -33,8 +33,10 @@ CHAR      ShortStr[80],
           OutputStr[160];
 PCHAR     OutputFileName;
 INT       I;
-tBASE_DOSFUNCS_FileTime
-          FileTime;
+union {
+tBASE_DOSFUNCS_FileTime Fields;
+ULONG                   Raw;
+} FileTime;
 
   BASE_FILELIST_Init();
   BASE_FILELIST_VolumeCreate();
@@ -79,7 +81,7 @@ tBASE_DOSFUNCS_FileTime
 
         APPS_EXE_CONVERT_MakeStrShorter(ShortStr, OutputFileName, 35);
 
-        *(PULONG) &FileTime = BASE_ARCBLK.Header.File.FTIME;
+        FileTime.Raw = BASE_ARCBLK.Header.File.FTIME;
 
         BASE_STATE.SummaryUnComprBytes += BASE_ARCBLK.Header.File.SIZE;
         BASE_STATE.SummaryComprBytes   += BASE_ARCBLK.Header.File.PSIZE;
@@ -87,8 +89,9 @@ tBASE_DOSFUNCS_FileTime
 
         sprintf(
           OutputStr, "%2d.%2d.%2d_%2d:%2d %c%c%s %s %4d%% %c%s",
-          FileTime.Day, FileTime.Month, (80 + FileTime.Year) % 100,
-          FileTime.Hour, FileTime.Minute,
+          FileTime.Fields.Day, FileTime.Fields.Month,
+          (80 + FileTime.Fields.Year) % 100,
+          FileTime.Fields.Hour, FileTime.Fields.Minute,
           BASE_ARCBLK.Header.File.HEAD_FLAGS & BASE_ACESTRUC_FLAG_SPLITBEFORE ?
             '\x11' : ' ',
           BASE_ARCBLK.Header.File.HEAD_FLAGS & BASE_ACESTRUC_FLAG_SPLITAFTER  ?

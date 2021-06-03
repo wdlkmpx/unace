@@ -242,7 +242,7 @@ tBASE_LFN_DBL
     {
       BASE_FILELIST.ListFileData[BASE_FILELIST.Number].Size = FileSize;
 
-      BASE_FILELIST.ListFileData[BASE_FILELIST.Number].Time = 
+      BASE_FILELIST.ListFileData[BASE_FILELIST.Number].Time.Fields = 
         BASE_DOSFUNCS_CalcFileTime(FileTime);
 
       if ((BASE_FILELIST.ListFileData[BASE_FILELIST.Number].Attr = Attr)
@@ -397,7 +397,7 @@ tLFN	  PureFileName;
     if (BASE_PATHFUNC_WildCardCheck(ListPosition, PureFileName + AddDirLen))
     {
       BASE_FILELIST_AddFile(FileName, FileData.Size,
-                       *(PULONG) &FileData.Time, FileData.Attr);
+                       FileData.Time.Raw, FileData.Attr);
 
       return;
     }

@@ -183,13 +183,13 @@ tLFN      ArchiveFileName;
         break;
       }
 
-      BASE_ARCHIVES_READ.FileData[BASE_ARCHIVES_READ.FileNumber].Size       =
+      BASE_ARCHIVES_READ.FileData[BASE_ARCHIVES_READ.FileNumber].Size        =
         BASE_ARCBLK.Header.File.SIZE;
 
-      BASE_ARCHIVES_READ.FileData[BASE_ARCHIVES_READ.FileNumber].PackedSize =
+      BASE_ARCHIVES_READ.FileData[BASE_ARCHIVES_READ.FileNumber].PackedSize  =
         BASE_ARCBLK.Header.File.PSIZE;
 
-      BASE_ARCHIVES_READ.FileData[BASE_ARCHIVES_READ.FileNumber].Time       =
+      BASE_ARCHIVES_READ.FileData[BASE_ARCHIVES_READ.FileNumber].Time.Fields =
         BASE_DOSFUNCS_CalcFileTime(BASE_ARCBLK.Header.File.FTIME);
 
       Attributes |=
