@@ -17,7 +17,7 @@ SRCS            = $(SRCSsl)/
 INCLSYSDIR 	= //usr/include/sys
 INCLDIR 	= //usr/include
 
-DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__ -D__HAS_IO_H__
+DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__ -U__HAS_IO_H__
 
 ifdef DEBUG
 LSWITCHES	=

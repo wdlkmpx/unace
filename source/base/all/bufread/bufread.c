@@ -3,6 +3,10 @@
 
 #ifdef __HAS_IO_H__
 	#include <io.h>
+#else
+#ifdef __unix__
+	#include <unistd.h>
+#endif
 #endif
 
 #include <string.h>
