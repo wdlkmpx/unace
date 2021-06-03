@@ -24,7 +24,7 @@ typedef struct
                 CurCol,
                 CurState,
                 CurPred;
-        CHAR    PixelA,
+        UCHAR   PixelA,
                 PixelB,
                 PixelC,
                 PixelD,

@@ -132,7 +132,7 @@ void    BASE_DCPR_PIC_Pixel(void)
 INT       K,
           BestPredictor,
           BestErrorCount;
-CHAR      MEpsilon,
+UCHAR     MEpsilon,
           Predicted;
 SCHAR     Epsilon;
 
