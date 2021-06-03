@@ -109,7 +109,7 @@ INT       UnitCharNumber;
   {
     UnitCharNumber = 0;
 
-    while (Size > 999999999 || UnitCharNumber && Size > 99999999)
+    while (Size > 999999999 || (UnitCharNumber && Size > 99999999))
     {
       Size >>= 10;
       UnitCharNumber++;

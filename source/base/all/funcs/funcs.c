@@ -24,10 +24,11 @@ void    BASE_FUNCS_Copy(INT Mode)
   BASE_FILELIST.DoAddFileCheckIfValidFile =
     !BASE_DIRDATA_IsInArchive1 && BASE_DIRDATA_IsInArchive2;
 
-  if (BASE_EXTRACT.DoExtractAllVolumes
-      && BASE_FILELIST_Create(1, 5, 1)
-        || !BASE_EXTRACT.DoExtractAllVolumes
-        && BASE_FILELIST_Create(1, Mode, 1))
+  if ((BASE_EXTRACT.DoExtractAllVolumes
+       && BASE_FILELIST_Create(1, 5, 1))
+        ||
+      (!BASE_EXTRACT.DoExtractAllVolumes
+       && BASE_FILELIST_Create(1, Mode, 1)))
   {
     BASE_FUNCS_EXTERN_DoCopy(Mode);
 
@@ -45,7 +46,7 @@ void    BASE_FUNCS_Copy(INT Mode)
 
 INT     BASE_FUNCS_DeleteRealFile(PCHAR FileName, BOOL IsOverwriteDelete)
 {
-BOOL      Err;
+BOOL      Err = 0;
 INT       Input;
 UINT      Attr;
 
@@ -76,11 +77,12 @@ UINT      Attr;
           {
             BASE_ERROR.ErrorCode = BASE_ERROR_USER;
           }
-        }
-
-        if (Input && !BASE_FUNCS.DoDeleteAll)
-        {
-          return 1;
+          
+          if (Input > 1)
+          {
+            return 1;
+          }
+            
         }
 
         BASE_LFN_SetFileAttributes(FileName, BASE_DOSFUNCS_NORMAL);
@@ -162,7 +164,7 @@ INT       BaseLen;
 INT     BASE_FUNCS_CreateDestinationFile(INT Attr)
 {
 INT       Handle,
-          Input,
+          Input = 0,
           Len;
 
   sprintf(BASE_STATE.DestinationFileName, "%s%s",
@@ -224,7 +226,7 @@ INT       Handle,
       }
 
       BASE_FUNCS.DidNotCopyAll |=
-        (Input = (Input && !BASE_FUNCS.DoOverwriteAll
+        (Input = ((Input && !BASE_FUNCS.DoOverwriteAll)
                   || BASE_FUNCS_DeleteRealFile(BASE_STATE.DestinationFileName, 1)));
 
       if (Input)

@@ -52,7 +52,7 @@ INT       NameNumber,
 
     do
     {
-      if (NextSlashPos = (PCHAR) strchr(NamePos, BASE_PATHFUNC_SEPARATOR))
+      if ((NextSlashPos = (PCHAR) strchr(NamePos, BASE_PATHFUNC_SEPARATOR)))
       {
         NameLen = NextSlashPos - NamePos;
       }

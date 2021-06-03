@@ -393,7 +393,7 @@ INT       I;
 
 void    APPS_UNACE_EXE_COMMLINE_ToggleSwitch(PCHAR SwitchChar, PINT Variable)
 {
-  if (!(*SwitchChar) || *SwitchChar == '+' && *(SwitchChar + 1) == 0)
+  if (!(*SwitchChar) || (*SwitchChar == '+' && *(SwitchChar + 1) == 0))
   {
     *Variable = 1;
   }
@@ -549,9 +549,9 @@ PCHAR     PointPos;
       if (strrchr(APPS_UNACE_EXE_COMMLINE.WildcardedArchiveName, BASE_PATHFUNC_SEPARATOR)
             > PointPos
           || !PointPos
-          || !BASE_CONVERT_StrICmp(PointPos, ".")
-            && !BASE_CONVERT_StrICmp(PointPos, ".ace")
-            && !BASE_CONVERT_StrICmp(PointPos, ".exe"))
+          || (!BASE_CONVERT_StrICmp(PointPos, ".")
+              && !BASE_CONVERT_StrICmp(PointPos, ".ace")
+              && !BASE_CONVERT_StrICmp(PointPos, ".exe")))
       {
         strcat(APPS_UNACE_EXE_COMMLINE.WildcardedArchiveName,
                BASE_ACESTRUC_EXTENSION);

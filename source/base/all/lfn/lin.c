@@ -50,7 +50,7 @@ tLFN      SearchFile,
   {
     SepStr = getenv("PATH");
 
-    if (Env = (PCHAR) BASE_MEMORY_GetMem(strlen(SepStr) + 1))
+    if ((Env = (PCHAR) BASE_MEMORY_GetMem(strlen(SepStr) + 1)))
     {
       strcpy(Env, SepStr);
       SepStr = Env;

@@ -54,6 +54,7 @@ void    BASE_STATE_OutputProgress(INT ReadBytes,  INT WriteBytes,
 void    BASE_STATE_OutputCRCOk(BOOL CRCIsOk);
 
 void    BASE_STATE_EXTERN_IsCRCOk(PBOOL IsCRCOk, BOOL IsEncrypted);
+void    BASE_STATE_EXTERN_IsCRCOkSet(PBOOL IsCRCOk, BOOL IsEncrypted);
 void    BASE_STATE_EXTERN_OutputProgressData(PCHAR Buf, INT Bytes);
 
 void    BASE_STATE_EXTERN_OutputProcess(PCHAR OperationStr, PCHAR FileName,

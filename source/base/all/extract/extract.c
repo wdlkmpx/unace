@@ -134,7 +134,7 @@ UINT	  NTFSSecuritySize;
       Decompressed = BASE_DCPR_Block(&Buf[BufPos], BufSize
                                      + BASE_CPRDCPR_LZ77_MAXLEN - BufPos);
 
-      if (!Decompressed && !BufPos || BASE_ERROR_EXTERN_HandleCancel(1))
+      if ((!Decompressed && !BufPos) || BASE_ERROR_EXTERN_HandleCancel(1))
       {
         break;
       }
@@ -265,8 +265,8 @@ INT       FilesNumber;
 
   while (!BASE_ERROR_EXTERN_HandleCancel(1)
          && (BASE_EXTRACT.DoExtractAllVolumes
-             || BASE_ARCBLK.Options.IsVolume
-                && BASE_EXTRACT.DoProcessAllVolumes
+             || (BASE_ARCBLK.Options.IsVolume
+                 && BASE_EXTRACT.DoProcessAllVolumes)
              || FilesNumber)
          && BASE_ARCBLK_LoadBlock())
   {
@@ -348,8 +348,8 @@ tLFN      ArchiveName;
 
   if (BASE_VOLUME_FirstVolumeToProcess(ArchiveName))
   {
-    if (!DoWriteData && BASE_ARCBLK.Options.IsSolid
-        || !BASE_FILELIST.Number)
+    if ((!DoWriteData && BASE_ARCBLK.Options.IsSolid)
+         || !BASE_FILELIST.Number)
     {
       BASE_EXTRACT.DoExtractAllVolumes = 1;
       BASE_FILELIST.SizeOfFiles = BASE_DIRDATA_Dir1.UnPackedSize;

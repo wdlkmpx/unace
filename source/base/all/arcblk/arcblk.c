@@ -117,7 +117,7 @@ void    BASE_ARCBLK_FileHeaderSecurityRead(pBASE_ACESTRUC_HEADER Header, PCHAR *
   if ((Header->File.HEAD_FLAGS & BASE_ACESTRUC_FLAG_SECURITY)
       && (*Size = BASE_ARCBLK_FileHeaderSecuritySize(Header)))
   {
-    if (*Security = BASE_MEMORY_GetMem(*Size))
+    if ((*Security = BASE_MEMORY_GetMem(*Size)))
     {
       memcpy(*Security, BASE_ARCBLK_FileHeaderSecurity(Header), *Size);
     }

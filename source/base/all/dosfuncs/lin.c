@@ -46,7 +46,7 @@ PCHAR	  ChPtr;
     {
       BASE_PATHFUNC_CompletePath(DirToOpen);
 
-      if (ChPtr = strrchr(DirToOpen, BASE_PATHFUNC_SEPARATOR))
+      if ((ChPtr = strrchr(DirToOpen, BASE_PATHFUNC_SEPARATOR)))
       {
         strcpy(SearchMask, ChPtr + 1);
     

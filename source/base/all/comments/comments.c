@@ -47,7 +47,11 @@ PCHAR     CommentPos;
     CommentSize = sizeof(BASE_COMMENTS.Comment) - 1;
   }
 
-  memcpy(BASE_COMMENTS.Comment, CommentPos, CommentSize);
+  if(CommentSize > 0)
+  {
+    memcpy(BASE_COMMENTS.Comment, CommentPos, CommentSize);
+  }
+  
   BASE_COMMENTS.CompressedSize = CommentSize;
   BASE_DCPR_COMMENTS_GetComment();
 

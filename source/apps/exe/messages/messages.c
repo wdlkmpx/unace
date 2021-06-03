@@ -192,7 +192,7 @@ INT     APPS_EXE_MESSAGES_GetHotKey(PCHAR Str)
 {
 PCHAR     AndPos;
 
-  if (AndPos = strchr(Str, '&'))
+  if ((AndPos = strchr(Str, '&')))
   {
     strcpy(AndPos, AndPos + 1);
 

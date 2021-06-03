@@ -59,7 +59,7 @@ tBASE_DIRDATA_DirData
                   (PVOID)&BASE_ARCHIVES_TEST.TestBuffer[TestPos],
                   512 + 32 -TestPos);
                         	
-      if (!Read && !TestPos || errno)
+      if ((!Read && !TestPos) || errno)
       {
         break;
       }

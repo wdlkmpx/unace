@@ -140,7 +140,7 @@ INT       I,
         DoRepeat = 0;
         strcpy(CompareStr1, SlashPos);
 
-        if (NextSlashPos = strchr(SlashPos + 1, BASE_PATHFUNC_SEPARATOR))
+        if ((NextSlashPos = strchr(SlashPos + 1, BASE_PATHFUNC_SEPARATOR)))
         {
           CompareStr1[NextSlashPos - SlashPos] = 0;
         }
@@ -345,11 +345,12 @@ INT       CurrentDirLen;
         || !strchr(Path, ':'))
       && Path[0] != '/')
 */
-  if (Path[0] == '\\' && Path[1] != '\\'
-       || Path[0] != BASE_PATHFUNC_SEPARATOR 
+  if ((Path[0] == '\\' && Path[1] != '\\')
+       || (Path[0] != BASE_PATHFUNC_SEPARATOR 
 #ifndef __unix__
        && !strchr(Path, ':')
 #endif
+          )
        )
   {
     getcwd(CurrentDir, sizeof(CurrentDir));
@@ -390,7 +391,7 @@ BOOL    BASE_PATHFUNC_IsNTFSStreamName(PCHAR Path)
 {
 PCHAR     Ptr;
 
-  if (Ptr = strrchr(Path, ':'))
+  if ((Ptr = strrchr(Path, ':')))
   {
     return *(Ptr + 1) != '\\';
   }

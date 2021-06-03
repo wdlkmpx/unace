@@ -125,8 +125,8 @@ INT       R,
     RestLen           -= R;
   }
   while ((R || BASE_DCPR.NextType != BASE_DCPR.Type
-           || (BASE_DCPR.NextType == BASE_ACESTRUC_BLOCKEDTYPE_LZ77_DELTA)
-               && BASE_DCPR_LZ77.NextDeltaLen)
+           || ((BASE_DCPR.NextType == BASE_ACESTRUC_BLOCKEDTYPE_LZ77_DELTA)
+                && BASE_DCPR_LZ77.NextDeltaLen))
          && (RestLen > BASE_CPRDCPR_LZ77_MAXLEN));
 
   return Len - RestLen;

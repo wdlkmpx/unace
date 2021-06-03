@@ -14,7 +14,7 @@ INT       OldSize;
 
   OldSize = BASE_MEMORY_Size(OldPointer);
 
-  if (NewPointer = realloc((PVOID) ((PULONG) OldPointer - 1), NewSize + 4))
+  if ((NewPointer = realloc((PVOID) ((PULONG) OldPointer - 1), NewSize + 4)))
   {
     BASE_MEMORY.MaxAllocate += OldSize - NewSize;
     *(PULONG) NewPointer = NewSize;
