@@ -30,8 +30,6 @@ INT     BASE_LFN_ChangeDir(PCHAR Directory)
 PCHAR   BASE_LFN_GetCurrentDir(PCHAR Directory, size_t Size)
 {
   Directory = (PCHAR) getcwd(Directory, Size);
-  
-  strcpy(Directory, BASE_LFN_LongName(Directory));
 
   return Directory;
 }
