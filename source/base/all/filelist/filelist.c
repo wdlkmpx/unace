@@ -290,7 +290,7 @@ INT       BufSize;
   if (!(BASE_FILELIST.ListFileData =
          (pBASE_FILELIST_FileData) BASE_MEMORY_GetMemBase2(&BufSize, 1)))
   {
-    BASE_MEMORY_FreeCheck((PVOID *) &BASE_FILELIST.List);
+    BASE_MEMORY_FreeCheck(BASE_FILELIST.List);
 
     return;
   }
@@ -303,8 +303,8 @@ INT       BufSize;
 
 void    BASE_FILELIST_Done(void)
 {
-  BASE_MEMORY_FreeCheck((PVOID *) &BASE_FILELIST.List);
-  BASE_MEMORY_FreeCheck((PVOID *) &BASE_FILELIST.ListFileData);
+  BASE_MEMORY_FreeCheck(BASE_FILELIST.List);
+  BASE_MEMORY_FreeCheck(BASE_FILELIST.ListFileData);
   BASE_MEMORY_Optimize();
 }
 

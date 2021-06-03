@@ -137,7 +137,7 @@ void    BASE_DCPR_PIC_Done(void)
     BASE_DCPR_PIC.Data[0] -= BASE_DCPR_PIC.Planes;
     BASE_DCPR_PIC.Data[1] -= BASE_DCPR_PIC.Planes;
 
-    BASE_MEMORY_FreeCheck((PVOID *) &BASE_DCPR_PIC.Data[0]);
-    BASE_MEMORY_FreeCheck((PVOID *) &BASE_DCPR_PIC.Data[1]);
+    BASE_MEMORY_FreeCheck(BASE_DCPR_PIC.Data[0]);
+    BASE_MEMORY_FreeCheck(BASE_DCPR_PIC.Data[1]);
   }
 }

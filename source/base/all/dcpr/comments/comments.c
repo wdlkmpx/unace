@@ -45,7 +45,7 @@ void    BASE_DCPR_COMMENTS_Done(void)
 {
   if (BASE_DCPR.DoFreeReadBuf)
   {
-    BASE_MEMORY_FreeCheck((PVOID *) &BASE_DCPR.ReadBuf);
+    BASE_MEMORY_FreeCheck(BASE_DCPR.ReadBuf);
   }
 }
 

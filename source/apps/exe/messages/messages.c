@@ -107,7 +107,7 @@ ULONG     Bits;
     
   APPS_EXE_MESSAGES_Skip(Start - 22);
 
-  BASE_MEMORY_FreeCheck((PVOID *) &APPS_EXE_MESSAGES.MessagesBuf);
+  BASE_MEMORY_FreeCheck(APPS_EXE_MESSAGES.MessagesBuf);
 
   if (!(APPS_EXE_MESSAGES.MessagesBuf =
         (PCHAR) BASE_MEMORY_GetMem(*Size + 1)))

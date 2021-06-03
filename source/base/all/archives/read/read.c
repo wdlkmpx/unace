@@ -22,8 +22,8 @@
 
 void    BASE_ARCHIVES_READ_FreeArchiveList(void)
 {
-  BASE_MEMORY_FreeCheck((PVOID *) &BASE_ARCHIVES_READ.FileData);
-  BASE_MEMORY_FreeCheck((PVOID *) &BASE_ARCHIVES_READ.FileNames);
+  BASE_MEMORY_FreeCheck(BASE_ARCHIVES_READ.FileData);
+  BASE_MEMORY_FreeCheck(BASE_ARCHIVES_READ.FileNames);
 }
 
 /*-----------------BASE_ARCHIVES_READ_GetArchiveList---------------------*/

@@ -134,7 +134,7 @@ void    BASE_BUFREAD_Close(void)
 {
   close(BASE_BUFREAD.Handle);
   BASE_BUFREAD.Handle = -1;
-  BASE_MEMORY_FreeCheck((PVOID *) &BASE_BUFREAD.Buf);
+  BASE_MEMORY_FreeCheck(BASE_BUFREAD.Buf);
 }
 
 /*-----------------BASE_BUFREAD_Tell-------------------------------------*/

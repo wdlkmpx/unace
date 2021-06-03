@@ -232,10 +232,10 @@ UINT	  NTFSSecuritySize;
   {
     BASE_LFN_SetFileAttributes(BASE_STATE.DestinationFileName, Attr);
     BASE_DOSFUNCS_SetFileSecurity(BASE_STATE.DestinationFileName, NTFSSecurity);
-    BASE_MEMORY_FreeCheck((PVOID)&NTFSSecurity);
+    BASE_MEMORY_FreeCheck(NTFSSecurity);
   }
 
-  BASE_MEMORY_FreeCheck((PVOID *) &Buf);
+  BASE_MEMORY_FreeCheck(Buf);
 
   return;
 

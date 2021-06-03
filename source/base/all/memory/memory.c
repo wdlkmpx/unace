@@ -150,13 +150,12 @@ INT       MemSize;
 
 /*-----------------BASE_MEMORY_FreeCheck---------------------------------*/
 
-void    BASE_MEMORY_FreeCheck(PVOID *Pointer)
+void    BASE_MEMORY_FreeCheck_(PVOID Pointer)
 {
-  if (*Pointer)
+  if (Pointer)
   {
-    BASE_MEMORY.MaxAllocate += BASE_MEMORY_Size(*Pointer);
-    free((PVOID) (((PULONG) *Pointer) - 1));
-    *Pointer = NULL;
+    BASE_MEMORY.MaxAllocate += BASE_MEMORY_Size(Pointer);
+    free((PVOID) (((PULONG) Pointer) - 1));
   }
 }
 
@@ -183,7 +182,7 @@ INT       OldSize,
   }
 
   memcpy(NewPointer, OldPointer, OldSize);
-  BASE_MEMORY_FreeCheck(&OldPointer);
+  BASE_MEMORY_FreeCheck(OldPointer);
 
   if (BASE_MEMORY_MemMax() < MemMaxSize)
   {
@@ -193,7 +192,7 @@ INT       OldSize,
     }
 
     memcpy(OldPointer, NewPointer, OldSize);
-    BASE_MEMORY_FreeCheck(&NewPointer);
+    BASE_MEMORY_FreeCheck(NewPointer);
 
     return OldPointer;
   }

@@ -67,7 +67,7 @@ tLFN      SearchFile,
         }
       }
 
-      BASE_MEMORY_FreeCheck((PVOID*)&Env);
+      BASE_MEMORY_FreeCheck(Env);
     }
   }
 

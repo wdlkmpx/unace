@@ -32,7 +32,8 @@ PVOID   BASE_MEMORY_GetMemBase2Max(PINT Size, INT Base, INT Maximum);
 PVOID   BASE_MEMORY_GetMemBase2PlusMax(PINT Size, INT Base, INT Maximum,
                                        INT Plus);
 
-void    BASE_MEMORY_FreeCheck(PVOID *Pointer);
+void    BASE_MEMORY_FreeCheck_(PVOID Pointer);
+#define BASE_MEMORY_FreeCheck(ptr) do { BASE_MEMORY_FreeCheck_(ptr); ptr=0; } while(0)
 PVOID   BASE_MEMORY_ReAlloc(PVOID OldPointer, INT NewSize);
 PVOID   BASE_MEMORY_ReAllocSameSize(PVOID OldPointer);
 void    BASE_MEMORY_InitAlloc(void);

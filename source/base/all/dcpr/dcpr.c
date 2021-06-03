@@ -301,8 +301,8 @@ void    BASE_DCPR_Done(void)
 {
   if (BASE_DCPR.IsInitialized)
   {
-    BASE_MEMORY_FreeCheck((PVOID *) &BASE_DCPR.ReadBuf);
-    BASE_MEMORY_FreeCheck((PVOID *) &BASE_DCPR_LZ77.Dictionary);
+    BASE_MEMORY_FreeCheck(BASE_DCPR.ReadBuf);
+    BASE_MEMORY_FreeCheck(BASE_DCPR_LZ77.Dictionary);
     BASE_DCPR.IsInitialized = 0;
     BASE_MEMORY_Optimize();
   }
