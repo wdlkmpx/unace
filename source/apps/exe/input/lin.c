@@ -40,6 +40,10 @@ BOOL    APPS_EXE_INPUT_KeyHit(void)
 fd_set fds;
 struct timeval tv;
 
+  if (!isatty(0))
+  {
+    return 0;
+  }
   FD_ZERO(&fds);
   FD_SET(0, &fds);
   tv.tv_sec = 0;
