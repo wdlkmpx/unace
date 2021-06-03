@@ -282,12 +282,8 @@ void    BASE_ARCBLK_ConvertHeader32ToHeader64(void)
 #if defined(__MACOSX__)
     BASE_ARCBLK.Header.File.FNAME_SIZE = BASE_UNINORM_CP850ToUTF8NFD(
       BASE_ARCBLK.Header.File.FNAME, BASE_ARCBLK.Header.File.FNAME_SIZE);
-#elif defined(__LINUX__)
-    /* may not work for every linux user */
-    BASE_ARCBLK.Header.File.FNAME_SIZE = BASE_UNINORM_CP850ToANSI(
-      BASE_ARCBLK.Header.File.FNAME, BASE_ARCBLK.Header.File.FNAME_SIZE);
 #elif defined(__unix__)
-    /* for every other unix assume UTF-8 NFC normalization */
+    /* for unix, assume UTF-8 NFC normalization */
     BASE_ARCBLK.Header.File.FNAME_SIZE = BASE_UNINORM_CP850ToUTF8NFC(
       BASE_ARCBLK.Header.File.FNAME, BASE_ARCBLK.Header.File.FNAME_SIZE);
 #endif
