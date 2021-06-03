@@ -34,8 +34,6 @@ BASE_CONVERT_SRCS	          = $(BASE_ALL_SRCS)convert/##################
 
 convert.obj      : $(BASE_CONVERT_SRCS)convert.c
 
-connolin.obj     : $(BASE_CONVERT_SRCS)nolin.c
-
 connont.obj      : $(BASE_CONVERT_SRCS)nont.c
 
 connt.obj        : $(BASE_CONVERT_SRCS)nt.c
@@ -53,9 +51,6 @@ cdsound.obj      : $(BASE_CPRDCPR_SRCS)sound/sound.c
 
 ##############################################################################
 crc.obj          : $(BASE_ALL_SRCS)crc/crc.c
-crcasm.obj       : $(BASE_ALL_SRCS)crc/asm/crc.asm
-	$(COMPILE_A)
-
 
 ##############################################################################
 crypt.obj        : $(BASE_ALL_SRCS)crypt/crypt.c
@@ -75,15 +70,6 @@ dcprpic.obj      : $(BASE_DCPR_SRCS)pic/pic.c
 
 dcprsnd.obj      : $(BASE_DCPR_SRCS)sound/sound.c
 
-soundasm.obj     : $(BASE_DCPR_SRCS)sound/asm/sound.asm
-	$(COMPILE_A)
-
-picasm.obj       : $(BASE_DCPR_SRCS)pic/asm/pic.asm
-	$(COMPILE_A)
-
-lz77asm.obj      : $(BASE_DCPR_SRCS)lz77/asm/lz77.asm
-	$(COMPILE_A)
-
 ##############################################################################
 dirdata.obj      : $(BASE_ALL_SRCS)dirdata/dirdata.c
 
@@ -92,22 +78,12 @@ BASE_DOSFUNCS_SRCS                = $(BASE_ALL_SRCS)dosfuncs/#################
 
 dosfuncs.obj     : $(BASE_DOSFUNCS_SRCS)dosfuncs.c
 
-dosfi64.obj      : $(BASE_DOSFUNCS_SRCS)i64.c
-
 dosfni64.obj     : $(BASE_DOSFUNCS_SRCS)noi64.c
-
-dfni64wt.obj     : $(BASE_DOSFUNCS_SRCS)noi64wat.c
-
-dosfnocw.obj     : $(BASE_DOSFUNCS_SRCS)nocw.c
 
 dosfnont.obj     : $(BASE_DOSFUNCS_SRCS)nont.c
 
 dosfnt.obj       : $(BASE_DOSFUNCS_SRCS)nt.c
 	$(CC_WIN32)
-
-dfnocwnt.obj     : $(BASE_DOSFUNCS_SRCS)nocwnt.c
-
-dfnolin.obj      : $(BASE_DOSFUNCS_SRCS)nolin.c
 
 ##############################################################################
 error.obj        : $(BASE_ALL_SRCS)error/error.c
@@ -129,45 +105,23 @@ BASE_LFN_SRCS                     = $(BASE_ALL_SRCS)lfn/######################
 
 lfn.obj          : $(BASE_LFN_SRCS)lfn.c
 
-lfndos.obj       : $(BASE_LFN_SRCS)dos32.c
-
-lfndosas.obj     : $(BASE_LFN_SRCS)dos32.asm
-	$(COMPILE_A)
-
 lfnnt.obj        : $(BASE_LFN_SRCS)nt.c
 	$(CC_WIN32)
 
 lfnntdos.obj     : $(BASE_LFN_SRCS)nont.c
 
-lfnntos2.obj     : $(BASE_LFN_SRCS)nont.c
-	$(CC_OS2)
-
 lfnnodos.obj     : $(BASE_LFN_SRCS)nodos32.c
-
-lfnos2.obj       : $(BASE_LFN_SRCS)os2.c
-	$(CC_OS2)
-
 
 ##############################################################################
 BASE_MEMORY_SRCS                  = $(BASE_ALL_SRCS)memory/###################
 
 memory.obj       : $(BASE_MEMORY_SRCS)memory.c
 
-memdos.obj       : $(BASE_MEMORY_SRCS)dos32.c
-
-memdosas.obj     : $(BASE_MEMORY_SRCS)dos32.asm
-	$(COMPILE_A)
-
 memndos.obj      : $(BASE_MEMORY_SRCS)nodos32.c
 	$(CC_WIN32)
 
 memnt.obj        : $(BASE_MEMORY_SRCS)nt.c
 	$(CC_WIN32)
-
-memos2.obj       : $(BASE_MEMORY_SRCS)os2.c
-	$(CC_OS2)
-
-memnocw.obj      : $(BASE_MEMORY_SRCS)wat.c
 
 ##############################################################################
 msgout.obj       : $(BASE_ALL_SRCS)msgout/msgout.c
@@ -181,17 +135,8 @@ pathfunc.obj     : $(BASE_ALL_SRCS)pathfunc/pathfunc.c
 ##############################################################################
 qsort.obj        : $(BASE_ALL_SRCS)qsort/qsort.c
 
-qsortasm.obj     : $(BASE_ALL_SRCS)qsort/asm/qsort.asm
-	$(COMPILE_A)
-
 ##############################################################################
 state.obj        : $(BASE_ALL_SRCS)state/state.c
-
-##############################################################################
-sysdos32.obj     : $(BASE_ALL_SRCS)system/dos32.c
-
-sysd32as.obj     : $(BASE_ALL_SRCS)system/dos32.asm
-	$(COMPILE_A)
 
 ##############################################################################
 uninorm.obj       : $(BASE_ALL_SRCS)uninorm/uninorm.c
@@ -248,9 +193,7 @@ BASE_ALL_LIN_CFILES =								\
 BASE_DCPR_OBJS                    =                                       \
   dcpr.obj            dcprcomm.obj      \
   dcprhuff.obj        dcprpic.obj       \
-  dcprlz77.obj        dcprsnd.obj       \
-  lz77asm.obj         picasm.obj        \
-  soundasm.obj
+  dcprlz77.obj        dcprsnd.obj       
 
 BASE_ALL_OBJS_NO_ALL_OBJ          =                                       \
   $(BASE_DCPR_OBJS)                                                       \
@@ -258,20 +201,17 @@ BASE_ALL_OBJS_NO_ALL_OBJ          =                                       \
   arcblk.obj          arctest.obj       \
   arcinfo.obj         bitwidth.obj      \
   bufread.obj         comments.obj      \
-  convert.obj         connolin.obj      \
-  cdhuff.obj                                             \
+  convert.obj         cdhuff.obj        \
   cdpic.obj           cdsound.obj       \
-  crc.obj             crcasm.obj        \
+  crc.obj                     \
   crypt.obj           dirdata.obj       \
-  dosfuncs.obj        dosfnocw.obj      \
-  dfnolin.obj						  \
+  dosfuncs.obj            \
   error.obj           errorout.obj      \
   extract.obj         filelist.obj      \
   funcs.obj           lfn.obj           \
-  memory.obj          memnocw.obj       \
+  memory.obj                 \
   msgout.obj          options.obj       \
   pathfunc.obj        qsort.obj         \
-  qsortasm.obj                                           \
   state.obj           volume.obj
 
 BASE_ALL_OBJS                     =                                       \
@@ -283,26 +223,21 @@ BASE_ALLACL_OBJS                     =                                    \
 ##############################################################################
 BASE_DOS_OBJS                     =                                       \
   connont.obj                                            \
-  dosfni64.obj        dfni64wt.obj      \
-  dfnocwnt.obj	       lfndosas.obj      \
-  lfndos.obj          lfnntdos.obj      \
-  memdos.obj          memdosas.obj      \
-  sysdos32.obj        sysd32as.obj	  \
+  dosfni64.obj           \
+  lfndosas.obj  lfnntdos.obj      \
   dosfnont.obj
 
 BASE_NT_OBJS                      =                                       \
   connt.obj                                              \
   lfnnodos.obj        lfnnt.obj         \
   memndos.obj         memnt.obj         \
-  dosfi64.obj	       dosfnt.obj
+  dosfnt.obj
 
 
 BASE_OS2_OBJS                     =                                       \
   connont.obj         dosfni64.obj      \
-  dfni64wt.obj        dfnocwnt.obj      \
-  lfnnodos.obj        lfnos2.obj        \
-  lfnntos2.obj        memndos.obj       \
-  memos2.obj	       dosfnont.obj
+  lfnnodos.obj        memndos.obj       \
+  dosfnont.obj
 
 ##############################################################################
 
