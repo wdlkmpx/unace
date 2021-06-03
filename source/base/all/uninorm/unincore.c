@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "base/all/includes.h" /* BASE_LFN_MAXLEN */
 #include "unidata.h"
 
 /* Hangul constants */
@@ -33,7 +34,7 @@
 
 /* convenience null */
 #define null 0
-#define MAX_FILENAME_SIZE 2048
+#define MAX_FILENAME_SIZE BASE_LFN_MAXLEN
 
 
 /**
@@ -367,7 +368,7 @@ void canonical_decomposition(uint *buf, uint *str)
     uint temp[MAX_FILENAME_SIZE];
     temp[0] = null;
 
-    for (i = 0; i < length; ++i)
+    for (i = 0; i < length && pos < MAX_FILENAME_SIZE; ++i)
     {
         decompose_recursive(temp, str[i]);
         len = istrlen(temp);
@@ -458,7 +459,7 @@ void encode_utf8(char *buf, uint *str)
     int i, j = 0;
     int len = istrlen(str);
 
-    for (i = 0; i < len; ++i)
+    for (i = 0; i < len && j < MAX_FILENAME_SIZE; ++i)
     {
         uint c = str[i];
 

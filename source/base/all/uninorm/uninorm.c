@@ -36,6 +36,9 @@ INT BASE_UNINORM_CP850ToUTF8NFC(UCHAR *cp850String, INT len)
    UINT Unicode[BASE_LFN_MAXLEN+1], Normalized[BASE_LFN_MAXLEN+1], *destptr = Unicode;
    UCHAR *srcptr = cp850String, *resultstr = cp850String;
 
+   if ((UINT) len >= BASE_LFN_MAXLEN)
+     len = BASE_LFN_MAXLEN - 1;
+
    srcptr[len] = 0;
    /* First, convert that DOS CP850 encoded String to Unicode */
    while (*srcptr)
@@ -48,6 +51,7 @@ INT BASE_UNINORM_CP850ToUTF8NFC(UCHAR *cp850String, INT len)
    /* Then normalize and return UTF-8 encoded in place of the input string */
    normalize_nfc(Normalized, Unicode);
    encode_utf8(resultstr, Normalized);
+   resultstr[len] = 0;
 
    
    return strlen(resultstr);
