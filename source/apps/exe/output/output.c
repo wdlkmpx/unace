@@ -125,7 +125,7 @@ CHAR      DeleteStr[223];
     memset(&DeleteStr[74], ' ', 74);
     DeleteStr[222] = 0;
 
-    printf(DeleteStr);
+    printf("%s", DeleteStr);
 #ifndef __sun__
     fflush(stdout);
 #endif
