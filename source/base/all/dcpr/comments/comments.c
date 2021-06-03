@@ -62,6 +62,8 @@ INT       CommentPos,
 
   if (BASE_COMMENTS.CompressedSize)
   {
+    MatchPos = 0;
+  
     CommentPos = 0;
     memset(&Hash, 0, sizeof(Hash));
     BASE_DCPR_COMMENTS_Init();
