@@ -15,6 +15,12 @@
 
 #include "base/all/includes.h"
 
+/*-----------------BASE_ARCINFO_EXTERN_DidNotCreateArchive---------------*/
+BOOL    BASE_ARCINFO_EXTERN_DidNotCreateArchive(void)
+{
+  return 1;
+}
+
 
 /*-----------------BASE_ARCINFO_GetArchiveInfo---------------------------*/
 

@@ -31,12 +31,12 @@ include $(MAKE_DIR)apps.mk
 
 ##############################################################################
 UNACEEXELIN_CFILES =					\
-  $(BASE_ALL_LIN_CFILES) 	$(BASE_UNACE_CFILES)	\
+  $(BASE_ALL_LIN_CFILES) \
   $(APPS_EXE_CFILES) 		$(APPS_UNACE_CFILES)	\
   $(APPS_UNACEEXE_CFILES)
 
 UNACEEXENT_CFILES =					\
-  $(BASE_ALL_NT_CFILES) 	$(BASE_UNACE_CFILES)	\
+  $(BASE_ALL_NT_CFILES) \
   $(APPS_EXE_CFILES) 		$(APPS_UNACE_CFILES)	\
   $(APPS_UNACEEXE_CFILES)
 

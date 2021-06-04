@@ -17,6 +17,12 @@
 
 #include "base/all/includes.h"
 
+/*-----------------BASE_FILELIST_SearchListCreate------------------------*/
+void    BASE_FILELIST_SearchListCreate(BOOL DoAddDirFirst)
+{
+  BASE_FILELIST_SearchListArchiveCreate();
+}
+
 
 /*-----------------BASE_FILELIST_RemoveDrive-----------------------------*/
 

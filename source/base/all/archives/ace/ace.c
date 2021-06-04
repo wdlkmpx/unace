@@ -17,6 +17,21 @@
 
 #include "base/all/includes.h"
 
+/*-----------------BASE_ARCHIVES_ACE_EXTERN_ArchiveTestAVCheck-----------*/
+BOOL BASE_ARCHIVES_ACE_EXTERN_ArchiveTestAVCheck(BOOL IsUnRegistered)
+{ /* arcace.c */
+  if (!IsUnRegistered && BASE_DIRDATA_Dir1.HasAV
+      && ((BASE_ARCBLK.Header.Main.RES2
+            ^ (USHORT) (BASE_ARCBLK.Header.Main.TIME_CR >> 12))
+          != BASE_ARCBLK.Header.Main.RES1))
+  {
+    BASE_ERROROUT_EXTERN_AVBroken();
+  }
+
+  return 1;
+}
+
+
 
 /*-----------------BASE_ARCHIVES_ACE_ArchiveTest-------------------------*/
 
