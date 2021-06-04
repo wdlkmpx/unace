@@ -33,6 +33,10 @@ void    BASE_EXTRACT_EXTERN_ExtractBegin(void)
 void    BASE_EXTRACT_EXTERN_ExtractEnd(void)
 {
 }
+void    BASE_FUNCS_EXTERN_DoCopy(INT Mode)
+{
+  BASE_EXTRACT_Extract(1, 1);
+}
 
 
 /*-----------------BASE_EXTRACT_DecompressFile---------------------------*/

@@ -1,17 +1,4 @@
 UNACE_SRCS                          = $(APPS_SRCS)unace/
-UNACEALL_SRCS                       = $(UNACE_SRCS)all/
-UNACE_OBJ_DIR                       = $(APPS_OBJ_DIR)unace/
-UNACE_EXT_OBJ_DIR                   = $(UNACE_OBJ_DIR)ext/
-
-##############################################################################
-UNACE_EXT_SRCS                      = $(UNACEALL_SRCS)extern/#################
-$(UNACE_EXT_OBJ_DIR)funcs.obj       : $(UNACE_EXT_SRCS)funcs/funcs.c
-APPS_UNACE_CFILES =	$(UNACE_EXT_SRCS)funcs/funcs.c
-APPS_UNACE_OBJS   = $(UNACE_EXT_OBJ_DIR)funcs.obj
-
-##############################################################################
-#include $(MAKE_DIR)unaceexe.mk
-
 UNACEEXE_SRCS                      = $(UNACE_SRCS)exe/
 UNACEEXE_EXT_SRCS                  = $(UNACEEXE_SRCS)extern/
 UNACEEXE_OBJ_DIR                   = $(APPS_OBJ_DIR)unaceexe/
@@ -61,7 +48,7 @@ APPS_UNACEEXE_EXT_OBJS              =                                       \
 
 APPS_UNACEEXE_OBJS                  =                                       \
   $(APPS_UNACEEXE_EXT_OBJS)                                                 \
-  $(APPS_UNACE_OBJS)                     $(APPS_EXE_OBJS)                   \
+  $(APPS_EXE_OBJS)                   \
   $(APPS_EXE_UNACEEXE_OBJS)              $(UNACEEXE_OBJ_DIR)commline.obj    \
   $(UNACEEXE_OBJ_DIR)clhelp.obj          $(UNACEEXE_OBJ_DIR)exe.obj
 
