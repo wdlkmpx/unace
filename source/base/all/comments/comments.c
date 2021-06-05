@@ -6,8 +6,21 @@
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_COMMENTS
 #define INCL_BASE_DCPR_COMMENTS
-
 #include "base/all/includes.h"
+
+#define INCL_APPS_EXE_EXTERN_COMMENTS
+#include "apps/exe/includes.h"
+
+/*-----------------BASE_COMMENTS_EXTERN_Output---------------------------*/
+void    BASE_COMMENTS_EXTERN_Output(void)
+{
+  BASE_COMMENTS_ReadComment();
+
+  if (BASE_COMMENTS.Comment[0])
+  {
+    APPS_EXE_EXTERN_COMMENTS_StdOutput();
+  }
+}
 
 
 /*-----------------BASE_COMMENTS_ReadComment---------------------------*/

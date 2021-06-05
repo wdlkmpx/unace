@@ -6,6 +6,20 @@
 
 #include "apps/exe/includes.h"
 
+/*-----------------APPS_EXE_EXTERN_ERROR_HandleCancelPROC----------------*/
+void    APPS_EXE_EXTERN_ERROR_HandleCancelPROC(void)
+{
+}
+
+/*-----------------BASE_ERROR_EXTERN_Init--------------------------------*/
+void    BASE_ERROR_EXTERN_Init(void)
+{
+}
+/*-----------------BASE_ERROR_EXTERN_HandleCancelPROC--------------------*/
+void    BASE_ERROR_EXTERN_HandleCancelPROC(void)
+{
+}
+
 
 /*-----------------BASE_ERROR_EXTERN_HandleCancel------------------------*/
 

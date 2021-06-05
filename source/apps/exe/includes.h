@@ -6,11 +6,13 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #if defined(INCL_APPS_EXE)                          || defined(INCL_APPS_EXE_EXCLUSIVE)
-       #include "apps/exe/exe.h"
+# ifndef APPS_EXE_DELAYLENGTH
+#   define APPS_EXE_DELAYLENGTH 500
+# endif
 #endif
 
 #if defined(INCL_APPS_EXE_COMMLINE)                 || defined(INCL_APPS_EXE_COMMLINE_EXCLUSIVE)
-   #include "apps/exe/commline/commline.h"
+   #include "apps/exe/commline.h"
 #endif
 
 #if defined(INCL_APPS_EXE_EXTERN_ARCBLK)            || defined(INCL_APPS_EXE_EXTERN_ARCBLK_EXCLUSIVE)

@@ -19,6 +19,11 @@
 
 #include "apps/exe/includes.h"
 
+
+void    APPS_EXE_EXTERN_VOLUME_HandleVolumeChange(PCHAR VolumeName)
+{ /* not used */
+}
+
 /*-----------------BASE_VOLUME_EXTERN_ChangeVolumeToProcess--------------*/
 
 INT     BASE_VOLUME_EXTERN_ChangeVolumeToProcess(PCHAR VolumeName)
@@ -39,8 +44,6 @@ tLFN      VolumeDirectory,
     {
       do
       {
-        APPS_EXE_OUTPUT_Beep();
-
         Input = APPS_EXE_INPUT_EXTERN_WarningYANC(STR.Copy, STR.Ready_to_process,
                   APPS_EXE_CONVERT_MakeStrShorter(ShortStr, VolumeName, 26));
 

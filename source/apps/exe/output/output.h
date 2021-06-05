@@ -41,8 +41,6 @@ void    APPS_EXE_OUTPUT_InfoOrWarningProc(
           PCHAR ShortStr1, PCHAR ShortStr2, PINT Width);
 
 void    APPS_EXE_OUTPUT_MessageProc(PCHAR TopStr, PCHAR MessageText);
-void    APPS_EXE_OUTPUT_Beep(void);
-
 void    APPS_EXE_OUTPUT_EXTERN_Warning(PCHAR TopStr,
                                        PCHAR TextStr1, PCHAR TextStr2);
 

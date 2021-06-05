@@ -9,6 +9,10 @@
   #define DECLEXT extern
 #endif
 
+#define APPS_UNACE_EXE_COMMLINE_HELP_COPYRIGHTLINES 2
+void    APPS_UNACE_EXE_COMMLINE_HELP_PrintHelp(BOOL DoPrintCopyRight);
+void    APPS_UNACE_EXE_COMMLINE_HELP_CreateFirstHelpLine(void);
+
 
 #define APPS_UNACE_EXE_COMMLINE_COMMANDSNUMBER     5
 

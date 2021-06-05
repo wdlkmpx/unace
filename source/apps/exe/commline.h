@@ -3,13 +3,6 @@
 
 #include "base/all/lfn/lfn.h"
 
-#ifdef INCL_APPS_EXE_COMMLINE_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 typedef struct
 {
         BOOL    Error,
@@ -29,10 +22,6 @@ typedef struct
         PCHAR   TargetDir;
 } tAPPS_EXE_COMMLINE;
 
-DECLEXT tAPPS_EXE_COMMLINE
-        APPS_EXE_COMMLINE;
-
-
-#undef DECLEXT
+tAPPS_EXE_COMMLINE APPS_EXE_COMMLINE;
 
 #endif

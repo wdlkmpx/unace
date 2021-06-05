@@ -13,7 +13,27 @@
 
 #define INCL_APPS_EXE_COMMLINE
 
+#define INCL_APPS_EXE_MESSAGES
+#define INCL_APPS_EXE_OUTPUT
+#define INCL_BASE_VERSION
 #include "apps/exe/includes.h"
+
+/*-----------------APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific----------*/
+void    APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific(void)
+{
+  sprintf(APPS_EXE_MESSAGES.FirstCommandLineHelpLine,
+          "UNACE v" BASE_VERSION_VERSIONSTR "   %-44s"
+          __DATE__ " " __TIME__
+          , STR.Copyright_by_ACE_Compression_Software);  
+  STR.CommlineHelp[0] = APPS_EXE_MESSAGES.FirstCommandLineHelpLine;
+}
+
+/*-----------------APPS_EXE_MESSAGES_EXTERN_LoadMessages-----------------*/
+void    APPS_EXE_MESSAGES_EXTERN_LoadMessages(void)
+{
+  APPS_EXE_MESSAGES_LoadMessagesPROC(&STR.END_MARKER, "END OF UNACE PART");
+}
+
 
 /*-----------------APPS_EXE_MESSAGES_Open--------------------------------*/
 
