@@ -17,6 +17,18 @@
 
 #include "base/all/includes.h"
 
+#define INCL_APPS_EXE_COMMLINE
+#include "apps/includes.h"
+
+/*-----------------BASE_FILELIST_EXTERN_CommandLineCheck-----------------*/
+BOOL    BASE_FILELIST_EXTERN_CommandLineCheck(PCHAR FileName,
+                                              PCHAR CompareFileName1,
+                                              PCHAR CompareFileName2)
+{
+  return !BASE_CONVERT_StrICmp(CompareFileName2, APPS_EXE_COMMLINE.ErrorFile)
+         || !BASE_CONVERT_StrICmp(CompareFileName2, APPS_EXE_COMMLINE.OutFile);
+}
+
 /*-----------------BASE_FILELIST_EXTERN_AddFileMoveCheck-----------------*/
 INT     BASE_FILELIST_EXTERN_AddFileMoveCheck(PCHAR FileName)
 {
