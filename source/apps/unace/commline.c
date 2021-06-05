@@ -35,7 +35,7 @@
 
 #define INCL_APPS_UNACE_EXE_COMMLINE_HELP
 
-#include "apps/unace/exe/includes.h"
+#include "apps/unace/includes.h"
 
 /*-----------------APPS_UNACE_EXE_COMMLINE_HELP_PrintCommandLineHelp-----*/
 void    APPS_UNACE_EXE_COMMLINE_HELP_PrintHelp(BOOL DoPrintCopyRight)

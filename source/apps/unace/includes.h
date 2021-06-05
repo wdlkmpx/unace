@@ -7,11 +7,11 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #if defined(INCL_APPS_UNACE_EXE_COMMLINE) || defined(INCL_APPS_UNACE_EXE_COMMLINE_EXCLUSIVE) || defined(INCL_APPS_UNACE_EXE_COMMLINE_HELP) || defined(INCL_APPS_UNACE_EXE_COMMLINE_HELP_EXCLUSIVE)
-       #include "apps/unace/exe/commline/commline.h"
+       #include "apps/unace/commline.h"
 #endif
 
 #if defined(INCL_APPS_UNACE_EXE)                       || defined(INCL_APPS_UNACE_EXE_EXCLUSIVE)
-       #include "apps/unace/exe/exe.h"
+       #include "apps/unace/exe.h"
 #endif
 
 #endif
