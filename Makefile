@@ -39,8 +39,6 @@ BASE_ALL_CFILES =                      \
 	source/base/lfn/nont.c                \
 	source/base/lfn/nodos32.c             \
 	source/base/memory/memory.c           \
-	source/base/memory/nodos32.c          \
-	source/base/memory/nowat.c            \
 	source/base/msgout/msgout.c           \
 	source/base/options/options.c         \
 	source/base/pathfunc/pathfunc.c       \
@@ -48,9 +46,7 @@ BASE_ALL_CFILES =                      \
 	source/base/state/state.c             \
 	source/base/uninorm/uninorm.c         \
 	source/base/uninorm/unincore.c        \
-	source/base/volume/volume.c           \
-	source/base/memory/lin.c
-	# source/base/memory/nowatnt.c
+	source/base/volume/volume.c
 
 APPS_CFILES =                 \
 	source/convert/convert.c   \

@@ -13,6 +13,7 @@
 #define INCL_BASE_ERROROUT
 #define INCL_BASE_FILELIST
 
+#define INCL_BASE_BITWIDTH
 #include "base/includes.h"
 
 /*-----------------BASE_MEMORY_EXTERN_OptimizeOtherMemory----------------*/
@@ -264,4 +265,127 @@ INT       I, J;
     BASE_DCPR_PIC.Data[I]         =
       (PCHAR) BASE_MEMORY_ReAllocSameSize(BASE_DCPR_PIC.Data[I]);
   }
+}
+
+// ========================================================================
+// lin.c
+
+/*-----------------BASE_MEMORY_InitMaxAllocate---------------------------*/
+void    BASE_MEMORY_InitMaxAllocate(void)
+{
+  BASE_MEMORY.MaxAllocate  = BASE_MEMORY_EXTERN_MaxMemoryRequirement();
+
+  BASE_MEMORY_InitAlloc();
+}
+
+/*-----------------BASE_MEMORY_MemMax------------------------------------*/
+INT     BASE_MEMORY_MemMax(void)
+{
+  return BASE_MEMORY.MaxAllocate;
+}
+
+/*-----------------BASE_MEMORY_MemAvail----------------------------------*/
+INT     BASE_MEMORY_MemAvail(void)
+{
+  return BASE_MEMORY_MemMax();
+}
+
+// ========================================================================
+// nowat.c
+
+/*-----------------BASE_MEMORY_MemCopy-----------------------------------*/
+void    BASE_MEMORY_MemCopy(PCHAR Dest, PCHAR Source, INT Len)
+{
+  while (Len--)
+  {
+    *Dest++ = *Source++;
+  }
+}
+
+/*-----------------BASE_MEMORY_MemSet16----------------------------------*/
+void    BASE_MEMORY_MemSet16(PUSHORT Buf, USHORT Code, INT Len)
+{
+  while (Len--)
+  {
+    *Buf++ = Code;
+  }
+}
+
+/*-----------------BASE_MEMORY_MemSet32----------------------------------*/
+void    BASE_MEMORY_MemSet32(PULONG Buf, ULONG Code, INT Len)
+{
+  while (Len--)
+  {
+    *Buf++ = Code;
+  }
+}
+
+// ========================================================================
+// nodos32.c
+
+/*-----------------BASE_MEMORY_ReAlloc-----------------------------------*/
+
+PVOID  BASE_MEMORY_ReAlloc(PVOID OldPointer, INT NewSize)
+{
+PVOID     NewPointer;
+INT       OldSize;
+
+  OldSize = BASE_MEMORY_Size(OldPointer);
+
+  if ((NewPointer = realloc((PVOID) ((PULONG) OldPointer - 1), NewSize + 4)))
+  {
+    BASE_MEMORY.MaxAllocate += OldSize - NewSize;
+    *(PULONG) NewPointer = NewSize;
+    NewPointer = (PVOID) ((PULONG) NewPointer + 1);
+
+    return NewPointer;
+  }
+  else
+  {
+    return OldPointer;
+  }
+}
+
+/*-----------------BASE_MEMORY_MemAvailBase2-----------------------------*/
+
+INT     BASE_MEMORY_MemAvailBase2(INT Base)
+{
+PVOID     Pointer;
+INT       I;
+
+  I = BASE_MEMORY.MaxAllocate >> (Base + 11);
+
+  I = 1 << ((I < 256 ? BASE_BITWIDTH_GetBitWidth(I)
+                     : BASE_BITWIDTH_GetBitWidth(I >> 8) + 8) + 10);
+
+  while (!(Pointer = malloc(I)))
+  {
+    I -= I >> 2;
+  }
+
+  free(Pointer);
+
+  return I;
+}
+
+/*-----------------BASE_MEMORY_MemAvailBase2Plus-------------------------*/
+
+INT     BASE_MEMORY_MemAvailBase2Plus(INT Base, INT Plus)
+{
+PVOID     Pointer;
+INT       I;
+
+  I = BASE_MEMORY.MaxAllocate >> (Base + 11);
+
+  I = 1 << ((I < 256 ? BASE_BITWIDTH_GetBitWidth(I)
+                     : BASE_BITWIDTH_GetBitWidth(I >> 8) + 8) + 10);
+
+  while (!(Pointer = malloc(I + Plus)))
+  {
+    I >>= 1;
+  }
+
+  free(Pointer);
+
+  return I;
 }
