@@ -1,20 +1,4 @@
-DEBUG = 1
-
-BASIC_DIRsl     = 
-BASIC_DIR       = 
-
-
-MAKE_DIRsl      = 
-MAKE_DIR        = 
-
-EXECS_DIR       = 
-EXECS_DIRsl     = 
-PACKAGES_DIR    = 
-PACKAGES_DIRsl  = 
-SRCSsl          = $(BASIC_DIR)source
-SRCS            = $(SRCSsl)/
-INCLS           =
-
+CPPFLAGS   += -Isource
 DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__ -U__HAS_IO_H__
 #DEFINES	= -D__MACOSX__ -D__unix__ -D__GCC__
 #DEFINES	= -D__unix__ -D__GCC__ -D__BIG_ENDIAN__ -D__EMULATE_UNALIGNED__
@@ -93,7 +77,6 @@ all: unace
 
 clean:
 	rm -f unace
-	rm -f linunace25.tgz
 	
 unace: $(UNACE_CFILES)
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(INCLS) -I$(SRCSsl) $(DEFINES) $(UNACE_CFILES) -o$(EXECS_DIR)unace
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(DEFINES) $(UNACE_CFILES) -ounace
