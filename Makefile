@@ -1,7 +1,5 @@
 CPPFLAGS   += -Isource
-DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__
-#DEFINES	= -D__MACOSX__ -D__unix__ -D__GCC__
-#DEFINES	= -D__unix__ -D__GCC__ -D__BIG_ENDIAN__ -D__EMULATE_UNALIGNED__
+#DEFINES	= -D__EMULATE_UNALIGNED__
 
 BASE_ALL_CFILES =                      \
 	source/base/arcblk/arcblk.c      \
@@ -78,4 +76,4 @@ clean:
 	rm -f unace
 	
 unace: $(UNACE_CFILES)
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(DEFINES) $(UNACE_CFILES) -ounace
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(UNACE_CFILES) -o unace

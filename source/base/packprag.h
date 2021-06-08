@@ -10,7 +10,7 @@
   #if ( defined(__MACOSX__) || defined(__sun__) )
     #define RESTOREALIGNMENTOFF
     #pragma pack(4)
-  #elif defined(__WATCOMC__) || defined(__GCC__) || defined(__MWERKS__) && (__dest_os == __win32_os)
+  #elif defined(__WATCOMC__) || defined(__GNUC__) || defined(__MWERKS__) && (__dest_os == __win32_os)
     #pragma pack(push, 4)
   #endif
 
@@ -29,7 +29,7 @@
   #if defined( __MACOSX__ ) || defined( __sun__ )
     #define RESTOREALIGNMENTON
     #pragma pack(1)
-  #elif defined(__WATCOMC__) || defined(__GCC__) || defined(__MWERKS__) && (__dest_os == __win32_os)
+  #elif defined(__WATCOMC__) || defined(__GNUC__) || defined(__MWERKS__) && (__dest_os == __win32_os)
     #pragma pack(push, 1)
   #endif
 
@@ -53,7 +53,7 @@
       #undef RESTOREALIGNMENTON
       #pragma pack(4)
     #endif
-  #elif defined(__WATCOMC__) || defined(__GCC__) || defined(__MWERKS__) && (__dest_os == __win32_os)
+  #elif defined(__WATCOMC__) || defined(__GNUC__) || defined(__MWERKS__) && (__dest_os == __win32_os)
     #pragma pack(pop)
   #endif
 

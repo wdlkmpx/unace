@@ -4,6 +4,13 @@
 #ifdef _WIN32
 # include <windows.h>
 #else
+/* assume __unix__ for everything else */
+# ifndef __unix__
+#   #define __unix__
+# endif
+# if defined(__APPLE__) && defined(__MACH__)
+#   #define __MACOSX__
+# endif
 # include <sys/types.h>
 # include <unistd.h>
 #endif
