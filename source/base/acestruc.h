@@ -3,13 +3,6 @@
 
 #include "base/lfn/lfn.h"
 
-#ifdef INCL_BASE_ACESTRUC_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #define BASE_ACESTRUC_EXTRACTVERSION 20
 
 #define BASE_ACESTRUC_HOST_MSDOS  0
@@ -243,8 +236,7 @@ typedef union {
 #define RESTOREALIGNMENT
 #include "base/packprag.h"
 
-DECLEXT PCHAR const
-          BASE_ACESTRUC_ACESIGN
+PCHAR const BASE_ACESTRUC_ACESIGN
 #ifdef INCL_BASE_ACESTRUC_EXCLUSIVE
   #ifdef USELIMITED
         = "USELTD"
@@ -254,8 +246,7 @@ DECLEXT PCHAR const
 #endif
 ;
 
-DECLEXT PCHAR const
-          BASE_ACESTRUC_EXTENSION
+PCHAR const BASE_ACESTRUC_EXTENSION
 #ifdef INCL_BASE_ACESTRUC_EXCLUSIVE
   #ifdef USELIMITED
         = ".acl"
@@ -265,8 +256,7 @@ DECLEXT PCHAR const
 #endif
 ;
 
-DECLEXT INT const
-          BASE_ACESTRUC_IsACL
+INT const BASE_ACESTRUC_IsACL
 #ifdef INCL_BASE_ACESTRUC_EXCLUSIVE
   #ifdef USELIMITED
         = 1
@@ -275,8 +265,5 @@ DECLEXT INT const
   #endif
 #endif
 ;
-
-
-#undef DECLEXT
 
 #endif

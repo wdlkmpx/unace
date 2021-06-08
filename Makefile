@@ -4,7 +4,6 @@ DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__
 #DEFINES	= -D__unix__ -D__GCC__ -D__BIG_ENDIAN__ -D__EMULATE_UNALIGNED__
 
 BASE_ALL_CFILES =                      \
-	source/base/all.c                \
 	source/base/arcblk/arcblk.c      \
 	source/base/archives/ace/ace.c   \
 	source/base/archives/read/read.c \
