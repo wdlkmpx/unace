@@ -41,7 +41,7 @@ memmove((ptr), &__tmp, sizeof(*(ptr))); \
 #define put_unaligned(ptr, val) ((void)( *(ptr) = (val) ))
 #endif /* __EMULATE_UNALIGNED__ */
 
-#include <endian.h>
+#include "pendian_detect.h"
 #if __BYTE_ORDER == __BIG_ENDIAN
 #define ADJUST_ENDIANNESS16(Ptr) {\
   USHORT x = get_unaligned((USHORT*) (Ptr));\
