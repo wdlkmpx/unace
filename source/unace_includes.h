@@ -12,7 +12,7 @@
 #endif
 
 #if defined(INCL_APPS_EXE_COMMLINE)                 || defined(INCL_APPS_EXE_COMMLINE_EXCLUSIVE)
- #include "apps/commline.h"
+ #include "commline.h"
 #endif
 
 #if defined(INCL_APPS_EXE_ACEFUNCS)                 || defined(INCL_APPS_EXE_ACEFUNCS_EXCLUSIVE)
@@ -23,23 +23,23 @@
 #endif
 
 #if defined(INCL_APPS_EXE_CONVERT)                  || defined(INCL_APPS_EXE_CONVERT_EXCLUSIVE)
-   #include "apps/convert/convert.h"
+   #include "convert/convert.h"
 #endif
 
 #if defined(INCL_APPS_EXE_INPUT)                    || defined(INCL_APPS_EXE_INPUT_EXCLUSIVE)
-   #include "apps/input/input.h"
+   #include "input/input.h"
 #endif
 
   #if defined(INCL_APPS_EXE_INPUT_LINUX)              || defined(INCL_APPS_EXE_INPUT_LINUX_EXCLUSIVE)
-     #include "apps/input/lin.h"
+     #include "input/lin.h"
   #endif
 
   #if defined(INCL_APPS_EXE_INPUT_NT)                 || defined(INCL_APPS_EXE_INPUT_NT_EXCLUSIVE)
-     #include "apps/input/nt.h"
+     #include "input/nt.h"
   #endif
 
 #if defined(INCL_APPS_EXE_MESSAGES)                 || defined(INCL_APPS_EXE_MESSAGES_EXCLUSIVE)
-   #include "apps/messages/messages.h"
+   #include "messages/messages.h"
 #endif
 
 #if defined(INCL_APPS_EXE_OUTPTERR)                 || defined(INCL_APPS_EXE_OUTPTERR_EXCLUSIVE)
@@ -50,19 +50,19 @@
 #endif
 
 #if defined(INCL_APPS_EXE_OUTPUT)                   || defined(INCL_APPS_EXE_OUTPUT_EXCLUSIVE)
-   #include "apps/output/output.h"
+   #include "output/output.h"
 #endif
 
 #if defined(INCL_APPS_EXE_STATE) || defined(INCL_APPS_EXE_STATE_EXCLUSIVE) || defined(INCL_APPS_EXE_EXTERN_STATE) || defined(INCL_APPS_EXE_EXTERN_STATE_EXCLUSIVE)
-   #include "apps/state/state.h"
+   #include "state/state.h"
 #endif
 
 #if defined(INCL_APPS_UNACE_EXE_COMMLINE) || defined(INCL_APPS_UNACE_EXE_COMMLINE_EXCLUSIVE) || defined(INCL_APPS_UNACE_EXE_COMMLINE_HELP) || defined(INCL_APPS_UNACE_EXE_COMMLINE_HELP_EXCLUSIVE)
-       #include "apps/commline.h"
+       #include "commline.h"
 #endif
 
 #if defined(INCL_APPS_UNACE_EXE)                       || defined(INCL_APPS_UNACE_EXE_EXCLUSIVE)
-       #include "apps/exe.h"
+       #include "main.h"
 #endif
 
 

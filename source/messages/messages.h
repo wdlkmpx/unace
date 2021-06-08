@@ -1,7 +1,7 @@
 #ifndef _APPS_EXE_MESSAGES_H_INCLUDED
 #define _APPS_EXE_MESSAGES_H_INCLUDED
 
-/* #include "apps/ace/exe/messages/messages.h" */
+/* #include "ace/exe/messages/messages.h" */
 #define APPS_ACE_EXE_MESSAGES_ARCHIVEOPTIONWINLINES             16
 #define APPS_ACE_EXE_MESSAGES_CREATIONARCHIVINGOPTIONSLINES     17
 #define APPS_ACE_EXE_MESSAGES_MAXHELPLINES                      19
@@ -57,6 +57,6 @@ void    APPS_EXE_MESSAGES_InitMessages(void);
 void    APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific(void);
 void    APPS_EXE_MESSAGES_EXTERN_LoadMessages(void);
 
-#include "apps/messages/msgstruc.h"
+#include "messages/msgstruc.h"
 
 #endif

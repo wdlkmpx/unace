@@ -56,18 +56,18 @@ BASE_ALL_CFILES =                      \
 	# source/base/memory/nowatnt.c
 
 APPS_CFILES =                 \
-	source/apps/acefuncs/acefuncs.c \
-	source/apps/convert/convert.c   \
-	source/apps/input/input.c       \
-	source/apps/input/lin.c         \
-	source/apps/messages/msgfiles/eng.c \
-	source/apps/messages/messages.c \
-	source/apps/outpterr/outpterr.c \
-	source/apps/output/output.c     \
-	source/apps/state/state.c       \
-	source/apps/commline.c          \
-	source/apps/exe.c               \
-	source/apps/lin.c
+	source/convert/convert.c   \
+	source/input/input.c       \
+	source/input/lin.c         \
+	source/messages/msgfiles/eng.c \
+	source/messages/messages.c \
+	source/outpterr/outpterr.c \
+	source/output/output.c     \
+	source/state/state.c       \
+	source/acefuncs.c          \
+	source/commline.c          \
+	source/main.c               \
+	source/lin.c
 
 UNACE_CFILES = $(BASE_ALL_CFILES) $(APPS_CFILES)
 
