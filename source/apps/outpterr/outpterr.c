@@ -4,7 +4,7 @@
 
 #define INCL_BASE_ERROR
 
-#include "base/all/includes.h"
+#include "base/includes.h"
 
 #define INCL_APPS_EXE_MESSAGES
 #define INCL_APPS_EXE_OUTPUT

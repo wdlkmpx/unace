@@ -1,7 +1,7 @@
 #ifndef _APPS_INCLUDES_H_INCLUDED
 #define _APPS_INCLUDES_H_INCLUDED
 
-#include "base/all/includes.h"
+#include "base/includes.h"
 
 //////////////////////////////////////////////////////////////////////////////
 
