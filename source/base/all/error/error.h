@@ -1,12 +1,6 @@
 #ifndef _BASE_ERROR_H_INCLUDED
 #define _BASE_ERROR_H_INCLUDED
 
-#ifdef INCL_BASE_ERROR_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
 //------ConstantDefines:
 
 #define BASE_ERROR_NOERROR  0
@@ -35,14 +29,10 @@ typedef struct
                 HardwareErrorDrive;
 } tBASE_ERROR;
 
-DECLEXT tBASE_ERROR
-        BASE_ERROR;
+tBASE_ERROR BASE_ERROR;
 
 void    BASE_ERROR_EXTERN_HandleCancelPROC(void);
 INT     BASE_ERROR_EXTERN_HandleCancel(BOOL DoReadAllKeys);
 void    BASE_ERROR_EXTERN_Init(void);
-
-
-#undef DECLEXT
 
 #endif

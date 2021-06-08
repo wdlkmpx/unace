@@ -105,10 +105,6 @@
    #include "base/all/dosfuncs/dosfuncs.h"
 #endif
 
-  #if defined(INCL_BASE_DOSFUNCS_NT)            || defined(INCL_BASE_DOSFUNCS_NT_EXCLUSIVE)
-     #include "base/all/dosfuncs/nt.h"
-  #endif
-
 #if defined(INCL_BASE_ERROR)                    || defined(INCL_BASE_ERROR_EXCLUSIVE)
    #include "base/all/error/error.h"
 #endif
@@ -133,17 +129,9 @@
    #include "base/all/lfn/lfn.h"
 #endif
 
-  #if defined(INCL_BASE_LFN_DOS32)                || defined(INCL_BASE_LFN_DOS32_EXCLUSIVE)
-     #include "base/all/lfn/dos32.h"
-  #endif
-
 #if defined(INCL_BASE_MEMORY)                   || defined(INCL_BASE_MEMORY_EXCLUSIVE)
    #include "base/all/memory/memory.h"
 #endif
-
-  #if defined(INCL_BASE_MEMORY_DOS32)             || defined(INCL_BASE_MEMORY_DOS32_EXCLUSIVE)
-     #include "base/all/memory/dos32.h"
-  #endif
 
 #if defined(INCL_BASE_MSGOUT)                   || defined(INCL_BASE_MSGOUT_EXCLUSIVE)
        #include "base/all/msgout/msgout.h"
@@ -168,10 +156,6 @@
 #if defined(INCL_BASE_SYSTEM)                   || defined(INCL_BASE_SYSTEM_EXCLUSIVE)
    #include "base/all/system/system.h"
 #endif
-
-  #if defined(INCL_BASE_SYSTEM_DOS32)             || defined(INCL_BASE_SYSTEM_DOS32_EXCLUSIVE)
-     #include "base/all/system/dos32.h"
-  #endif
 
 #if defined(INCL_BASE_UNINORM)                   || defined(INCL_BASE_UNINORM_EXCLUSIVE)
    #include "base/all/uninorm/uninorm.h"

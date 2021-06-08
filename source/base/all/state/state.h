@@ -1,14 +1,7 @@
 #ifndef _BASE_STATE_H_INCLUDED
 #define _BASE_STATE_H_INCLUDED
 
-
 #include "base/all/lfn/lfn.h"
-
-#ifdef INCL_BASE_STATE_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
 
 typedef struct
 {
@@ -39,8 +32,7 @@ typedef struct
           SumErrors;
 } tBASE_STATE;
 
-DECLEXT tBASE_STATE
-        BASE_STATE;
+tBASE_STATE BASE_STATE;
 
 INT     BASE_STATE_WriteFile(INT Handle, PVOID Buf, INT Len,
                              BOOL IsUncompressedSize);
@@ -64,8 +56,5 @@ void    BASE_STATE_EXTERN_SetExtractString(void);
 void    BASE_STATE_EXTERN_SetTestString(void);
 void    BASE_STATE_EXTERN_OutputProgressEnd(BOOL DoInit, BOOL IsFileStart);
 void    BASE_STATE_EXTERN_OutputCRCOkEnd(BOOL CRCIsOk);
-
-
-#undef DECLEXT
 
 #endif

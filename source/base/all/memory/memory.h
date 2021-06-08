@@ -1,13 +1,6 @@
 #ifndef _BASE_MEMORY_H_INCLUDED
 #define _BASE_MEMORY_H_INCLUDED
 
-#ifdef INCL_BASE_MEMORY_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #define BASE_MEMORY_MINGETMEMBASE2 4096
 
 typedef struct
@@ -15,8 +8,7 @@ typedef struct
         LONG    MaxAllocate;
 } tBASE_MEMORY;
 
-DECLEXT tBASE_MEMORY
-        BASE_MEMORY;
+tBASE_MEMORY BASE_MEMORY;
 
 void    BASE_MEMORY_CopyBytes(PCHAR Dest, PCHAR Source, INT Len);
 void    BASE_MEMORY_MemCopy(PCHAR Dest, PCHAR Source, INT Len);
@@ -46,8 +38,5 @@ INT     BASE_MEMORY_MemAvailBase2Plus(INT Base, INT Plus);
 
 void    BASE_MEMORY_EXTERN_OptimizeOtherMemory(void);
 ULONG   BASE_MEMORY_EXTERN_MaxMemoryRequirement(void);
-
-
-#undef DECLEXT
 
 #endif

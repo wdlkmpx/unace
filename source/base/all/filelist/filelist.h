@@ -4,13 +4,6 @@
 #include "base/all/dosfuncs/dosfuncs.h"
 #include "base/all/lfn/lfn.h"
 
-#ifdef INCL_BASE_FILELIST_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #define BASE_FILELIST_NORMAL       BASE_DOSFUNCS_NORMAL
 #define BASE_FILELIST_RDONLY       BASE_DOSFUNCS_RDONLY
 #define BASE_FILELIST_HIDDEN       BASE_DOSFUNCS_HIDDEN
@@ -73,8 +66,7 @@ typedef struct
           ListFileData;
 } tBASE_FILELIST;
 
-DECLEXT tBASE_FILELIST
-        BASE_FILELIST;
+tBASE_FILELIST BASE_FILELIST;
 
 
 PCHAR   BASE_FILELIST_RemoveDrive(PCHAR Path);
@@ -106,8 +98,4 @@ void    BASE_FILELIST_EXTERN_CreateEnd(void);
 BOOL    BASE_FILELIST_EXTERN_CommandLineCheck(PCHAR FileName,
                                               PCHAR CompareFileName1,
                                               PCHAR CompareFileName2);
-
-
-#undef DECLEXT
-
 #endif

@@ -42,13 +42,4 @@ typedef ULONGLONG         *PULONGLONG;
 
 typedef void              *PVOID;
 
-/* Dear ACE team, please clean your code to remove the following types */
-typedef LONGLONG           __int64;
-typedef ULONGLONG          DWORDLONG;
-
-#ifndef NULL
-#include <stdlib.h>
-#endif
-
-
 #endif

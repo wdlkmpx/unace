@@ -3,12 +3,6 @@
 
 #include "base/all/cprdcpr/lz77/lz77.h"
 
-#ifdef INCL_BASE_DCPR_LZ77_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
 #define BASE_DCPR_LZ77_MAXPARTSIZE           1024
 
 typedef struct
@@ -56,19 +50,11 @@ INT     BASE_DCPR_LZ77_Block(PCHAR Buf, INT Len);
 INT     BASE_DCPR_LZ77_PreprocessBlock(PCHAR Buf, INT Len);
 void    BASE_DCPR_LZ77_CopyToDictionary(PCHAR Buf, INT Len);
 
-#ifdef USE_ASM
-extern void BASE_DCPR_LZ77_BlockCore(void);
-extern void BASE_DCPR_LZ77_ReadSymbolsCore(void);
-#else
 void    BASE_DCPR_LZ77_BlockCore(void);
 void    BASE_DCPR_LZ77_ReadSymbolsCore(void);
 void    BASE_DCPR_LZ77_WriteChar(CHAR Char);
 void    BASE_DCPR_LZ77_CopyString(ULONG Dist, INT Len);
-#endif
 
-DECLEXT tBASE_DCPR_LZ77
-        BASE_DCPR_LZ77;
-
-#undef DECLEXT
+tBASE_DCPR_LZ77 BASE_DCPR_LZ77;
 
 #endif

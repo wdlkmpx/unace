@@ -1,13 +1,6 @@
 #ifndef _BASE_CRYPT_H_INCLUDED
 #define _BASE_CRYPT_H_INCLUDED
 
-#ifdef INCL_BASE_CRYPT_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #define BASE_CRYPT_BLOWFISHROUNDS       16
 #define BASE_CRYPT_SHACONST1		0x5a827999L
 #define BASE_CRYPT_SHACONST2		0x6ed9eba1L
@@ -60,8 +53,7 @@ typedef struct
         BOOL    DoUseCurrentPassword;
 } tBASE_CRYPT;
 
-DECLEXT ULONG const
-        BASE_CRYPT_PIXDIGITS[1042]
+ULONG const BASE_CRYPT_PIXDIGITS[1042]
 #ifdef INCL_BASE_CRYPT_EXCLUSIVE
 =
 {/* P */
@@ -247,8 +239,7 @@ DECLEXT ULONG const
 #endif
 ;
 
-DECLEXT tBASE_CRYPT
-        BASE_CRYPT;
+tBASE_CRYPT BASE_CRYPT;
 
 void    BASE_CRYPT_MakeSHA(pBASE_CRYPT_CRYPTIONDATA CryptionData);
 void    BASE_CRYPT_InitCryptKey(pBASE_CRYPT_CRYPTIONDATA CryptionData);
@@ -263,7 +254,4 @@ void    BASE_CRYPT_ResetCryptKey(pBASE_CRYPT_CRYPTIONDATA CryptionData);
 
 void    BASE_CRYPT_EXTERN_ResetCryptKeyUseCurrent(
           pBASE_CRYPT_CRYPTIONDATA CryptionData);
-
-#undef DECLEXT
-
 #endif

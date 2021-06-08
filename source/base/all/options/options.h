@@ -3,13 +3,6 @@
 
 #include "base/all/crypt/crypt.h"
 
-#ifdef INCL_BASE_OPTIONS_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #define SETNOALIGNMENT
 #include "base/all/packprag.h"
 
@@ -32,8 +25,7 @@ typedef struct
                 ExtractOptions;
 } tBASE_OPTIONS;
 
-DECLEXT PCHAR const
-        BASE_OPTIONS_DICTIONARYTEXTS[23] 
+PCHAR const BASE_OPTIONS_DICTIONARYTEXTS[23] 
 #ifdef INCL_BASE_OPTIONS_EXCLUSIVE
 =
 { "0K", "0K", "0K", "0K", "0K",
@@ -44,13 +36,8 @@ DECLEXT PCHAR const
 #endif
 ;
 
-DECLEXT tBASE_OPTIONS
-        BASE_OPTIONS;
+tBASE_OPTIONS BASE_OPTIONS;
 
 INT     BASE_OPTIONS_EXTERN_SetPassword(
           pBASE_CRYPT_CRYPTIONDATA CryptionData, BOOL DoReEnter);
-
-
-#undef DECLEXT
-
 #endif

@@ -3,13 +3,6 @@
 
 #include "base/all/cprdcpr/huff/huff.h"
 
-#ifdef INCL_BASE_QSORT_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 typedef struct
 {
         INT     Hyphen;
@@ -17,18 +10,10 @@ typedef struct
                 Frequencies[(BASE_CPRDCPR_HUFF_MAXCODE + 2) * 2];
 } tBASE_QSORT;
 
-DECLEXT tBASE_QSORT
-        BASE_QSORT;
+tBASE_QSORT BASE_QSORT;
 
 void    BASE_QSORT_SortRange(INT Left, INT Right);
 void    BASE_QSORT_DoQuicksort(INT Elements);
-
-#ifndef USE_ASM
 void    BASE_QSORT_XchgElements(PUSHORT Var1, PUSHORT Var2);
-#endif
-
-
-
-#undef DECLEXT
 
 #endif

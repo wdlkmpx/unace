@@ -7,7 +7,4 @@ INT     BASE_ARCHIVES_ACE_ArchiveTest(void);
 void    BASE_ARCHIVES_ACE_ReadArchive(void);
 BOOL    BASE_ARCHIVES_ACE_EXTERN_ArchiveTestAVCheck(BOOL IsUnRegistered);
 
-
-#undef DECLEXT
-
 #endif

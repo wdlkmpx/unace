@@ -3,13 +3,6 @@
 
 #include "base/all/dirdata/dirdata.h"
 
-#ifdef INCL_BASE_ARCHIVES_TEST_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 typedef struct
 {
   INT     MaxTestSectors;
@@ -18,12 +11,8 @@ typedef struct
 
 } tBASE_ARCHIVES_TEST;
 
-DECLEXT tBASE_ARCHIVES_TEST
-        BASE_ARCHIVES_TEST;
+tBASE_ARCHIVES_TEST BASE_ARCHIVES_TEST;
 
 INT     BASE_ARCHIVES_TEST_ArchiveTest(PCHAR FileName, INT MaxTestSecs,
                                        BOOL IgnoreKeys);
-
-#undef DECLEXT
-
 #endif

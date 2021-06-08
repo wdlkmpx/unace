@@ -6,9 +6,6 @@ BASE_OBJ_DIR                      = $(OBJ_DIR)base/
 all.obj          : $(BASE_ALL_SRCS)all.c
 
 ##############################################################################
-allacl.obj       : $(BASE_ALL_SRCS)allacl.c
-
-##############################################################################
 arcblk.obj       : $(BASE_ALL_SRCS)arcblk/arcblk.c
 
 ##############################################################################
@@ -215,9 +212,6 @@ BASE_ALL_OBJS_NO_ALL_OBJ          =                                       \
 
 BASE_ALL_OBJS                     =                                       \
   $(BASE_ALL_OBJS_NO_ALL_OBJ)          all.obj
-
-BASE_ALLACL_OBJS                     =                                    \
-  $(BASE_ALL_OBJS_NO_ALL_OBJ)          allacl.obj
 
 ##############################################################################
 BASE_DOS_OBJS                     =                                       \

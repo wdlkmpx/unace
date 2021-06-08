@@ -4,13 +4,6 @@
 #include "base/all/dosfuncs/dosfuncs.h"
 #include "base/all/lfn/lfn.h"
 
-#ifdef INCL_BASE_DIRDATA_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 //------TypeDefines:
 
 #define SETNOALIGNMENT
@@ -69,11 +62,7 @@ typedef struct
 
 //------Variables:
 
-DECLEXT tBASE_DIRDATA_DirData
+tBASE_DIRDATA_DirData
          BASE_DIRDATA_Dir1,
          BASE_DIRDATA_Dir2;
-
-
-#undef DECLEXT
-
 #endif

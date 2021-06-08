@@ -1,22 +1,14 @@
 #ifndef _BASE_PATHFUNC_H_INCLUDED
 #define _BASE_PATHFUNC_H_INCLUDED
 
-#ifdef INCL_BASE_PATHFUNC_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
 typedef struct
 {
         BOOL    DoWildCardCheckMatchingPath;
         tLFN    AddSlashToEndStr;
 } tBASE_PATHFUNC;
 
-DECLEXT tBASE_PATHFUNC
-        BASE_PATHFUNC;
+tBASE_PATHFUNC BASE_PATHFUNC;
 
-//#ifdef _UNIX_
 #ifdef __unix__
   #define BASE_PATHFUNC_SEPARATOR '/'
   #define BASE_PATHFUNC_SEPARATORSTR "/"
@@ -38,8 +30,5 @@ void    BASE_PATHFUNC_SplitFileName(PCHAR Dir, PCHAR FileName, PCHAR Path);
 void    BASE_PATHFUNC_CompletePath(PCHAR Path);
 BOOL    BASE_PATHFUNC_IsNTFSStreamName(PCHAR Path);
 void    BASE_PATHFUNC_NTFSStreamGetFileName(PCHAR Path);
-
-
-#undef DECLEXT
 
 #endif

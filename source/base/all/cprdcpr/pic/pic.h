@@ -1,13 +1,6 @@
 #ifndef _BASE_CPRDCPR_PIC_H_INCLUDED
 #define _BASE_CPRDCPR_PIC_H_INCLUDED
 
-#ifdef INCL_BASE_CPRDCPR_PIC_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #define BASE_CPRDCPR_PIC_N0              128
 #define BASE_CPRDCPR_PIC_MAXPLANES       4
 #define BASE_CPRDCPR_PIC_MAXCOLWIDTH     16384
@@ -46,12 +39,6 @@ typedef struct
                 QuantizerArrx9x9[511];
 } tBASE_CPRDCPR_PIC;
 
-
-
-DECLEXT tBASE_CPRDCPR_PIC
-        BASE_CPRDCPR_PIC;
-
-
-#undef DECLEXT
+tBASE_CPRDCPR_PIC BASE_CPRDCPR_PIC;
 
 #endif

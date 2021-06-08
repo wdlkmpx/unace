@@ -23,7 +23,7 @@ struct findi64_t {
         char attrib;            /* attribute byte for file     */
         unsigned short wr_time; /* time of last write to file  */
         unsigned short wr_date; /* date of last write to file  */
-        __int64 size;    	/* length of file in bytes     */
+        int64_t size;    	/* length of file in bytes     */
         char name[260];         /* null-terminated filename    */
         char SearchMask[260];   /* null-terminated search mask */
 };

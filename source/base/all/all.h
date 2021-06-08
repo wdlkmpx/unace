@@ -1,27 +1,15 @@
 #ifndef _BASE_ALL_H_INCLUDED
 #define _BASE_ALL_H_INCLUDED
 
-#if defined(__MACOSX__) || defined(__sun__)
-#include <sys/types.h>
-#include <unistd.h>
+#ifdef _WIN32
+# include <windows.h>
+#else
+# include <sys/types.h>
+# include <unistd.h>
 #endif
 
 #define SETALIGNMENT
 #include "base/all/packprag.h"
-
-#if defined(__NT__)
-  #include <windows.h>
-#else
-  #if defined(__OS2__)
-    #include <os2.h>
-  #endif
-#endif
-
-#if defined(_GNU_H_WINDOWS32_BASE)
-  #define _WINDOWS_
-  #define __wtypes_h__
-#endif
-
 #include "declare.h"
 
 #define RESTOREALIGNMENT
@@ -29,23 +17,15 @@
 
 #include "base/all/lfn/lfn.h"
 
-#ifdef INCL_BASE_ALL_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #define in(v1,v2,v3) ((((INT) v1) >= ((INT) v2)) && (((INT) v1)<=((INT) v3)))
 
-DECLEXT PCHAR const
-        ARCHIVEEXTENSIONS[5] 
+PCHAR const ARCHIVEEXTENSIONS[5] 
 #ifdef INCL_BASE_ALL_EXCLUSIVE
  = {"ACE", "RAR", "ZIP", "ARJ", "EXE"}
 #endif
 ;
 
-#undef DECLEXT
+// =====================================================================
 
 #ifdef __EMULATE_UNALIGNED__
 #include <string.h>

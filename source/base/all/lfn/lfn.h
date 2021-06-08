@@ -12,13 +12,6 @@
 #endif
 #endif
 
-#ifdef INCL_BASE_LFN_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 #ifndef O_BINARY
   #define O_BINARY 0x0
 #endif
@@ -87,8 +80,7 @@ typedef struct
   tLFN    Arg0;
 } tBASE_LFN;
 
-DECLEXT tBASE_LFN
-        BASE_LFN;
+tBASE_LFN BASE_LFN;
 
 BOOL    BASE_LFN_DriveSupportsLFN(PCHAR Drive);
 void    BASE_LFN_CheckExistence(PCHAR Path);
@@ -122,8 +114,5 @@ PCHAR   BASE_LFN_ShortNameChangeDir(PCHAR Path);
 PCHAR   BASE_LFN_LongName(PCHAR Path);
 INT     BASE_LFN_GetFindAllFilesAndDirsAttr(void);
 INT     BASE_LFN_GetFindAllFilesAttr(void);
-
-
-#undef DECLEXT
 
 #endif

@@ -5,13 +5,6 @@
 #include "base/all/cprdcpr/lz77/lz77.h"
 #include "base/all/options/options.h"
 
-#ifdef INCL_BASE_DCPR_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
-
-
 //------ConstantDefines:
 
 #define BASE_DCPR_READBUFSIZE                8192
@@ -42,8 +35,7 @@ typedef struct
 #define RESTOREALIGNMENT
 #include "base/all/packprag.h"
 
-DECLEXT tBASE_DCPR
-        BASE_DCPR;
+tBASE_DCPR BASE_DCPR;
 
 void    BASE_DCPR_AddBits(INT Bits);
 INT     BASE_DCPR_DecompressV20Block(PCHAR Buf, INT Len);
@@ -55,8 +47,5 @@ void    BASE_DCPR_Done(void);
 void    BASE_DCPR_DoneFile(void);
 void    BASE_DCPR_EXTERN_BlockCopyToCprDictionary(PCHAR Buf, INT Len);
 void    BASE_DCPR_FillReadBuf(void);
-
-
-#undef DECLEXT
 
 #endif

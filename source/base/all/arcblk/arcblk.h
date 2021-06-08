@@ -1,15 +1,8 @@
 #ifndef _BASE_ARCBLK_H_INCLUDED
 #define _BASE_ARCBLK_H_INCLUDED
 
-
 #include "base/all/acestruc.h"
 #include "base/all/lfn/lfn.h"
-
-#ifdef INCL_BASE_ARCBLK_EXCLUSIVE
-  #define DECLEXT
-#else
-  #define DECLEXT extern
-#endif
 
 typedef struct
 {
@@ -42,8 +35,7 @@ typedef struct
           Options;
 } tBASE_ARCBLK;
 
-DECLEXT tBASE_ARCBLK
-        BASE_ARCBLK;
+tBASE_ARCBLK BASE_ARCBLK;
 
 PUSHORT BASE_ARCBLK_MainHeaderCommentSizePos(pBASE_ACESTRUC_HEADER Header);
 UINT    BASE_ARCBLK_MainHeaderCommentSize(pBASE_ACESTRUC_HEADER Header);
@@ -110,8 +102,5 @@ void    BASE_ARCBLK_EXTERN_ReadAddSizeBlockCopyToTempArchive(PCHAR Buffer,
 BOOL    BASE_ARCBLK_EXTERN_ReadAddSizeBlockEncrypt(PCHAR Buffer, INT Len);
 
 void    BASE_ARCBLK_EXTERN_RemoveCreatedArchive(void);
-
-
-#undef DECLEXT
 
 #endif
