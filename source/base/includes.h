@@ -7,10 +7,6 @@
    #include "base/acestruc.h"
 #endif
 
-#if defined(INCL_BASE_VERSION)                  || defined(INCL_BASE_VERSION_EXCLUSIVE)
-   #include "base/version.h"
-#endif
-
 //////////////////////////////////////////////////////////////////////////////
 
 #if defined(INCL_BASE_ARCBLK)                   || defined(INCL_BASE_ARCBLK_EXCLUSIVE)

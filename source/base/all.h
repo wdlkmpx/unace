@@ -25,6 +25,8 @@ PCHAR const ARCHIVEEXTENSIONS[5]
 #endif
 ;
 
+#define BASE_VERSION_VERSIONSTR "2.5  "
+
 // =====================================================================
 
 #ifdef __EMULATE_UNALIGNED__

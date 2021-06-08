@@ -15,7 +15,6 @@
 
 #define INCL_APPS_EXE_MESSAGES
 #define INCL_APPS_EXE_OUTPUT
-#define INCL_BASE_VERSION
 #include "unace_includes.h"
 
 /*-----------------APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific----------*/
