@@ -4,12 +4,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#ifdef __HAS_IO_H__
+#ifdef _WIN32
 	#include <io.h>
 #else
-#ifdef __unix__
 	#include <unistd.h>
-#endif
 #endif
 
 #ifndef O_BINARY

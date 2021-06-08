@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef __HAS_IO_H__
+#ifdef _WIN32
 	#include <io.h>
 #endif
 

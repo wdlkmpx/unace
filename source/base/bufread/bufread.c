@@ -1,12 +1,10 @@
 #include <errno.h>
 #include <fcntl.h>
 
-#ifdef __HAS_IO_H__
+#ifdef _WIN32
 	#include <io.h>
 #else
-#ifdef __unix__
 	#include <unistd.h>
-#endif
 #endif
 
 #include <string.h>
