@@ -30,14 +30,6 @@
    #include "input/input.h"
 #endif
 
-  #if defined(INCL_APPS_EXE_INPUT_LINUX)              || defined(INCL_APPS_EXE_INPUT_LINUX_EXCLUSIVE)
-     #include "input/lin.h"
-  #endif
-
-  #if defined(INCL_APPS_EXE_INPUT_NT)                 || defined(INCL_APPS_EXE_INPUT_NT_EXCLUSIVE)
-     #include "input/nt.h"
-  #endif
-
 #if defined(INCL_APPS_EXE_MESSAGES)                 || defined(INCL_APPS_EXE_MESSAGES_EXCLUSIVE)
    #include "messages/messages.h"
 #endif

@@ -43,7 +43,6 @@ BASE_ALL_CFILES =                      \
 APPS_CFILES =                 \
 	source/convert/convert.c   \
 	source/input/input.c       \
-	source/input/lin.c         \
 	source/messages/msgfiles/eng.c \
 	source/messages/messages.c \
 	source/outpterr/outpterr.c \

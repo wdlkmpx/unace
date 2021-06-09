@@ -1,6 +1,8 @@
 #ifndef _APPS_EXE_INPUT_H_INCLUDED
 #define _APPS_EXE_INPUT_H_INCLUDED
 
+#include <termios.h>
+
 #define APPS_EXE_INPUT_SHIFT             3
 #define APPS_EXE_INPUT_CTRL              4
 #define APPS_EXE_INPUT_ALT               8
@@ -47,4 +49,16 @@ void    APPS_EXE_INPUT_EXTERN_InputProcOutputMaskAtInput(BOOL DoRegInput,
 
 INT     APPS_EXE_INPUT_EXTERN_WarningYANC(PCHAR TopStr, PCHAR Description1,
                                           PCHAR Description2);
+
+typedef struct
+{
+  struct termios OldtiMode;
+  PCHAR   OldStdInBuf;
+} tAPPS_EXE_INPUT_LINUX;
+
+tAPPS_EXE_INPUT_LINUX APPS_EXE_INPUT_LINUX;
+
+void    APPS_EXE_INPUT_LINUX_SetRawMode(void);
+void    APPS_EXE_INPUT_LINUX_UnSetRawMode(void);
+
 #endif

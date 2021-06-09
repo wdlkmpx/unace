@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define INCL_APPS_EXE_INPUT_LINUX
+#define INCL_APPS_EXE_INPUT
 #define INCL_APPS_EXE_OUTPUT
 
 #define INCL_APPS_UNACE_EXE
