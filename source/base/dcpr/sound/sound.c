@@ -196,7 +196,7 @@ INT       PredDif,
 
   PCh = BASE_DCPR_SOUND_GetPredictedChar(Channel);
 
-  PredDif = ((SCHAR) (PCh - Ch)) << 3;
+  PredDif = ((CHAR) (PCh - Ch)) << 3;
 
   BASE_DCPR_SOUND.SoundVar.RarDif[Channel][0] +=
     abs(PredDif - BASE_DCPR_SOUND.SoundVar.RarDifCnt[Channel][0]);
@@ -233,7 +233,7 @@ INT       PredDif,
       (BASE_DCPR_SOUND.SoundVar.LastByte[Channel] - Ch)];
 
   BASE_DCPR_SOUND.SoundVar.LastDelta[Channel] =
-    (SCHAR) (Ch - BASE_DCPR_SOUND.SoundVar.LastByte[Channel]);
+    (CHAR) (Ch - BASE_DCPR_SOUND.SoundVar.LastByte[Channel]);
 
   BASE_DCPR_SOUND.SoundVar.LastByte[Channel]  = Ch;
 

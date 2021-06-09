@@ -164,7 +164,7 @@ UINT    _dos_findclosei64( struct findi64_t *Bufi64)
 }
 
 /*-----------------_filelengthi64----------------------------------------*/
-LONGLONG _filelengthi64(INT Handle)
+LONGLONG __filelengthi64(INT Handle)
 {
   LONGLONG OldPos, EndPos;
   OldPos = lseek(Handle, 0, SEEK_CUR);

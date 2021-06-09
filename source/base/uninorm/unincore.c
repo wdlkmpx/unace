@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "base/uninorm/unincore.h"
 #include "base/includes.h" /* BASE_LFN_MAXLEN */
 #include "unidata.h"
 

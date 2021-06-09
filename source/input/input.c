@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <termios.h>
 
 #define INCL_APPS_EXE_INPUT_EXCLUSIVE
 #define INCL_APPS_EXE_INPUT_LINUX_EXCLUSIVE
@@ -291,7 +290,14 @@ INT     APPS_EXE_INPUT_GetKey(void)
   return Ch;
 }
 
-/*-----------------APPS_EXE_INPUT_KeyHit---------------------------------*/
+#ifdef _WIN32
+
+BOOL    APPS_EXE_INPUT_KeyHit(void) { }
+void    APPS_EXE_INPUT_LINUX_SetRawMode(void) { }
+void    APPS_EXE_INPUT_LINUX_UnSetRawMode(void) { }
+
+#else
+
 BOOL    APPS_EXE_INPUT_KeyHit(void)
 {
   fd_set fds;
@@ -307,7 +313,6 @@ BOOL    APPS_EXE_INPUT_KeyHit(void)
   return select(1, &fds, NULL, NULL, &tv);
 }
 
-/*-----------------APPS_EXE_INPUT_LINUX_SetRawMode-----------------------*/
 void    APPS_EXE_INPUT_LINUX_SetRawMode(void)
 {
   struct termios ti;
@@ -330,7 +335,6 @@ void    APPS_EXE_INPUT_LINUX_SetRawMode(void)
   return;
 }
 
-/*-----------------APPS_EXE_INPUT_LINUX_UnSetRawMode---------------------*/
 void    APPS_EXE_INPUT_LINUX_UnSetRawMode(void)
 {
   if (tcsetattr(STDIN_FILENO, TCSANOW, &APPS_EXE_INPUT_LINUX.OldtiMode) < 0)
@@ -339,3 +343,4 @@ void    APPS_EXE_INPUT_LINUX_UnSetRawMode(void)
   }
   return;
 }
+#endif

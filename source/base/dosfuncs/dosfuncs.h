@@ -89,7 +89,7 @@ UINT    _dos_findfirsti64(CHAR *Path, UINT Attr, struct findi64_t *Bufi64);
 UINT    _dos_findnexti64( struct findi64_t *Bufi64);
 UINT    _dos_findclosei64( struct findi64_t *Bufi64);
 
-LONGLONG _filelengthi64(INT Handle);
+LONGLONG __filelengthi64(INT Handle);
 #endif
 
 #endif

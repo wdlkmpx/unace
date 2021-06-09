@@ -20,11 +20,14 @@
 /*-----------------APPS_EXE_STATE_Delay----------------------------------*/
 void    APPS_EXE_STATE_Delay(INT MilliSeconds)
 {
-struct timeval tv;
-
+#ifdef _WIN32
+  Sleep (MilliSeconds);
+#else
+  struct timeval tv;
   tv.tv_sec = MilliSeconds / 1000;
   tv.tv_usec = (MilliSeconds % 1000) * 100;
   select(0, NULL, NULL, NULL, &tv);
+#endif
 }
 
 

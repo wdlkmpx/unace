@@ -1,4 +1,3 @@
-//#include <direct.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdarg.h>
@@ -10,6 +9,9 @@
 
 #ifdef _WIN32
 	#include <io.h>
+	#include <direct.h>
+#else
+	#define mkdir(_a) mkdir(_a,  S_IRWXU | S_IRWXG | S_IRWXO)
 #endif
 
 #define INCL_BASE_LFN_EXCLUSIVE
@@ -168,8 +170,7 @@ USHORT    Date,
 // ============================================================================
 // lin.c
 
-#ifdef __sun__
-static char * strsep(char **stringp, char *delim)
+static char * my_strsep(char **stringp, char *delim)
 {
   char *start = *stringp;
   char *cp;
@@ -188,7 +189,8 @@ static char * strsep(char **stringp, char *delim)
   *stringp = NULL;
   return start;
 }
-#endif
+#undef strsep
+#define strsep my_strsep
 
 /*-----------------BASE_LFN_CompleteArg0---------------------------------*/
 void    BASE_LFN_CompleteArg0(PCHAR *Arg0)
@@ -257,7 +259,7 @@ INT     BASE_LFN_MakeDir(PCHAR Dir)
 {
 INT	  Result;
 
-  Result = mkdir(Dir, 0755);
+  Result = mkdir(Dir);
   if (!Result) chmod(Dir, 0755);
   return Result;
 }

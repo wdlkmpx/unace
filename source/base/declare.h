@@ -9,6 +9,7 @@
 
 #include <stdint.h>
 
+#ifndef _WIN32
 typedef int             BOOL;
 typedef BOOL           *PBOOL;
 
@@ -41,5 +42,6 @@ typedef uint64_t           ULONGLONG;
 typedef ULONGLONG         *PULONGLONG;
 
 typedef void              *PVOID;
+#endif
 
 #endif

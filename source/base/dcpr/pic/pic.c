@@ -147,7 +147,7 @@ INT       K,
           BestErrorCount;
 UCHAR     MEpsilon,
           Predicted;
-SCHAR     Epsilon;
+CHAR      Epsilon;
 
   BASE_DCPR_PIC.CurContext[BASE_DCPR_PIC.CurState].UsedCounter++;
 
