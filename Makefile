@@ -23,10 +23,7 @@ BASE_ALL_CFILES =                      \
 	source/base/dcpr/pic/pic.c            \
 	source/base/dcpr/sound/sound.c        \
 	source/base/dirdata/dirdata.c         \
-	source/base/dosfuncs/noi64.c          \
 	source/base/dosfuncs/dosfuncs.c       \
-	source/base/dosfuncs/noi64lin.c       \
-	source/base/dosfuncs/lin.c            \
 	source/base/error/error.c             \
 	source/base/errorout/errorout.c       \
 	source/base/extract/extract.c         \
