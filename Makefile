@@ -35,9 +35,6 @@ BASE_ALL_CFILES =                      \
 	source/base/filelist/filelist.c       \
 	source/base/funcs/funcs.c             \
 	source/base/lfn/lfn.c                 \
-	source/base/lfn/lin.c                 \
-	source/base/lfn/nont.c                \
-	source/base/lfn/nodos32.c             \
 	source/base/memory/memory.c           \
 	source/base/msgout/msgout.c           \
 	source/base/options/options.c         \
