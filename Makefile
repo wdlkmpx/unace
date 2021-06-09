@@ -11,8 +11,6 @@ BASE_ALL_CFILES =                      \
 	source/base/bufread/bufread.c    \
 	source/base/comments/comments.c  \
 	source/base/convert/convert.c    \
-	source/base/convert/lin.c        \
-	source/base/convert/nont.c       \
 	source/base/cprdcpr/huff/huff.c  \
 	source/base/cprdcpr/pic/pic.c    \
 	source/base/cprdcpr/sound/sound.c     \
