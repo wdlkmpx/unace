@@ -2,6 +2,7 @@ CPPFLAGS   += -Isource
 #DEFINES	= -D__EMULATE_UNALIGNED__
 
 BASE_ALL_CFILES =                      \
+	source/base/all.c      \
 	source/base/arcblk/arcblk.c      \
 	source/base/archives/ace/ace.c   \
 	source/base/archives/read/read.c \
