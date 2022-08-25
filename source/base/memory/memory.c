@@ -1,10 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef __MACOSX__
-	#include <malloc.h>
-#endif
-
 #define INCL_BASE_MEMORY_EXCLUSIVE
 
 #define INCL_BASE_DCPR
