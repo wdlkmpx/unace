@@ -1,6 +1,6 @@
 #include <string.h>
 
-#define INCL_BASE_VOLUME_EXCLUSIVE
+#define INCL_BASE_VOLUME
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_CONVERT

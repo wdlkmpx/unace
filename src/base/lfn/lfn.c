@@ -14,7 +14,7 @@
 	#define mkdir(_a) mkdir(_a,  S_IRWXU | S_IRWXG | S_IRWXO)
 #endif
 
-#define INCL_BASE_LFN_EXCLUSIVE
+#define INCL_BASE_LFN
 
 #define INCL_BASE_DOSFUNCS
 #define INCL_BASE_MEMORY

@@ -1,4 +1,4 @@
-#define INCL_BASE_CRC_EXCLUSIVE
+#define INCL_BASE_CRC
 
 #include "base/includes.h"
 

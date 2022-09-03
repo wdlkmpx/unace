@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define INCL_BASE_DCPR_SOUND_EXCLUSIVE
+#define INCL_BASE_DCPR_SOUND
 
 #define INCL_BASE_ACESTRUC
 #define INCL_BASE_DCPR

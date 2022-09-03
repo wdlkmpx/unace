@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#define INCL_APPS_UNACE_EXE_EXCLUSIVE
+#define INCL_APPS_UNACE_EXE
 
 #define INCL_BASE_ARCHIVES_TEST
 #define INCL_BASE_BITWIDTH

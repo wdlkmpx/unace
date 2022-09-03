@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define INCL_APPS_EXE_MESSAGES_EXCLUSIVE
+#define INCL_APPS_EXE_MESSAGES
 
 #define INCL_BASE_COMMENTS
 #define INCL_BASE_CONVERT

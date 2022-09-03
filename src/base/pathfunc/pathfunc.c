@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define INCL_BASE_PATHFUNC_EXCLUSIVE
+#define INCL_BASE_PATHFUNC
 
 #define INCL_BASE_CONVERT
 

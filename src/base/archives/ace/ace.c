@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define INCL_BASE_ARCHIVES_ACE_EXCLUSIVE
+#define INCL_BASE_ARCHIVES_ACE
 
 #define INCL_BASE_ACESTRUC
 #define INCL_BASE_ARCBLK

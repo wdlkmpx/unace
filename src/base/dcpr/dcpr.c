@@ -1,7 +1,7 @@
 #include <fcntl.h>
 #include <string.h>
 
-#define INCL_BASE_DCPR_EXCLUSIVE
+#define INCL_BASE_DCPR
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_BITWIDTH

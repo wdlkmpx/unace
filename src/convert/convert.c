@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define INCL_APPS_EXE_CONVERT_EXCLUSIVE
+#define INCL_APPS_EXE_CONVERT
 
 #define INCL_BASE_CONVERT
 #define INCL_BASE_FILELIST

@@ -1,7 +1,6 @@
 #include <errno.h>
 
-#define INCL_APPS_EXE_OUTPTERR_EXCLUSIVE
-
+#define INCL_APPS_EXE_OUTPTERR
 #define INCL_BASE_ERROR
 
 #include "base/includes.h"

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define INCL_BASE_DCPR_PIC_EXCLUSIVE
+#define INCL_BASE_DCPR_PIC
 
 #define INCL_BASE_ACESTRUC
 #define INCL_BASE_BITWIDTH

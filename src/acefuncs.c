@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define INCL_APPS_EXE_ACEFUNCS_EXCLUSIVE
+#define INCL_APPS_EXE_ACEFUNCS
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_COMMENTS

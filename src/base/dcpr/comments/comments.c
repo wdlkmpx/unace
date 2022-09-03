@@ -1,6 +1,6 @@
 #include <string.h>
 
-#define INCL_BASE_DCPR_COMMENTS_EXCLUSIVE
+#define INCL_BASE_DCPR_COMMENTS
 
 #define INCL_BASE_COMMENTS
 #define INCL_BASE_DCPR

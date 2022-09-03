@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <time.h>
 
-#define INCL_BASE_EXTRACT_EXCLUSIVE
+#define INCL_BASE_EXTRACT
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_COMMENTS

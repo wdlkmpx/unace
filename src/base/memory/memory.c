@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define INCL_BASE_MEMORY_EXCLUSIVE
+#define INCL_BASE_MEMORY
 
 #define INCL_BASE_DCPR
 #define INCL_BASE_DCPR_LZ77

@@ -1,4 +1,4 @@
-#define INCL_APPS_EXE_STATE_EXCLUSIVE
+#define INCL_APPS_EXE_STATE
 
 #include <unistd.h>
 #include <sys/time.h>

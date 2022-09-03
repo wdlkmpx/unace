@@ -1,4 +1,4 @@
-#define INCL_BASE_BITWIDTH_EXCLUSIVE
+#define INCL_BASE_BITWIDTH
 
 #include "base/includes.h"
 

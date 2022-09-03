@@ -1,3 +1,3 @@
-#define INCL_BASE_DIRDATA_EXCLUSIVE
+#define INCL_BASE_DIRDATA
 
 #include "base/includes.h"

@@ -1,6 +1,6 @@
 #include <string.h>
 
-#define INCL_BASE_DCPR_HUFF_EXCLUSIVE
+#define INCL_BASE_DCPR_HUFF
 
 #define INCL_BASE_DCPR
 #define INCL_BASE_MEMORY

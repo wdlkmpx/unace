@@ -1,7 +1,7 @@
 #include <fcntl.h>
 #include <string.h>
 
-#define INCL_BASE_ARCINFO_EXCLUSIVE
+#define INCL_BASE_ARCINFO
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_ARCHIVES_READ

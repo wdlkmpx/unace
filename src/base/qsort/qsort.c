@@ -1,4 +1,4 @@
-#define INCL_BASE_QSORT_EXCLUSIVE
+#define INCL_BASE_QSORT
 
 #include "base/includes.h"
 

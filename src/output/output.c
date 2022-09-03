@@ -1,7 +1,7 @@
 #include <string.h>
 #include <time.h>
 
-#define INCL_APPS_EXE_OUTPUT_EXCLUSIVE
+#define INCL_APPS_EXE_OUTPUT
 
 #define INCL_BASE_ERROR
 

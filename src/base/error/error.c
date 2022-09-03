@@ -1,4 +1,4 @@
-#define INCL_BASE_ERROR_EXCLUSIVE
+#define INCL_BASE_ERROR
 #include "base/includes.h"
 
 #define INCL_APPS_EXE_INPUT

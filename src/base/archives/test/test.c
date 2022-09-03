@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include <string.h>
 
-#define INCL_BASE_ARCHIVES_TEST_EXCLUSIVE
+#define INCL_BASE_ARCHIVES_TEST
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_ARCHIVES_ACE

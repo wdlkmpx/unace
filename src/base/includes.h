@@ -9,27 +9,27 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-#if defined(INCL_BASE_ARCBLK)                   || defined(INCL_BASE_ARCBLK_EXCLUSIVE)
+#if defined(INCL_BASE_ARCBLK)
    #include "base/arcblk/arcblk.h"
 #endif
 
-#if defined(INCL_BASE_ARCHIVES_ACE)             || defined(INCL_BASE_ARCHIVES_ACE_EXCLUSIVE)
+#if defined(INCL_BASE_ARCHIVES_ACE)
    #include "base/archives/ace/ace.h"
 #endif
 
-#if defined(INCL_BASE_ARCHIVES_READ)            || defined(INCL_BASE_ARCHIVES_READ_EXCLUSIVE)
+#if defined(INCL_BASE_ARCHIVES_READ)
    #include "base/archives/read/read.h"
 #endif
 
-#if defined(INCL_BASE_ARCHIVES_TEST)            || defined(INCL_BASE_ARCHIVES_TEST_EXCLUSIVE)
+#if defined(INCL_BASE_ARCHIVES_TEST)
    #include "base/archives/test/test.h"
 #endif
 
-#if defined(INCL_BASE_ARCINFO)                  || defined(INCL_BASE_ARCINFO_EXCLUSIVE)
+#if defined(INCL_BASE_ARCINFO)
    #include "base/arcinfo/arcinfo.h"
 #endif
 
-#if defined(INCL_BASE_BITWIDTH)                 || defined(INCL_BASE_BITWIDTH_EXCLUSIVE)
+#if defined(INCL_BASE_BITWIDTH)
    #include "base/bitwidth/bitwidth.h"
 #endif
 
@@ -37,23 +37,23 @@
    #include "base/bufread/bufread.h"
 #endif
 
-#if defined(INCL_BASE_COMMENTS)                 || defined(INCL_BASE_COMMENTS_EXCLUSIVE)
+#if defined(INCL_BASE_COMMENTS)
    #include "base/comments/comments.h"
 #endif
 
-#if defined(INCL_BASE_CONVERT)                  || defined(INCL_BASE_CONVERT_EXCLUSIVE)
+#if defined(INCL_BASE_CONVERT)
    #include "base/convert/convert.h"
 #endif
 
-#if defined(INCL_BASE_CPRDCPR_HUFF)               || defined(INCL_BASE_CPRDCPR_HUFF_EXCLUSIVE)
+#if defined(INCL_BASE_CPRDCPR_HUFF)
    #include "base/cprdcpr/huff/huff.h"
 #endif
 
-  #if defined(INCL_BASE_CPRDCPR_LZ77)             || defined(INCL_BASE_CPRDCPR_LZ77_EXCLUSIVE)
+  #if defined(INCL_BASE_CPRDCPR_LZ77)
      #include "base/cprdcpr/lz77/lz77.h"
   #endif
 
-  #if defined(INCL_BASE_CPRDCPR_PIC)              || defined(INCL_BASE_CPRDCPR_PIC_EXCLUSIVE)
+  #if defined(INCL_BASE_CPRDCPR_PIC)
      #include "base/cprdcpr/pic/pic.h"
   #endif
 
@@ -61,7 +61,7 @@
      #include "base/cprdcpr/sound/sound.h"
   #endif
 
-#if defined(INCL_BASE_CRC)                      || defined(INCL_BASE_CRC_EXCLUSIVE)
+#if defined(INCL_BASE_CRC)
    #include "base/crc/crc.h"
 #endif
 
@@ -69,67 +69,67 @@
    #include "base/crypt/crypt.h"
 #endif
 
-#if defined(INCL_BASE_DCPR)                     || defined(INCL_BASE_DCPR_EXCLUSIVE)
+#if defined(INCL_BASE_DCPR)
    #include "base/dcpr/dcpr.h"
 #endif
 
-  #if defined(INCL_BASE_DCPR_COMMENTS)            || defined(INCL_BASE_DCPR_COMMENTS_EXCLUSIVE)
+  #if defined(INCL_BASE_DCPR_COMMENTS)
      #include "base/dcpr/comments/comments.h"
   #endif
 
-  #if defined(INCL_BASE_DCPR_HUFF)                || defined(INCL_BASE_DCPR_HUFF_EXCLUSIVE)
+  #if defined(INCL_BASE_DCPR_HUFF)
      #include "base/dcpr/huff/huff.h"
   #endif
 
-  #if defined(INCL_BASE_DCPR_LZ77)                || defined(INCL_BASE_DCPR_LZ77_EXCLUSIVE)
+  #if defined(INCL_BASE_DCPR_LZ77)
      #include "base/dcpr/lz77/lz77.h"
   #endif
 
-  #if defined(INCL_BASE_DCPR_PIC)                 || defined(INCL_BASE_DCPR_PIC_EXCLUSIVE)
+  #if defined(INCL_BASE_DCPR_PIC)
      #include "base/dcpr/pic/pic.h"
   #endif
 
-  #if defined(INCL_BASE_DCPR_SOUND)               || defined(INCL_BASE_DCPR_SOUND_EXCLUSIVE)
+  #if defined(INCL_BASE_DCPR_SOUND)
      #include "base/dcpr/sound/sound.h"
   #endif
 
-#if defined(INCL_BASE_DIRDATA)                  || defined(INCL_BASE_DIRDATA_EXCLUSIVE)
+#if defined(INCL_BASE_DIRDATA)
    #include "base/dirdata/dirdata.h"
 #endif
 
-#if defined(INCL_BASE_DOSFUNCS)                 || defined(INCL_BASE_DOSFUNCS_EXCLUSIVE)
+#if defined(INCL_BASE_DOSFUNCS)
    #include "base/dosfuncs/dosfuncs.h"
 #endif
 
-#if defined(INCL_BASE_ERROR)                    || defined(INCL_BASE_ERROR_EXCLUSIVE)
+#if defined(INCL_BASE_ERROR)
    #include "base/error/error.h"
 #endif
 
-#if defined(INCL_BASE_ERROROUT)                 || defined(INCL_BASE_ERROROUT_EXCLUSIVE)
+#if defined(INCL_BASE_ERROROUT)
    #include "base/errorout/errorout.h"
 #endif
 
-#if defined(INCL_BASE_EXTRACT)                  || defined(INCL_BASE_EXTRACT_EXCLUSIVE)
+#if defined(INCL_BASE_EXTRACT)
    #include "base/extract/extract.h"
 #endif
 
-#if defined(INCL_BASE_FILELIST)                 || defined(INCL_BASE_FILELIST_EXCLUSIVE)
+#if defined(INCL_BASE_FILELIST)
    #include "base/filelist/filelist.h"
 #endif
 
-#if defined(INCL_BASE_FUNCS)                    || defined(INCL_BASE_FUNCS_EXCLUSIVE)
+#if defined(INCL_BASE_FUNCS)
    #include "base/funcs/funcs.h"
 #endif
 
-#if defined(INCL_BASE_LFN)                      || defined(INCL_BASE_LFN_EXCLUSIVE)
+#if defined(INCL_BASE_LFN)
    #include "base/lfn/lfn.h"
 #endif
 
-#if defined(INCL_BASE_MEMORY)                   || defined(INCL_BASE_MEMORY_EXCLUSIVE)
+#if defined(INCL_BASE_MEMORY)
    #include "base/memory/memory.h"
 #endif
 
-#if defined(INCL_BASE_MSGOUT)                   || defined(INCL_BASE_MSGOUT_EXCLUSIVE)
+#if defined(INCL_BASE_MSGOUT)
        #include "base/msgout/msgout.h"
 #endif
 
@@ -137,27 +137,27 @@
    #include "base/options/options.h"
 #endif
 
-#if defined(INCL_BASE_PATHFUNC)                 || defined(INCL_BASE_PATHFUNC_EXCLUSIVE)
+#if defined(INCL_BASE_PATHFUNC)
    #include "base/pathfunc/pathfunc.h"
 #endif
 
-#if defined(INCL_BASE_QSORT)                    || defined(INCL_BASE_QSORT_EXCLUSIVE)
+#if defined(INCL_BASE_QSORT)
    #include "base/qsort/qsort.h"
 #endif
 
-#if defined(INCL_BASE_STATE)                    || defined(INCL_BASE_STATE_EXCLUSIVE)
+#if defined(INCL_BASE_STATE)
    #include "base/state/state.h"
 #endif
 
-#if defined(INCL_BASE_SYSTEM)                   || defined(INCL_BASE_SYSTEM_EXCLUSIVE)
+#if defined(INCL_BASE_SYSTEM)
    #include "base/system/system.h"
 #endif
 
-#if defined(INCL_BASE_UNINORM)                   || defined(INCL_BASE_UNINORM_EXCLUSIVE)
+#if defined(INCL_BASE_UNINORM)
    #include "base/uninorm/uninorm.h"
 #endif
 
-#if defined(INCL_BASE_VOLUME)                   || defined(INCL_BASE_VOLUME_EXCLUSIVE)
+#if defined(INCL_BASE_VOLUME)
    #include "base/volume/volume.h"
 #endif
 

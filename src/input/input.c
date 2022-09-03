@@ -3,8 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define INCL_APPS_EXE_INPUT_EXCLUSIVE
-#define INCL_APPS_EXE_INPUT_LINUX_EXCLUSIVE
+#define INCL_APPS_EXE_INPUT
 
 #define INCL_BASE_ERROR
 #define INCL_BASE_CONVERT

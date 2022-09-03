@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define INCL_BASE_CONVERT_EXCLUSIVE
+#define INCL_BASE_CONVERT
 
 #define INCL_BASE_FILELIST
 

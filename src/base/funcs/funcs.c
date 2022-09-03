@@ -3,7 +3,7 @@
 #include <string.h>
 #include <sys/stat.h>
 
-#define INCL_BASE_FUNCS_EXCLUSIVE
+#define INCL_BASE_FUNCS
 
 #define INCL_BASE_CONVERT
 #define INCL_BASE_ARCBLK

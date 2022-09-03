@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#define INCL_BASE_ARCHIVES_READ_EXCLUSIVE
+#define INCL_BASE_ARCHIVES_READ
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_ARCHIVES_TEST

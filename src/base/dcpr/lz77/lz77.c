@@ -1,6 +1,6 @@
 #include <string.h>
 
-#define INCL_BASE_DCPR_LZ77_EXCLUSIVE
+#define INCL_BASE_DCPR_LZ77
 
 #define INCL_BASE_ACESTRUC
 #define INCL_BASE_DCPR

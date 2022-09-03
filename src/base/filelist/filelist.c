@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define INCL_BASE_FILELIST_EXCLUSIVE
+#define INCL_BASE_FILELIST
 
 #define INCL_BASE_ARCHIVES_READ
 #define INCL_BASE_CONVERT

@@ -7,7 +7,7 @@
 #include <time.h>
 #include <utime.h>
 
-#define INCL_BASE_DOSFUNCS_EXCLUSIVE
+#define INCL_BASE_DOSFUNCS
 
 #define INCL_BASE_CONVERT
 #define INCL_BASE_ERROR

@@ -2,12 +2,12 @@
 #include <string.h>
 
 #define INCL_BASE_CONVERT
-#define INCL_BASE_STATE_EXCLUSIVE
+#define INCL_BASE_STATE
 #define INCL_BASE_DOSFUNCS
 #define INCL_BASE_ERROR
 #include "base/includes.h"
 
-#define INCL_APPS_EXE_EXTERN_STATE
+#define INCL_APPS_EXE_STATE
 #define INCL_APPS_EXE_CONVERT
 #define INCL_APPS_EXE_OUTPUT
 #include "unace_includes.h"

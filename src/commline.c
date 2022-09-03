@@ -32,7 +32,7 @@
 #define INCL_APPS_EXE_OUTPUT
 #define INCL_APPS_EXE_OUTPTERR
 
-#define INCL_APPS_UNACE_EXE_COMMLINE_HELP
+#define INCL_APPS_UNACE_EXE_COMMLINE
 
 #include "unace_includes.h"
 
