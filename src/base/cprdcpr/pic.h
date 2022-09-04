@@ -39,6 +39,6 @@ typedef struct
                 QuantizerArrx9x9[511];
 } tBASE_CPRDCPR_PIC;
 
-tBASE_CPRDCPR_PIC BASE_CPRDCPR_PIC;
+extern tBASE_CPRDCPR_PIC BASE_CPRDCPR_PIC; //pic.c
 
 #endif

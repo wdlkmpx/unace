@@ -6,7 +6,7 @@ typedef struct
         CHAR    ToPercentStrStr[10];
 } tAPPS_EXE_CONVERT;
 
-tAPPS_EXE_CONVERT APPS_EXE_CONVERT;
+extern tAPPS_EXE_CONVERT APPS_EXE_CONVERT;
 PCHAR   APPS_EXE_CONVERT_ToByteUnitStr(PCHAR Str, ULONGLONG ByteSize);
 PCHAR   APPS_EXE_CONVERT_MakeStrShorter(PCHAR DestStr, PCHAR SourceStr,
                                         INT Width);

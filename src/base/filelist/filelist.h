@@ -66,7 +66,7 @@ typedef struct
           ListFileData;
 } tBASE_FILELIST;
 
-tBASE_FILELIST BASE_FILELIST;
+extern tBASE_FILELIST BASE_FILELIST; //filelist.c
 
 
 PCHAR   BASE_FILELIST_RemoveDrive(PCHAR Path);

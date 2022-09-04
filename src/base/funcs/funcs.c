@@ -23,6 +23,8 @@
 #define INCL_APPS_EXE_MESSAGES
 #include "unace_includes.h"
 
+tBASE_FUNCS BASE_FUNCS;
+
 /*-----------------BASE_FUNCS_EXTERN_MoveRealSysFileRequest--------------*/
 
 INT     BASE_FUNCS_EXTERN_MoveDeleteRealSysFileRequest(void)

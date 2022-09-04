@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#define INCL_BASE_BUFREAD_EXCLUSIVE
+#define INCL_BASE_BUFREAD
 
 #define INCL_BASE_ERROR
 #define INCL_BASE_DOSFUNCS
@@ -18,6 +18,8 @@
 #define INCL_BASE_MEMORY
 
 #include "base/includes.h"
+
+tBASE_BUFREAD BASE_BUFREAD = {-1};
 
 
 /*-----------------BASE_BUFREAD_Read-------------------------------------*/

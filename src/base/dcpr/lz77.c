@@ -9,6 +9,8 @@
 #define INCL_BASE_STATE
 #include "base/includes.h"
 
+tBASE_DCPR_LZ77 BASE_DCPR_LZ77;
+
 /*-----------------BASE_DCPR_LZ77_WriteChar------------------------------*/
 
 void    BASE_DCPR_LZ77_WriteChar(CHAR Char)

@@ -17,6 +17,11 @@
 #define INCL_APPS_EXE_OUTPUT
 #include "unace_includes.h"
 
+tAPPS_ACE_EXE_MESSAGES APPS_ACE_EXE_MESSAGES;
+
+tAPPS_EXE_MESSAGES APPS_EXE_MESSAGES;
+tSTR STR; // msgstruc.h
+
 /*-----------------APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific----------*/
 void    APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific(void)
 {

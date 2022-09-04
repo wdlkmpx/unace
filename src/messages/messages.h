@@ -19,7 +19,9 @@ typedef struct
                 ChangeOptionsPos[APPS_ACE_EXE_MESSAGES_CHANGEOPTIONSLINES],
                 ExternalProgramsPos[2];
 } tAPPS_ACE_EXE_MESSAGES;
-tAPPS_ACE_EXE_MESSAGES APPS_ACE_EXE_MESSAGES;
+
+extern tAPPS_ACE_EXE_MESSAGES APPS_ACE_EXE_MESSAGES;
+
 BOOL    APPS_ACE_EXE_MESSAGES_GetMessageFileInfo(tLFN FileName, tLFN LongTitle);
 
 // =============================================================================
@@ -39,9 +41,8 @@ typedef struct
         PCHAR   MessagesBuf;
 } tAPPS_EXE_MESSAGES;
 
-tAPPS_EXE_MESSAGES APPS_EXE_MESSAGES;
-
-extern  CHAR APPS_EXE_MESSAGES_EXTERN_ENGLISH[];
+extern tAPPS_EXE_MESSAGES APPS_EXE_MESSAGES;
+extern CHAR APPS_EXE_MESSAGES_EXTERN_ENGLISH[];
 
 void    APPS_EXE_MESSAGES_Open(PCHAR FileName);
 INT     APPS_EXE_MESSAGES_Read(void *Buf, INT Len);

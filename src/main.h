@@ -10,7 +10,7 @@ typedef struct
         tLFN    LogFile;
 } tAPPS_UNACE_EXE;
 
-tAPPS_UNACE_EXE APPS_UNACE_EXE;
+extern tAPPS_UNACE_EXE APPS_UNACE_EXE;
 
 INT     main(INT ArgumentsNumber, PCHAR Arguments[]);
 

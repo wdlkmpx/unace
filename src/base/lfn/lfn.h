@@ -78,7 +78,7 @@ typedef struct
   tLFN    Arg0;
 } tBASE_LFN;
 
-tBASE_LFN BASE_LFN;
+extern tBASE_LFN BASE_LFN; // lfn.c
 
 BOOL    BASE_LFN_DriveSupportsLFN(PCHAR Drive);
 void    BASE_LFN_CheckExistence(PCHAR Path);

@@ -7,7 +7,7 @@ typedef struct
           ToANSIStr;
 } tBASE_CONVERT;
 
-tBASE_CONVERT BASE_CONVERT;
+extern tBASE_CONVERT BASE_CONVERT; //convert.c
 
 INT     BASE_CONVERT_UpCase(INT CharCode);
 INT     BASE_CONVERT_LowCase(INT CharCode);

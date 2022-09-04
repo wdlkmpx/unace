@@ -2,6 +2,8 @@
 
 #include "base/includes.h"
 
+tBASE_QSORT BASE_QSORT;
+
 /*-----------------BASE_QSORT_XchgElements-------------------------------*/
 
 void    BASE_QSORT_XchgElements(PUSHORT Var1, PUSHORT Var2)

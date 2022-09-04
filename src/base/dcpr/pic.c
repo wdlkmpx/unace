@@ -10,6 +10,7 @@
 #define INCL_BASE_MEMORY
 #include "base/includes.h"
 
+tBASE_DCPR_PIC BASE_DCPR_PIC;
 
 /*-----------------BASE_DCPR_PIC_GetContext------------------------------*/
 

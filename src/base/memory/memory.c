@@ -12,6 +12,9 @@
 #define INCL_BASE_BITWIDTH
 #include "base/includes.h"
 
+tBASE_MEMORY BASE_MEMORY; //memory.h
+
+
 /*-----------------BASE_MEMORY_EXTERN_OptimizeOtherMemory----------------*/
 void    BASE_MEMORY_EXTERN_OptimizeOtherMemory(void)
 {

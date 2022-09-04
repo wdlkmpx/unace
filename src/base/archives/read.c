@@ -21,6 +21,9 @@
 #define INCL_APPS_EXE_MESSAGES
 #include "unace_includes.h"
 
+tBASE_ARCHIVES_READ BASE_ARCHIVES_READ; //read.h
+
+
 /*-----------------BASE_ARCHIVES_READ_EXTERN_ReadArchiveProc-------------*/
 void    BASE_ARCHIVES_READ_EXTERN_ReadArchiveProc(void)
 {

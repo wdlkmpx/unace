@@ -49,7 +49,7 @@
    #include "state/state.h"
 #endif
 
-#if defined(INCL_APPS_UNACE_EXE_COMMLINE) || defined(INCL_APPS_UNACE_EXE_COMMLINE_EXCLUSIVE)
+#if defined(INCL_APPS_UNACE_EXE_COMMLINE)
        #include "commline.h"
 #endif
 

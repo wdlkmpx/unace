@@ -24,7 +24,7 @@ typedef struct
                 PixelX;
 } tBASE_DCPR_PIC;
 
-tBASE_DCPR_PIC BASE_DCPR_PIC;
+extern tBASE_DCPR_PIC BASE_DCPR_PIC;
 
 INT     BASE_DCPR_PIC_GolombRice(INT K);
 void    BASE_DCPR_PIC_InitModel(void);

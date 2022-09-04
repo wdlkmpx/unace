@@ -13,6 +13,8 @@
 #define INCL_APPS_EXE_OUTPUT
 #include "unace_includes.h"
 
+tBASE_COMMENTS BASE_COMMENTS;
+
 /*-----------------BASE_COMMENTS_EXTERN_ReadCommentEnd-------------------*/
 void    BASE_COMMENTS_EXTERN_ReadCommentEnd(void)
 {

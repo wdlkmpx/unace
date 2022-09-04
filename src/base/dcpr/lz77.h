@@ -55,6 +55,6 @@ void    BASE_DCPR_LZ77_ReadSymbolsCore(void);
 void    BASE_DCPR_LZ77_WriteChar(CHAR Char);
 void    BASE_DCPR_LZ77_CopyString(ULONG Dist, INT Len);
 
-tBASE_DCPR_LZ77 BASE_DCPR_LZ77;
+extern tBASE_DCPR_LZ77 BASE_DCPR_LZ77;
 
 #endif

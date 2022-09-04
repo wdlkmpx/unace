@@ -8,7 +8,7 @@ typedef struct
   UINT    CurrentVolumeNumber;
 } tBASE_VOLUME;
 
-tBASE_VOLUME BASE_VOLUME;
+extern tBASE_VOLUME BASE_VOLUME; //volume.c
 
 PCHAR   BASE_VOLUME_GetVolumeName(PCHAR NewVolumeName, PCHAR VolumeName,
                                   INT Type, INT AddToVolumeNumber,

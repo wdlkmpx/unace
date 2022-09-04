@@ -62,7 +62,7 @@ typedef struct
 
 //------Variables:
 
-tBASE_DIRDATA_DirData
+extern tBASE_DIRDATA_DirData // dirdata.c
          BASE_DIRDATA_Dir1,
          BASE_DIRDATA_Dir2;
 #endif

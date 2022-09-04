@@ -21,6 +21,7 @@
 #define INCL_BASE_PATHFUNC
 #include "base/includes.h"
 
+tBASE_LFN BASE_LFN;
 
 /*-----------------BASE_LFN_ChangeDir------------------------------------*/
 

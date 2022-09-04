@@ -29,7 +29,7 @@ typedef struct
                 HardwareErrorDrive;
 } tBASE_ERROR;
 
-tBASE_ERROR BASE_ERROR;
+extern tBASE_ERROR BASE_ERROR; //error.c
 
 void    BASE_ERROR_EXTERN_HandleCancelPROC(void);
 INT     BASE_ERROR_EXTERN_HandleCancel(BOOL DoReadAllKeys);

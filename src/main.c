@@ -21,6 +21,7 @@
 
 #include "unace_includes.h"
 
+tAPPS_UNACE_EXE APPS_UNACE_EXE;
 
 /*-----------------APPS_UNACE_EXE_ProgramInit----------------------------*/
 

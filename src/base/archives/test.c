@@ -12,6 +12,8 @@
 
 #include "base/includes.h"
 
+tBASE_ARCHIVES_TEST BASE_ARCHIVES_TEST; //test.h
+
 /* not implemented? */
 static BOOL BASE_ARCHIVES_TEST_EXTERN_ArchiveTestBreak(BOOL IgnoreKeys, INT Sectors)
 {

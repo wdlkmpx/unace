@@ -17,6 +17,7 @@
 
 #include "unace_includes.h"
 
+tAPPS_EXE_INPUT APPS_EXE_INPUT;
 
 /*-----------------APPS_EXE_INPUT_EXTERN_Input---------------------------*/
 void    APPS_EXE_INPUT_EXTERN_Input(PCHAR StartStr, INT Width,

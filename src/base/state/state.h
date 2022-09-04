@@ -32,7 +32,7 @@ typedef struct
           SumErrors;
 } tBASE_STATE;
 
-tBASE_STATE BASE_STATE;
+extern tBASE_STATE BASE_STATE;
 
 INT     BASE_STATE_WriteFile(INT Handle, PVOID Buf, INT Len,
                              BOOL IsUncompressedSize);

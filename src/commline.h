@@ -22,7 +22,7 @@ typedef struct
         PCHAR   TargetDir;
 } tAPPS_EXE_COMMLINE;
 
-tAPPS_EXE_COMMLINE APPS_EXE_COMMLINE;
+extern tAPPS_EXE_COMMLINE APPS_EXE_COMMLINE;
 
 // =====================================================================
 
@@ -60,35 +60,12 @@ typedef struct
 } tAPPS_UNACE_EXE_COMMLINE;
 
 
-PCHAR const APPS_UNACE_EXE_COMMLINE_EXTRACTCOMMANDS 
-#ifdef INCL_APPS_UNACE_EXE_COMMLINE_EXCLUSIVE
- = "\x04\x00"
-#endif
-;
-
-PCHAR const APPS_UNACE_EXE_COMMLINE_COMMANDSTRINGS
-          [APPS_UNACE_EXE_COMMLINE_COMMANDSNUMBER + 1] 
-#ifdef INCL_APPS_UNACE_EXE_COMMLINE_EXCLUSIVE
-=
-{"E",   "L",                    // 0, 1
- "T",   "V",                    // 2, 3
- "X",   ""}                     // 4, 5
-#endif
-;
-
-PCHAR const APPS_UNACE_EXE_COMMLINE_SWITCHESSTRINGS
-          [APPS_UNACE_EXE_COMMLINE_SWITCHESNUMBER + 1]
-#ifdef INCL_APPS_UNACE_EXE_COMMLINE_EXCLUSIVE
-=
-{"C*",   "ERR*",                // 0, 1
- "F*",   "O*",                  // 2, 3
- "OUT*", "P*",                  // 4, 5
- "X*",   "Y*",                  // 6, 7
- ""}                            // 8
-#endif
-;
-
-tAPPS_UNACE_EXE_COMMLINE APPS_UNACE_EXE_COMMLINE;
+extern PCHAR const APPS_UNACE_EXE_COMMLINE_EXTRACTCOMMANDS ;
+extern PCHAR const APPS_UNACE_EXE_COMMLINE_COMMANDSTRINGS
+          [APPS_UNACE_EXE_COMMLINE_COMMANDSNUMBER + 1];
+extern PCHAR const APPS_UNACE_EXE_COMMLINE_SWITCHESSTRINGS
+          [APPS_UNACE_EXE_COMMLINE_SWITCHESNUMBER + 1];
+extern tAPPS_UNACE_EXE_COMMLINE APPS_UNACE_EXE_COMMLINE;
 
 void    APPS_UNACE_EXE_COMMLINE_Init(void);
 void    APPS_UNACE_EXE_COMMLINE_Done(void);

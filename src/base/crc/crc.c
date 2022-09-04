@@ -2,6 +2,8 @@
 
 #include "base/includes.h"
 
+tBASE_CRC BASE_CRC; //crc.h
+
 /*-----------------BASE_CRC_GetCRC---------------------------------------*/
 ULONG  BASE_CRC_GetCRC(ULONG CRC, PCHAR Addr, int Len)
 {

@@ -8,7 +8,7 @@ typedef struct
                 DoDeleteAll;
 } tBASE_FUNCS;
 
-tBASE_FUNCS BASE_FUNCS;
+extern tBASE_FUNCS BASE_FUNCS;
 
 void    BASE_FUNCS_Copy(INT Mode);
 INT     BASE_FUNCS_DeleteRealFile(PCHAR FileName, BOOL IsOverwriteDelete);

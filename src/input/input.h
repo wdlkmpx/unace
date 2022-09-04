@@ -17,7 +17,7 @@ typedef struct
                 TimeCount;
 } tAPPS_EXE_INPUT;
 
-tAPPS_EXE_INPUT APPS_EXE_INPUT;
+extern tAPPS_EXE_INPUT APPS_EXE_INPUT;
 
 void    APPS_EXE_INPUT_InputProc(PCHAR StartStr, INT Width, PCHAR TopStr,
                                  PCHAR Discription, BOOL IsPasswInput,

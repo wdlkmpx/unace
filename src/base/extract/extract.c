@@ -25,6 +25,8 @@
 
 #include "base/includes.h"
 
+tBASE_EXTRACT BASE_EXTRACT;
+
 /*-----------------BASE_EXTRACT_EXTERN_ExtractBegin----------------------*/
 void    BASE_EXTRACT_EXTERN_ExtractBegin(void)
 {

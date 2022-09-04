@@ -10,7 +10,7 @@ typedef struct
                 Frequencies[(BASE_CPRDCPR_HUFF_MAXCODE + 2) * 2];
 } tBASE_QSORT;
 
-tBASE_QSORT BASE_QSORT;
+extern tBASE_QSORT BASE_QSORT;
 
 void    BASE_QSORT_SortRange(INT Left, INT Right);
 void    BASE_QSORT_DoQuicksort(INT Elements);

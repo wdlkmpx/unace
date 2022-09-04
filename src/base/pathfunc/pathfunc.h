@@ -7,7 +7,7 @@ typedef struct
         tLFN    AddSlashToEndStr;
 } tBASE_PATHFUNC;
 
-tBASE_PATHFUNC BASE_PATHFUNC;
+extern tBASE_PATHFUNC BASE_PATHFUNC;
 
 #ifdef __unix__
   #define BASE_PATHFUNC_SEPARATOR '/'

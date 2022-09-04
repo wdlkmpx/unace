@@ -8,6 +8,8 @@
 
 #include "base/includes.h"
 
+tBASE_CONVERT BASE_CONVERT; //convert.h
+
 
 /*-----------------BASE_CONVERT_LowCase----------------------------------*/
 

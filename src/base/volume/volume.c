@@ -20,6 +20,9 @@
 #define INCL_APPS_EXE_OUTPUT
 #include "unace_includes.h"
 
+tBASE_VOLUME BASE_VOLUME; //volume.h
+
+
 /*-----------------BASE_VOLUME_EXTERN_ChangeVolumeToProcess--------------*/
 
 INT     BASE_VOLUME_EXTERN_ChangeVolumeToProcess(PCHAR VolumeName)

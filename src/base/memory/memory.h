@@ -8,7 +8,7 @@ typedef struct
         LONG    MaxAllocate;
 } tBASE_MEMORY;
 
-tBASE_MEMORY BASE_MEMORY;
+extern tBASE_MEMORY BASE_MEMORY; //memory.c
 
 void    BASE_MEMORY_CopyBytes(PCHAR Dest, PCHAR Source, INT Len);
 void    BASE_MEMORY_MemCopy(PCHAR Dest, PCHAR Source, INT Len);

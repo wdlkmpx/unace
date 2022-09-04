@@ -1,12 +1,20 @@
 #include <string.h>
 
-#define INCL_BASE_OPTIONS_EXCLUSIVE
+#define INCL_BASE_OPTIONS
 
 #include "base/includes.h"
 
 #define INCL_APPS_EXE_INPUT
 #define INCL_APPS_EXE_MESSAGES
 #include "unace_includes.h"
+
+PCHAR const BASE_OPTIONS_DICTIONARYTEXTS[23]  =
+{ "0K", "0K", "0K", "0K", "0K",
+  "0K", "0K", "0K", "0K", "0K",
+  "1K", "2K", "4K", "8K", "16K",
+  "32K", "64K", "128K", "256K", "512K",
+  "1024K", "2048K", "4096K"};
+tBASE_OPTIONS BASE_OPTIONS;
 
 /*-----------------BASE_OPTIONS_EXTERN_SetPassword-----------------------*/
 

@@ -20,6 +20,9 @@
 #define INCL_APPS_EXE_COMMLINE
 #include "unace_includes.h"
 
+tBASE_FILELIST BASE_FILELIST; //filelist.h
+
+
 /*-----------------BASE_FILELIST_EXTERN_CommandLineCheck-----------------*/
 BOOL    BASE_FILELIST_EXTERN_CommandLineCheck(PCHAR FileName,
                                               PCHAR CompareFileName1,

@@ -35,7 +35,7 @@ typedef struct
 #define RESTOREALIGNMENT
 #include "base/packprag.h"
 
-tBASE_DCPR BASE_DCPR;
+extern tBASE_DCPR BASE_DCPR;
 
 void    BASE_DCPR_AddBits(INT Bits);
 INT     BASE_DCPR_DecompressV20Block(PCHAR Buf, INT Len);

@@ -25,18 +25,8 @@ typedef struct
                 ExtractOptions;
 } tBASE_OPTIONS;
 
-PCHAR const BASE_OPTIONS_DICTIONARYTEXTS[23] 
-#ifdef INCL_BASE_OPTIONS_EXCLUSIVE
-=
-{ "0K", "0K", "0K", "0K", "0K",
-  "0K", "0K", "0K", "0K", "0K",
-  "1K", "2K", "4K", "8K", "16K",
-  "32K", "64K", "128K", "256K", "512K",
-  "1024K", "2048K", "4096K"}
-#endif
-;
-
-tBASE_OPTIONS BASE_OPTIONS;
+extern PCHAR const BASE_OPTIONS_DICTIONARYTEXTS[23];
+extern tBASE_OPTIONS BASE_OPTIONS;
 
 INT     BASE_OPTIONS_EXTERN_SetPassword(
           pBASE_CRYPT_CRYPTIONDATA CryptionData, BOOL DoReEnter);

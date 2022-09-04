@@ -428,5 +428,4 @@ PCHAR   BEGIN_MARKER,
   } ACE;
 } tSTR;
 
-
-tSTR STR;
+extern tSTR STR;

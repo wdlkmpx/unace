@@ -11,6 +11,8 @@
 
 #include "unace_includes.h"
 
+tAPPS_EXE_OUTPUT APPS_EXE_OUTPUT;
+
 /*-----------------APPS_EXE_OUTPUT_EXTERN_Warning------------------------*/
 void    APPS_EXE_OUTPUT_EXTERN_Warning(PCHAR TopStr, PCHAR TextStr1,
 					 PCHAR TextStr2)

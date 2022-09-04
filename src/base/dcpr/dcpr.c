@@ -17,6 +17,8 @@
 
 #include "base/includes.h"
 
+tBASE_DCPR BASE_DCPR;
+
 /*-----------------BASE_DCPR_EXTERN_BlockCopyToCprDictionary-------------*/
 void    BASE_DCPR_EXTERN_BlockCopyToCprDictionary(PCHAR Buf, INT Len)
 {

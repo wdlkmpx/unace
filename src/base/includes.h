@@ -3,7 +3,7 @@
 
 #include "base/all.h"
 
-#if defined(INCL_BASE_ACESTRUC)                 || defined(INCL_BASE_ACESTRUC_EXCLUSIVE)
+#if defined(INCL_BASE_ACESTRUC)
    #include "base/acestruc.h"
 #endif
 
@@ -33,7 +33,7 @@
    #include "base/bitwidth/bitwidth.h"
 #endif
 
-#if defined(INCL_BASE_BUFREAD)                  || defined(INCL_BASE_BUFREAD_EXCLUSIVE)
+#if defined(INCL_BASE_BUFREAD)
    #include "base/bufread/bufread.h"
 #endif
 
@@ -57,7 +57,7 @@
      #include "base/cprdcpr/pic.h"
   #endif
 
-  #if defined(INCL_BASE_CPRDCPR_SOUND)            || defined(INCL_BASE_CPRDCPR_SOUND_EXCLUSIVE)
+  #if defined(INCL_BASE_CPRDCPR_SOUND)
      #include "base/cprdcpr/sound.h"
   #endif
 
@@ -65,7 +65,7 @@
    #include "base/crc/crc.h"
 #endif
 
-#if defined(INCL_BASE_CRYPT)                    || defined(INCL_BASE_CRYPT_EXCLUSIVE)
+#if defined(INCL_BASE_CRYPT)
    #include "base/crypt/crypt.h"
 #endif
 
@@ -133,7 +133,7 @@
        #include "base/msgout/msgout.h"
 #endif
 
-#if defined(INCL_BASE_OPTIONS)                  || defined(INCL_BASE_OPTIONS_EXCLUSIVE)
+#if defined(INCL_BASE_OPTIONS)
    #include "base/options/options.h"
 #endif
 

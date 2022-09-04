@@ -27,11 +27,7 @@
 
 #define in(v1,v2,v3) ((((INT) v1) >= ((INT) v2)) && (((INT) v1)<=((INT) v3)))
 
-PCHAR const ARCHIVEEXTENSIONS[5] 
-#ifdef INCL_BASE_ALL_EXCLUSIVE
- = {"ACE", "RAR", "ZIP", "ARJ", "EXE"}
-#endif
-;
+extern PCHAR const ARCHIVEEXTENSIONS[5]; // all.c
 
 #define BASE_VERSION_VERSIONSTR "2.5  "
 

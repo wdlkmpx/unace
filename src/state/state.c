@@ -17,6 +17,9 @@
 
 #include "unace_includes.h"
 
+tAPPS_EXE_STATE APPS_EXE_STATE;
+tAPPS_EXE_EXTERN_STATE APPS_EXE_EXTERN_STATE;
+
 /*-----------------APPS_EXE_STATE_Delay----------------------------------*/
 void    APPS_EXE_STATE_Delay(INT MilliSeconds)
 {

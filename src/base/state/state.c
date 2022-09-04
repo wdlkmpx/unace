@@ -12,6 +12,8 @@
 #define INCL_APPS_EXE_OUTPUT
 #include "unace_includes.h"
 
+tBASE_STATE BASE_STATE;
+
 /*-----------------BASE_STATE_EXTERN_OutputProgressEnd-------------------*/
 
 void    BASE_STATE_EXTERN_OutputProgressEnd(BOOL DoInit, BOOL IsFileStart)

@@ -9,6 +9,7 @@
 #define INCL_BASE_DCPR_LZ77
 #include "base/includes.h"
 
+tBASE_DCPR_SOUND BASE_DCPR_SOUND;
 
 /*-----------------BASE_DCPR_SOUND_GetPredictedChar----------------------*/
 

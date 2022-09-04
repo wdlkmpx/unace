@@ -11,7 +11,7 @@ typedef struct
 
 } tBASE_ARCHIVES_TEST;
 
-tBASE_ARCHIVES_TEST BASE_ARCHIVES_TEST;
+extern tBASE_ARCHIVES_TEST BASE_ARCHIVES_TEST; //test.c
 
 INT     BASE_ARCHIVES_TEST_ArchiveTest(PCHAR FileName, INT MaxTestSecs,
                                        BOOL IgnoreKeys);

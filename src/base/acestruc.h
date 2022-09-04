@@ -236,34 +236,8 @@ typedef union {
 #define RESTOREALIGNMENT
 #include "base/packprag.h"
 
-PCHAR const BASE_ACESTRUC_ACESIGN
-#ifdef INCL_BASE_ACESTRUC_EXCLUSIVE
-  #ifdef USELIMITED
-        = "USELTD"
-  #else
-        = "**ACE**"
-  #endif
-#endif
-;
-
-PCHAR const BASE_ACESTRUC_EXTENSION
-#ifdef INCL_BASE_ACESTRUC_EXCLUSIVE
-  #ifdef USELIMITED
-        = ".acl"
-  #else
-        = ".ace"
-  #endif
-#endif
-;
-
-INT const BASE_ACESTRUC_IsACL
-#ifdef INCL_BASE_ACESTRUC_EXCLUSIVE
-  #ifdef USELIMITED
-        = 1
-  #else
-        = 0
-  #endif
-#endif
-;
+extern PCHAR const BASE_ACESTRUC_ACESIGN;   // all.c
+extern PCHAR const BASE_ACESTRUC_EXTENSION; // all.c
+extern INT const BASE_ACESTRUC_IsACL;       // all.c
 
 #endif

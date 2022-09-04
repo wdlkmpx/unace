@@ -8,7 +8,7 @@ typedef struct
                 DoProcessAllVolumes;
 } tBASE_EXTRACT;
 
-tBASE_EXTRACT BASE_EXTRACT;
+extern tBASE_EXTRACT BASE_EXTRACT;
 
 void    BASE_EXTRACT_DecompressFile(BOOL DoWriteData, BOOL IsTest);
 void    BASE_EXTRACT_ExtractFiles(BOOL DoWriteData, BOOL IsTest);

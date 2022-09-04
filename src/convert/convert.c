@@ -11,6 +11,8 @@
 
 #include "unace_includes.h"
 
+tAPPS_EXE_CONVERT APPS_EXE_CONVERT;
+
 /*-----------------APPS_EXE_CONVERT_ToByteUnitStr------------------------*/
 
 PCHAR   APPS_EXE_CONVERT_ToByteUnitStr(PCHAR Str, ULONGLONG ByteSize)

@@ -15,7 +15,7 @@ typedef struct
              (PCHAR FileName, tBASE_FILELIST_FileData FileData);
 } tBASE_ARCHIVES_READ;
 
-tBASE_ARCHIVES_READ BASE_ARCHIVES_READ;
+extern tBASE_ARCHIVES_READ BASE_ARCHIVES_READ; //read.c
 
 void    BASE_ARCHIVES_READ_FreeArchiveList(void);
 void    BASE_ARCHIVES_READ_GetArchiveList(void);

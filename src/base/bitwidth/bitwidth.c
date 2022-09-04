@@ -2,6 +2,7 @@
 
 #include "base/includes.h"
 
+tBASE_BITWIDTH BASE_BITWIDTH;
 
 /*-----------------BASE_BITWIDTH_Init------------------------------------*/
 

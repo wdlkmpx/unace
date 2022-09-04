@@ -28,6 +28,8 @@
 #define INCL_APPS_EXE_STATE
 #include "unace_includes.h"
 
+tBASE_ARCBLK BASE_ARCBLK; // arcblk.h
+
 // =============================================================================
 
 /*-----------------BASE_ARCBLK_EXTERN_OpenArchiveOverwriteRequest--------*/

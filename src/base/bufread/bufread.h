@@ -17,11 +17,7 @@ typedef struct
   tLFN    FileName;
 } tBASE_BUFREAD;
 
-tBASE_BUFREAD BASE_BUFREAD
-#ifdef INCL_BASE_BUFREAD_EXCLUSIVE
-  = {-1}
-#endif
-;
+extern tBASE_BUFREAD BASE_BUFREAD;
 
 INT     BASE_BUFREAD_Read(PCHAR Buf, UINT Len);
 void    BASE_BUFREAD_Seek(ULONGLONG Pos, INT Mode);

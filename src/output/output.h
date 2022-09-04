@@ -16,7 +16,7 @@ typedef struct
                *StdErr;
 } tAPPS_EXE_OUTPUT;
 
-tAPPS_EXE_OUTPUT APPS_EXE_OUTPUT;
+extern tAPPS_EXE_OUTPUT APPS_EXE_OUTPUT;
 
 void    APPS_EXE_OUTPUT_GetScreenSize(void);
 void    APPS_EXE_OUTPUT_WriteRight(PCHAR Text);

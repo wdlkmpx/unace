@@ -3,7 +3,7 @@
 #include <signal.h>
 #include <string.h>
 
-#define INCL_APPS_UNACE_EXE_COMMLINE_EXCLUSIVE
+#define INCL_APPS_UNACE_EXE_COMMLINE
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_ARCHIVES_TEST
@@ -35,6 +35,26 @@
 #define INCL_APPS_UNACE_EXE_COMMLINE
 
 #include "unace_includes.h"
+
+tAPPS_EXE_COMMLINE APPS_EXE_COMMLINE;
+
+PCHAR const APPS_UNACE_EXE_COMMLINE_EXTRACTCOMMANDS = "\x04\x00";
+PCHAR const APPS_UNACE_EXE_COMMLINE_COMMANDSTRINGS
+          [APPS_UNACE_EXE_COMMLINE_COMMANDSNUMBER + 1] =
+{"E",   "L",                    // 0, 1
+ "T",   "V",                    // 2, 3
+ "X",   ""};                    // 4, 5
+
+PCHAR const APPS_UNACE_EXE_COMMLINE_SWITCHESSTRINGS
+          [APPS_UNACE_EXE_COMMLINE_SWITCHESNUMBER + 1] =
+{"C*",   "ERR*",                // 0, 1
+ "F*",   "O*",                  // 2, 3
+ "OUT*", "P*",                  // 4, 5
+ "X*",   "Y*",                  // 6, 7
+ ""};                            // 8
+
+tAPPS_UNACE_EXE_COMMLINE APPS_UNACE_EXE_COMMLINE;
+
 
 /*-----------------APPS_UNACE_EXE_COMMLINE_HELP_PrintCommandLineHelp-----*/
 void    APPS_UNACE_EXE_COMMLINE_HELP_PrintHelp(BOOL DoPrintCopyRight)

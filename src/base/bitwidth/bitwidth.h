@@ -9,7 +9,7 @@ typedef struct
         UCHAR   DifBitWidthArray[256];
 } tBASE_BITWIDTH;
 
-tBASE_BITWIDTH BASE_BITWIDTH;
+extern tBASE_BITWIDTH BASE_BITWIDTH;
 
 void    BASE_BITWIDTH_Init(void);
 INT     BASE_BITWIDTH_GetBitWidth(INT Value);

@@ -7,6 +7,7 @@
 
 #include "base/includes.h"
 
+tBASE_PATHFUNC BASE_PATHFUNC;
 
 /*-----------------BASE_PATHFUNC_ToDOSPathSeparatorN---------------------*/
 

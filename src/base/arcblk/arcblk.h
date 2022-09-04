@@ -35,7 +35,7 @@ typedef struct
           Options;
 } tBASE_ARCBLK;
 
-tBASE_ARCBLK BASE_ARCBLK;
+extern tBASE_ARCBLK BASE_ARCBLK; // arcblk.c
 
 PUSHORT BASE_ARCBLK_MainHeaderCommentSizePos(pBASE_ACESTRUC_HEADER Header);
 UINT    BASE_ARCBLK_MainHeaderCommentSize(pBASE_ACESTRUC_HEADER Header);

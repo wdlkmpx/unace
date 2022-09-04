@@ -20,7 +20,7 @@ typedef struct
                 SoundVar;
 } tBASE_DCPR_SOUND;
 
-tBASE_DCPR_SOUND BASE_DCPR_SOUND;
+extern tBASE_DCPR_SOUND BASE_DCPR_SOUND;
 
 void    BASE_DCPR_SOUND_Init(INT Type);
 INT     BASE_DCPR_SOUND_Block(PCHAR Buf, INT Len);
