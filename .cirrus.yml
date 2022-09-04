@@ -1,0 +1,44 @@
+env:
+  CIRRUS_CLONE_DEPTH: 1
+
+#freebsd-11-4
+#freebsd-12-3
+#freebsd-13-0
+freebsd_task:
+  freebsd_instance:
+    image_family: freebsd-11-4
+    cpu: 1
+    memory: 1GB
+#  install_script:
+#    - .github/cirrus-ci.sh freebsd
+  build_script:
+    - .github/cirrus-ci.sh
+#  test_script:
+#    - ...
+
+
+# catalina-base
+# big-sur-base
+# monterey-base
+macos_task:
+  macos_instance:
+    image: catalina-base
+    cpu: 1
+    memory: 1GB
+#  install_script:
+#    - .github/cirrus-ci.sh macos
+  build_script:
+    - .github/cirrus-ci.sh
+
+##https://github.com/dfandrich/gpscorrelate/blob/36dcd86a055999a89b23400b73356d5c34b170c4/.cirrus.yml
+
+#linux_musl_task:
+#  name: Linux MUSL
+#  container:
+#    image: alpine:3.16
+#    cpu: 1
+#    memory: 1GB
+#  pkginstall_script:
+#    - apk add --no-cache build-base zlib-dev
+#  build_script:
+#    - .github/cirrus-ci.sh
