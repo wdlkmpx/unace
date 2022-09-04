@@ -1,8 +1,8 @@
 #ifndef _BASE_DCPR_H_INCLUDED
 #define _BASE_DCPR_H_INCLUDED
 
-#include "base/cprdcpr/huff/huff.h"
-#include "base/cprdcpr/lz77/lz77.h"
+#include "base/cprdcpr/huff.h"
+#include "base/cprdcpr/lz77.h"
 #include "base/options/options.h"
 
 //------ConstantDefines:

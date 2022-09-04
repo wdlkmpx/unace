@@ -1,7 +1,7 @@
 #ifndef _BASE_DCPR_PIC_H_INCLUDED
 #define _BASE_DCPR_PIC_H_INCLUDED
 
-#include "base/cprdcpr/pic/pic.h"
+#include "base/cprdcpr/pic.h"
 
 typedef struct
 {

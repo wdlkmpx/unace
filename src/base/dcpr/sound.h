@@ -1,7 +1,7 @@
 #ifndef _BASE_DCPR_SOUND_H_INCLUDED
 #define _BASE_DCPR_SOUND_H_INCLUDED
 
-#include "base/cprdcpr/sound/sound.h"
+#include "base/cprdcpr/sound.h"
 
 //------ConstantDefines:
 

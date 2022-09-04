@@ -1,7 +1,7 @@
 #ifndef _BASE_QSORT_H_INCLUDED
 #define _BASE_QSORT_H_INCLUDED
 
-#include "base/cprdcpr/huff/huff.h"
+#include "base/cprdcpr/huff.h"
 
 typedef struct
 {

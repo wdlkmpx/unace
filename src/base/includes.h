@@ -14,15 +14,15 @@
 #endif
 
 #if defined(INCL_BASE_ARCHIVES_ACE)
-   #include "base/archives/ace/ace.h"
+   #include "base/archives/ace.h"
 #endif
 
 #if defined(INCL_BASE_ARCHIVES_READ)
-   #include "base/archives/read/read.h"
+   #include "base/archives/read.h"
 #endif
 
 #if defined(INCL_BASE_ARCHIVES_TEST)
-   #include "base/archives/test/test.h"
+   #include "base/archives/test.h"
 #endif
 
 #if defined(INCL_BASE_ARCINFO)
@@ -46,19 +46,19 @@
 #endif
 
 #if defined(INCL_BASE_CPRDCPR_HUFF)
-   #include "base/cprdcpr/huff/huff.h"
+   #include "base/cprdcpr/huff.h"
 #endif
 
   #if defined(INCL_BASE_CPRDCPR_LZ77)
-     #include "base/cprdcpr/lz77/lz77.h"
+     #include "base/cprdcpr/lz77.h"
   #endif
 
   #if defined(INCL_BASE_CPRDCPR_PIC)
-     #include "base/cprdcpr/pic/pic.h"
+     #include "base/cprdcpr/pic.h"
   #endif
 
   #if defined(INCL_BASE_CPRDCPR_SOUND)            || defined(INCL_BASE_CPRDCPR_SOUND_EXCLUSIVE)
-     #include "base/cprdcpr/sound/sound.h"
+     #include "base/cprdcpr/sound.h"
   #endif
 
 #if defined(INCL_BASE_CRC)
@@ -74,23 +74,23 @@
 #endif
 
   #if defined(INCL_BASE_DCPR_COMMENTS)
-     #include "base/dcpr/comments/comments.h"
+     #include "base/dcpr/comments.h"
   #endif
 
   #if defined(INCL_BASE_DCPR_HUFF)
-     #include "base/dcpr/huff/huff.h"
+     #include "base/dcpr/huff.h"
   #endif
 
   #if defined(INCL_BASE_DCPR_LZ77)
-     #include "base/dcpr/lz77/lz77.h"
+     #include "base/dcpr/lz77.h"
   #endif
 
   #if defined(INCL_BASE_DCPR_PIC)
-     #include "base/dcpr/pic/pic.h"
+     #include "base/dcpr/pic.h"
   #endif
 
   #if defined(INCL_BASE_DCPR_SOUND)
-     #include "base/dcpr/sound/sound.h"
+     #include "base/dcpr/sound.h"
   #endif
 
 #if defined(INCL_BASE_DIRDATA)

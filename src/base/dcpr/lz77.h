@@ -1,7 +1,7 @@
 #ifndef _BASE_DCPR_LZ77_H_INCLUDED
 #define _BASE_DCPR_LZ77_H_INCLUDED
 
-#include "base/cprdcpr/lz77/lz77.h"
+#include "base/cprdcpr/lz77.h"
 
 #define BASE_DCPR_LZ77_MAXPARTSIZE           1024
 

@@ -4,25 +4,25 @@ CPPFLAGS   += -Isrc
 BASE_ALL_CFILES =                      \
 	src/base/all.c      \
 	src/base/arcblk/arcblk.c      \
-	src/base/archives/ace/ace.c   \
-	src/base/archives/read/read.c \
-	src/base/archives/test/test.c \
+	src/base/archives/ace.c   \
+	src/base/archives/read.c \
+	src/base/archives/test.c \
 	src/base/arcinfo/arcinfo.c    \
 	src/base/bitwidth/bitwidth.c  \
 	src/base/bufread/bufread.c    \
 	src/base/comments/comments.c  \
 	src/base/convert/convert.c    \
-	src/base/cprdcpr/huff/huff.c  \
-	src/base/cprdcpr/pic/pic.c    \
-	src/base/cprdcpr/sound/sound.c     \
+	src/base/cprdcpr/huff.c  \
+	src/base/cprdcpr/pic.c    \
+	src/base/cprdcpr/sound.c     \
 	src/base/crc/crc.c                 \
 	src/base/crypt/crypt.c             \
 	src/base/dcpr/dcpr.c               \
-	src/base/dcpr/comments/comments.c  \
-	src/base/dcpr/huff/huff.c          \
-	src/base/dcpr/lz77/lz77.c          \
-	src/base/dcpr/pic/pic.c            \
-	src/base/dcpr/sound/sound.c        \
+	src/base/dcpr/comments.c  \
+	src/base/dcpr/huff.c          \
+	src/base/dcpr/lz77.c          \
+	src/base/dcpr/pic.c            \
+	src/base/dcpr/sound.c        \
 	src/base/dirdata/dirdata.c         \
 	src/base/dosfuncs/dosfuncs.c       \
 	src/base/error/error.c             \

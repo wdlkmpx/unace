@@ -1,7 +1,7 @@
 #ifndef _BASE_CPRDCPR_HUFF_H_INCLUDED
 #define _BASE_CPRDCPR_HUFF_H_INCLUDED
 
-#include "base/cprdcpr/sound/sound.h"
+#include "base/cprdcpr/sound.h"
 
 #define BASE_CPRDCPR_HUFF_MAXWIDTHSVDWD      7
 #define BASE_CPRDCPR_HUFF_MAXWIDTHTOSAVE     15
