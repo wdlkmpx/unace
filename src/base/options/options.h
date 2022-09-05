@@ -23,7 +23,6 @@ typedef struct
                 ExtractOptions;
 } tBASE_OPTIONS;
 
-extern PCHAR const BASE_OPTIONS_DICTIONARYTEXTS[23];
 extern tBASE_OPTIONS BASE_OPTIONS;
 
 INT     BASE_OPTIONS_EXTERN_SetPassword(
