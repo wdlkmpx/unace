@@ -58,6 +58,8 @@
 #define BASE_ACESTRUC_BLOCKEDTYPE_SOUND_32_2        6
 #define BASE_ACESTRUC_BLOCKEDTYPE_PIC               7
 
+// this is the only pragma pack that seems necessary
+// all the others should probably be removed
 #pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 
 typedef struct

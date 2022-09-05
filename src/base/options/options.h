@@ -3,8 +3,7 @@
 
 #include "base/crypt/crypt.h"
 
-//#define SETNOALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 
 typedef struct
 {
@@ -16,8 +15,7 @@ typedef struct
 } tBASE_OPTIONS_DCPR,
  *pBASE_OPTIONS_DCPR;
 
-//#define RESTOREALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(pop) // RESTOREALIGNMENT -- packprag.h
 
 typedef struct
 {

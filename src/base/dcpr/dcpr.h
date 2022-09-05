@@ -9,8 +9,7 @@
 
 #define BASE_DCPR_READBUFSIZE                8192
 
-//#define SETNOALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 
 typedef struct
 {
@@ -32,8 +31,7 @@ typedef struct
                 Options;
 } tBASE_DCPR;
 
-//#define RESTOREALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(pop) // RESTOREALIGNMENT -- packprag.h
 
 extern tBASE_DCPR BASE_DCPR;
 

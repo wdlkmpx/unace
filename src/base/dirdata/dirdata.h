@@ -6,8 +6,7 @@
 
 //------TypeDefines:
 
-//#define SETNOALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 
 typedef struct
 {
@@ -51,8 +50,7 @@ typedef struct
 } tBASE_DIRDATA_DirData,
  *pBASE_DIRDATA_DirData;
 
-//#define RESTOREALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(pop) // RESTOREALIGNMENT -- packprag.h
 
 //------VariableDefines:
 

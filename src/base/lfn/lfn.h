@@ -28,8 +28,7 @@ typedef tLFN *pLFN;
 typedef CHAR tBASE_LFN_DBL[BASE_LFN_DOUBLEMAXLEN];
 typedef tBASE_LFN_DBL *pBASE_LFN_DBL;
 
-//#define SETNOALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 
 typedef struct
 {
@@ -68,8 +67,7 @@ typedef struct
 } tBASE_LFN_FINDSTRUCT,
  *pBASE_LFN_FINDSTRUCT;
 
-//#define RESTOREALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(pop) // RESTOREALIGNMENT -- packprag.h
 
 typedef struct
 {

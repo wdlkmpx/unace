@@ -16,9 +16,7 @@
 #define BASE_CPRDCPR_PIC_QuantizerArrx9x9(i) BASE_CPRDCPR_PIC.QuantizerArrx9x9[255+i]
 
 
-//#define SETNOALIGNMENT
-//#include "base/packprag.h"
-
+#pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 typedef struct
 {
   UCHAR   UsedCounter,
@@ -27,10 +25,7 @@ typedef struct
   UCHAR   ErrorCounters[4];
 } tBASE_CPRDCPR_PIC_CONTEXT,
  *pBASE_CPRDCPR_PIC_CONTEXT;
-
-//#define RESTOREALIGNMENT
-//#include "base/packprag.h"
-
+#pragma pack(pop) // RESTOREALIGNMENT -- packprag.h
 
 typedef struct
 {

@@ -16,13 +16,7 @@
 # include <unistd.h>
 #endif
 
-//#define SETALIGNMENT
-//#include "base/packprag.h"
 #include "declare.h"
-
-//#define RESTOREALIGNMENT
-//#include "base/packprag.h"
-
 #include "base/lfn/lfn.h"
 
 #define in(v1,v2,v3) ((((INT) v1) >= ((INT) v2)) && (((INT) v1)<=((INT) v3)))

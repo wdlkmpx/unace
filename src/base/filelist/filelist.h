@@ -19,8 +19,7 @@
 #define BASE_FILELIST_SPLITAFTER   8192
 #define BASE_FILELIST_ENCRYPTED    16384
 
-//#define SETNOALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 
 typedef struct
 {
@@ -36,8 +35,7 @@ typedef struct
 } tBASE_FILELIST_FileData,
  *pBASE_FILELIST_FileData;
 
-//#define RESTOREALIGNMENT
-//#include "base/packprag.h"
+#pragma pack(pop) // RESTOREALIGNMENT -- packprag.h
 
 typedef struct
 {
