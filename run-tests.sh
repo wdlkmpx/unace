@@ -1,9 +1,12 @@
 #!/bin/sh
 # Public domain
 
+# command to generate md5 checksums from <dirx>
+# md5sum $(find dirx -type f | sort | sed 's%\./%%')
+
 MWD=$(pwd)
 TESTDIR="$HOME/.cache/unace2tests"
-KEEP_TESTS=1
+#KEEP_TESTS=1
 mkdir -p "${TESTDIR}"
 
 #app="$(pwd)/src/unace1"
@@ -11,6 +14,7 @@ app="$(pwd)/unace"
 appbn=$(basename $app)
 #export CFLAGS="-D${appbn}_TRACE -ggdb3"
 test_acev1_dir=${MWD}/tests.ace.v1
+test_acev2_dir=${MWD}/tests.ace.v2
 
 # ===========================================================================
 
@@ -161,6 +165,35 @@ else
 	ret=1
 	echo "ERROR"
 fi
+
+#==================================================================
+# v2
+
+printf "* tests2/dir2.ace: "
+rm -rf dir2
+${app} x -y ${test_acev2_dir}/dir2.ace >${TESTDIR}/dir2.log 2>&1
+if [ $? -eq 0 ] && [ $(find dir2 -type f | wc -l) -eq 35 ] ; then
+	check_md5 ${test_acev2_dir}/dir2.md5 dir2.log
+else
+	ret=1
+	echo "ERROR"
+fi
+
+printf "* tests2/multivol2.ace: "
+rm -rf multivol2
+${app} x -y ${test_acev2_dir}/multivol2.ace >${TESTDIR}/multivol2.log 2>&1
+if [ $? -eq 0 ] && [ $(find multivol2 -type f | wc -l) -eq 37 ] ; then
+	check_md5 ${test_acev2_dir}/multivol2.md5 multivol2.log
+else
+	ret=1
+	echo "ERROR"
+fi
+
+printf "* tests2/passwd2.ace: "
+rm -f passwd2.m4
+${app} x -y -p1234 ${test_acev2_dir}/passwd2.ace >${TESTDIR}/passwd2.log 2>&1
+check_md5 ${test_acev2_dir}/passwd2.md5 passwd2.log
+
 
 # ===========================================================================
 
