@@ -12,9 +12,7 @@ BASE_ALL_CFILES =                      \
 	src/base/bufread/bufread.c    \
 	src/base/comments/comments.c  \
 	src/base/convert/convert.c    \
-	src/base/cprdcpr/huff.c  \
-	src/base/cprdcpr/pic.c    \
-	src/base/cprdcpr/sound.c     \
+	src/base/cprdcpr/cprdcpr.c  \
 	src/base/crc/crc.c                 \
 	src/base/crypt/crypt.c             \
 	src/base/dcpr/dcpr.c               \
