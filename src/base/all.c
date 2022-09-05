@@ -1,5 +1,6 @@
 #define INCL_BASE_ACESTRUC
 #define INCL_BASE_ALL
+#define INCL_BASE_DIRDATA
 
 #include "base/includes.h"
 
@@ -27,3 +28,8 @@ INT const BASE_ACESTRUC_IsACL
   #else
         = 0;
   #endif
+
+// dirdata.h
+tBASE_DIRDATA_DirData
+         BASE_DIRDATA_Dir1,
+         BASE_DIRDATA_Dir2;

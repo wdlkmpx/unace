@@ -94,7 +94,7 @@
   #endif
 
 #if defined(INCL_BASE_DIRDATA)
-   #include "base/dirdata/dirdata.h"
+   #include "base/dirdata.h"
 #endif
 
 #if defined(INCL_BASE_DOSFUNCS)

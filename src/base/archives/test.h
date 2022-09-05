@@ -1,7 +1,7 @@
 #ifndef _BASE_ARCHIVES_TEST_H_INCLUDED
 #define _BASE_ARCHIVES_TEST_H_INCLUDED
 
-#include "base/dirdata/dirdata.h"
+#include "base/dirdata.h"
 
 typedef struct
 {

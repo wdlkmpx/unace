@@ -21,7 +21,6 @@ BASE_ALL_CFILES =                      \
 	src/base/dcpr/lz77.c          \
 	src/base/dcpr/pic.c            \
 	src/base/dcpr/sound.c        \
-	src/base/dirdata/dirdata.c         \
 	src/base/dosfuncs/dosfuncs.c       \
 	src/base/error/error.c             \
 	src/base/errorout/errorout.c       \
