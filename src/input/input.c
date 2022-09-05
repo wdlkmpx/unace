@@ -19,6 +19,11 @@
 
 tAPPS_EXE_INPUT APPS_EXE_INPUT;
 
+#ifndef _WIN32
+tAPPS_EXE_INPUT_LINUX APPS_EXE_INPUT_LINUX;
+#endif
+
+
 /*-----------------APPS_EXE_INPUT_EXTERN_Input---------------------------*/
 void    APPS_EXE_INPUT_EXTERN_Input(PCHAR StartStr, INT Width,
                                       PCHAR TopStr,

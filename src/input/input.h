@@ -59,7 +59,7 @@ typedef struct
   PCHAR   OldStdInBuf;
 } tAPPS_EXE_INPUT_LINUX;
 
-tAPPS_EXE_INPUT_LINUX APPS_EXE_INPUT_LINUX;
+extern tAPPS_EXE_INPUT_LINUX APPS_EXE_INPUT_LINUX;
 #endif
 
 void    APPS_EXE_INPUT_LINUX_SetRawMode(void);
