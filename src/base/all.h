@@ -16,12 +16,12 @@
 # include <unistd.h>
 #endif
 
-#define SETALIGNMENT
-#include "base/packprag.h"
+//#define SETALIGNMENT
+//#include "base/packprag.h"
 #include "declare.h"
 
-#define RESTOREALIGNMENT
-#include "base/packprag.h"
+//#define RESTOREALIGNMENT
+//#include "base/packprag.h"
 
 #include "base/lfn/lfn.h"
 

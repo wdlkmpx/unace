@@ -18,8 +18,8 @@
 #define BASE_CRYPT_SHAFUNC_3(I)       Temp = BASE_CRYPT_SHAROT32(A, 5) + BASE_CRYPT_SHAFUNC3(B, C, D) + E + W[I] + BASE_CRYPT_SHACONST3; E = D; D = C; C = BASE_CRYPT_SHAROT32(B,30); B = A; A = Temp; 
 #define BASE_CRYPT_SHAFUNC_4(I)       Temp = BASE_CRYPT_SHAROT32(A, 5) + BASE_CRYPT_SHAFUNC4(B, C, D) + E + W[I] + BASE_CRYPT_SHACONST4; E = D; D = C; C = BASE_CRYPT_SHAROT32(B,30); B = A; A = Temp; 
 
-#define SETNOALIGNMENT
-#include "base/packprag.h"
+//#define SETNOALIGNMENT
+//#include "base/packprag.h"
 
 typedef struct
 {
@@ -44,8 +44,8 @@ typedef struct
 } tBASE_CRYPT_CRYPTIONDATA,
  *pBASE_CRYPT_CRYPTIONDATA;
 
-#define RESTOREALIGNMENT
-#include "base/packprag.h"
+//#define RESTOREALIGNMENT
+//#include "base/packprag.h"
 
 
 typedef struct

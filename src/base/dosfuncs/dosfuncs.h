@@ -29,8 +29,8 @@ struct findi64_t {
 };
 #endif
 
-#define SETNOALIGNMENT
-#include "base/packprag.h"
+//#define SETNOALIGNMENT
+//#include "base/packprag.h"
 
 typedef struct
 {
@@ -43,8 +43,8 @@ typedef struct
 } tBASE_DOSFUNCS_FileTime,
  *pBASE_DOSFUNCS_FileTime;
 
-#define RESTOREALIGNMENT
-#include "base/packprag.h"
+//#define RESTOREALIGNMENT
+//#include "base/packprag.h"
 
 
 void    BASE_DOSFUNCS_SetDir(PCHAR Dir);

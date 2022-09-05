@@ -59,8 +59,8 @@
 #define BASE_ACESTRUC_BLOCKEDTYPE_PIC               7
 
 
-#define SETNOALIGNMENT
-#include "base/packprag.h"
+//#define SETNOALIGNMENT
+//#include "base/packprag.h"
 
 typedef struct
 {
@@ -233,8 +233,8 @@ typedef union {
 } tBASE_ACESTRUC_HEADER,
  *pBASE_ACESTRUC_HEADER;
 
-#define RESTOREALIGNMENT
-#include "base/packprag.h"
+//#define RESTOREALIGNMENT
+//#include "base/packprag.h"
 
 extern PCHAR const BASE_ACESTRUC_ACESIGN;   // all.c
 extern PCHAR const BASE_ACESTRUC_EXTENSION; // all.c

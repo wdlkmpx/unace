@@ -12,8 +12,8 @@
 
 #define BASE_CPRDCPR_SOUND_MAXBLOCKSIZE      (BASE_CPRDCPR_SOUND_CHANNELBLOCKSIZE * BASE_CPRDCPR_SOUND_MAXMODELS + 8)
 
-#define SETNOALIGNMENT
-#include "base/packprag.h"
+//#define SETNOALIGNMENT
+//#include "base/packprag.h"
 
 typedef struct
 {
@@ -34,8 +34,8 @@ typedef struct
           BlockSize;
 } tBASE_CPRDCPR_SOUND_DATA;
 
-#define RESTOREALIGNMENT
-#include "base/packprag.h"
+//#define RESTOREALIGNMENT
+//#include "base/packprag.h"
 
 
 typedef struct
