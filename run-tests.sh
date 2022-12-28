@@ -12,7 +12,7 @@ mkdir -p "${TESTDIR}"
 #app="$(pwd)/src/unace1"
 app="$(pwd)/unace"
 appbn=$(basename $app)
-export CFLAGS="-D${appbn}_TRACE -ggdb3"
+export CFLAGS="-D${appbn}_TRACE -g -O0 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers"
 test_acev1_dir=${MWD}/tests.ace.v1
 test_acev2_dir=${MWD}/tests.ace.v2
 help_ret_code=0
@@ -42,20 +42,13 @@ set_wine()
 
 if test -z "$MD5SUM" ; then
 	if command -v md5sum 2>/dev/null ; then
-		MD5SUM='md5sum'
+		if [ -n "$(md5sum --help 2>&1 | grep BusyBox)" ] ; then
+			MD5SUM='md5sum -s' #busybox
+		else
+			MD5SUM='md5sum --quiet'
+		fi
 	elif command -v gmd5sum 2>/dev/null ; then
-		MD5SUM='gmd5sum'
-	elif command -v md5 2>/dev/null ; then
-		MD5SUM='md5'
-	fi
-fi
-
-
-if test -z "$MD5SUM" ; then
-	if command -v md5sum 2>/dev/null ; then
-		MD5SUM='md5sum'
-	elif command -v gmd5sum 2>/dev/null ; then
-		MD5SUM='gmd5sum'
+		MD5SUM='gmd5sum --quiet'
 	elif command -v md5 2>/dev/null ; then
 		MD5SUM='md5'
 	fi
