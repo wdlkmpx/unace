@@ -1,0 +1,55 @@
+# https://github.com/wxWidgets/wxWidgets/blob/master/appveyor.yml
+# https://github.com/wxWidgets/wxWidgets/blob/master/build/tools/appveyor.bat
+
+image: Visual Studio 2019
+
+environment:
+  APPVEYOR_SAVE_CACHE_ON_ERROR: true
+  matrix:
+    - compiler: mingw32
+    - compiler: mingw64
+    - compiler: cygwin
+
+platform:
+  - x86-windows
+
+configuration:
+  - Release
+
+for:
+  -
+    matrix:
+      only:
+        - configuration: Release
+          platform: x86-windows
+          compiler: mingw32
+    environment:
+      MSYSTEM: MINGW32
+      CHERE_INVOKING: yes
+    build_script:
+      - cd %APPVEYOR_BUILD_FOLDER%
+      - C:\msys64\usr\bin\bash -lc ".github/test_ci.sh"
+  -
+    matrix:
+      only:
+        - configuration: Release
+          platform: x86-windows
+          compiler: mingw64
+    environment:
+      CHERE_INVOKING: yes
+      MSYSTEM: MINGW64
+    build_script:
+      - cd %APPVEYOR_BUILD_FOLDER%
+      - C:\msys64\usr\bin\bash -lc ".github/test_ci.sh"
+  -
+    matrix:
+      only:
+        - configuration: Release
+          platform: x86-windows
+          compiler: cygwin
+    environment:
+      CHERE_INVOKING: yes
+    build_script:
+      - cd %APPVEYOR_BUILD_FOLDER%
+      - C:\cygwin\bin\bash -lc ".github/test_ci.sh"
+
