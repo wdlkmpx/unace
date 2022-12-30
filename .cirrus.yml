@@ -10,9 +10,9 @@ freebsd_task:
     cpu: 1
     memory: 1GB
 #  pkginstall_script:
-#    - .github/test_ci.sh freebsd
+#    - ./scripts/test_ci.sh freebsd
   build_script:
-    - .github/test_ci.sh
+    - ./scripts/test_ci.sh
 
 
 #======= macOS =========
@@ -24,9 +24,9 @@ macos_task:
     cpu: 1
     memory: 1GB
 #  pkginstall_script:
-#    - .github/test_ci.sh macos
+#    - ./scripts/test_ci.sh macos
   build_script:
-    - .github/test_ci.sh
+    - ./scripts/test_ci.sh
 
 
 #======= Alpine Linux =========
@@ -39,7 +39,7 @@ alpine_linux_task:
   pkginstall_script:
     - apk add --no-cache build-base
   build_script:
-    - .github/test_ci.sh
+    - ./scripts/test_ci.sh
 
 
 #---
