@@ -41,8 +41,8 @@ memmove((ptr), &__tmp, sizeof(*(ptr))); \
 #define put_unaligned(ptr, val) ((void)( *(ptr) = (val) ))
 #endif /* __EMULATE_UNALIGNED__ */
 
-#include "pendian_detect.h"
-#if __BYTE_ORDER == __BIG_ENDIAN
+#include "w_endian.h"
+#ifdef WORDS_BIGENDIAN
 #define ADJUST_ENDIANNESS16(Ptr) {\
   USHORT x = get_unaligned((USHORT*) (Ptr));\
   put_unaligned((USHORT*) (Ptr), x >> 8 | x << 8);\
@@ -59,12 +59,10 @@ memmove((ptr), &__tmp, sizeof(*(ptr))); \
   x2 = x2 >> 16 | x2 << 16;\
   put_unaligned(((ULONG*) (Ptr)), (x2&0xff00ff00) >> 8 | (x2&0x00ff00ff) << 8);\
 }
-#elif __BYTE_ORDER == __LITTLE_ENDIAN
+#else // little endian
 #define ADJUST_ENDIANNESS16(Ptr) 
 #define ADJUST_ENDIANNESS32(Ptr) 
 #define ADJUST_ENDIANNESS64(Ptr) 
-#else
-#error Please define system endianness
 #endif
 
 #endif

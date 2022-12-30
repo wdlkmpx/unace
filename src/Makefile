@@ -51,7 +51,7 @@ OBJS = acefuncs.o \
 	state/state.o
 
 # -D__EMULATE_UNALIGNED__
-CFLAGS += -I. -I..
+CFLAGS += -I. -I.. -I../lib
 
 all: $(APP)
 
