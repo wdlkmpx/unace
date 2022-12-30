@@ -1,5 +1,9 @@
 #include <stdlib.h>
 
+#if defined(unace_TRACE) && defined(__GLIBC__)
+#include <mcheck.h>
+#endif
+
 #define INCL_APPS_UNACE_EXE
 
 #define INCL_BASE_ARCHIVES_TEST
@@ -80,8 +84,12 @@ void    APPS_UNACE_EXE_ProgramDone(void)
 
 /*-----------------main--------------------------------------------------*/
 
-INT     main(INT ArgumentsNumber, PCHAR Arguments[])
+INT main(INT ArgumentsNumber, PCHAR Arguments[])
 {
+#if defined(unace_TRACE) && defined(__GLIBC__)
+  mtrace();
+#endif
+
   APPS_UNACE_EXE_ProgramInit(ArgumentsNumber, Arguments);
 
   APPS_UNACE_EXE_COMMLINE_Init();
