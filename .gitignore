@@ -1,0 +1,9 @@
+*.o
+mtrace*.txt
+unace
+unace.exe
+makefile.dep
+config.h
+config.mk
+config.log
+config.sh

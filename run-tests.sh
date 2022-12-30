@@ -2,15 +2,17 @@
 # Public domain
 
 # command to generate md5 checksums from <dirx>
-# md5sum $(find dirx -type f | sort | sed 's%\./%%')
+# md5sum $(find dirx -type f | sort | sed 's%\./%%') > dirx.md5
+
+# command to generate dirlist from <dirx>
+# find dirx -type d | sort | sed 's%\./%%' > dirx.dirs
 
 MWD=$(pwd)
 TESTDIR="$HOME/.cache/unace2tests"
 #KEEP_TESTS=1
 mkdir -p "${TESTDIR}"
 
-#app="$(pwd)/src/unace1"
-app="$(pwd)/unace"
+app="$(pwd)/src/unace"
 appbn=$(basename $app)
 export CFLAGS="-D${appbn}_TRACE -g -O0 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers"
 test_acev1_dir=${MWD}/tests.ace.v1

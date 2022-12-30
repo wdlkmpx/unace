@@ -49,7 +49,7 @@ exit_error()
 
 uname -a
 
-export CFLAGS="-DDEBUG_W_ENDIAN"
+#export CFLAGS="-DDEBUG_W_ENDIAN"
 
 #cmdecho ./configure  || exit_error
 #cmdecho make         || exit_error
