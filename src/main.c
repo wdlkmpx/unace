@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#if defined(unace_TRACE) && defined(__GLIBC__)
+#if defined(W_MTRACE) && defined(__GLIBC__)
 #include <mcheck.h>
 #endif
 
@@ -86,7 +86,7 @@ void    APPS_UNACE_EXE_ProgramDone(void)
 
 INT main(INT ArgumentsNumber, PCHAR Arguments[])
 {
-#if defined(unace_TRACE) && defined(__GLIBC__)
+#if defined(W_MTRACE) && defined(__GLIBC__)
   mtrace();
 #endif
 
