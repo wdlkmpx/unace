@@ -2,16 +2,21 @@
 # Public Domain
 #
 
+WCURDIR=$(pwd)
+WCONF_CONFIGURE=$(readlink -f "$0")
+WCONF_SCRIPTDIR=$(dirname "$WCONF_CONFIGURE")
+
+if [ "$WCURDIR" != "$WCONF_SCRIPTDIR" ] ; then
+    echo "Current dir: $WCURDIR"
+    echo "Wconf dir  : $WCONF_SCRIPTDIR"
+    echo "Out-of-tree builds are not supported..."
+    exit 1
+fi
+
 if ! [ -f Makefile ] ; then
 	echo 'Main Makefile is missing, cannot continue'
 	exit 1
 fi
-
-if ! cd $(dirname "$0") ; then
-	exit 1
-fi
-
-WCONF_SCRIPTDIR=$(pwd)
 
 apps_to_check=''
 extra_env_vars=''
@@ -61,10 +66,15 @@ getvalue()
 	echo $1 | cut -f 2 -d '='
 }
 
+include()
+{
+    . ${WCONF_SCRIPTDIR}/w_conf/${1} || exit 1
+}
+
 #==========================================================
 
-if [ -f configure.project ] ; then
-	. ./configure.project
+if [ -f ${WCONF_SCRIPTDIR}/configure.project ] ; then
+	. ${WCONF_SCRIPTDIR}/configure.project
 fi
 
 if [ -z "$PROJECT_TYPE" ] ; then
@@ -240,7 +250,6 @@ set_w_pkg_config()
 		echo "$W_PKG_CONFIG [$($W_PKG_CONFIG --version 2>/dev/null)]"
 	else
 		echo "no"
-		echo "WARNING: missing pkg-config: this a potentially fatal error"
 	fi
 }
 
@@ -801,7 +810,7 @@ case $OS_TARGET in
 	Linux)   SYSDEFINE='__linux__=1' ;;
 	MinGW)   SYSDEFINE='__MINGW32__=1' ;;
 	FreeBSD) SYSDEFINE='__FreeBSD__=1' ;;
-	Darwub)  SYSDEFINE='__APPLE__=1' ;;
+	Darwin)  SYSDEFINE='__APPLE__=1' ;;
 esac
 
 TARGET_OS="$OS_TARGET"
@@ -1028,7 +1037,7 @@ fi
 
 #==========================================================
 
-. ./config.sh
+. ${WCONF_SCRIPTDIR}/config.sh
 
 #==========================================================
 #                       config.h
@@ -1083,7 +1092,7 @@ fi
 
 for infile in ${w_infiles}
 do
-	./w_conf/00_standard_infile.sh ${infile}
+	${WCONF_SCRIPTDIR}/w_conf/00_standard_infile.sh ${infile}
 done
 
 #==========================================================
