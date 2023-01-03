@@ -50,6 +50,7 @@ exit_error()
 uname -a
 
 #export CFLAGS="-DDEBUG_W_ENDIAN"
+export VERBOSE_ERRORS=1 # the test script read this
 
 cmdecho ./configure  || exit_error
 cmdecho make         || exit_error
