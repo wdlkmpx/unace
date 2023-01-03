@@ -5,11 +5,11 @@ APP  = unace
 # find . -name '*.c' | sed 's%\.c%.o%'
 OBJS = acefuncs.o \
 	base/all.o \
+	base/unused.o \
 	base/arcblk/arcblk.o \
 	base/archives/ace.o \
 	base/archives/read.o \
 	base/archives/test.o \
-	base/arcinfo/arcinfo.o \
 	base/bitwidth/bitwidth.o \
 	base/bufread/bufread.o \
 	base/comments/comments.o \

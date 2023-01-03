@@ -25,10 +25,6 @@
    #include "base/archives/test.h"
 #endif
 
-#if defined(INCL_BASE_ARCINFO)
-   #include "base/arcinfo/arcinfo.h"
-#endif
-
 #if defined(INCL_BASE_BITWIDTH)
    #include "base/bitwidth/bitwidth.h"
 #endif

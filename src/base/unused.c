@@ -1,16 +1,9 @@
-#include <fcntl.h>
-#include <string.h>
+// unused stuff - this should probably be deleted
 
 #define INCL_BASE_ARCINFO
 
-#define INCL_BASE_ARCBLK
 #define INCL_BASE_ARCHIVES_READ
 #define INCL_BASE_DIRDATA
-#define INCL_BASE_ERROR
-#define INCL_BASE_ERROROUT
-#define INCL_BASE_FILELIST
-#define INCL_BASE_MEMORY
-#define INCL_BASE_MSGOUT
 #define INCL_BASE_VOLUME
 
 #include "base/includes.h"
