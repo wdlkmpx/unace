@@ -17,6 +17,8 @@
 #define INCL_APPS_EXE_OUTPUT
 #include "unace_includes.h"
 
+#include "messages/messages_english.h"
+
 tAPPS_ACE_EXE_MESSAGES APPS_ACE_EXE_MESSAGES;
 
 tAPPS_EXE_MESSAGES APPS_EXE_MESSAGES;

@@ -40,15 +40,14 @@ OBJS = acefuncs.o \
 	base/uninorm/uninorm.o \
 	base/volume/volume.o \
 	commline.o \
-	convert/convert.o \
-	input/input.o \
+	convert.o \
+	input.o \
 	lin.o \
 	main.o \
 	messages/messages.o \
-	messages/msgfiles/eng.o \
-	outpterr/outpterr.o \
-	output/output.o \
-	state/state.o
+	outpterr.o \
+	output.o \
+	state.o
 
 # -D__EMULATE_UNALIGNED__
 CFLAGS += -I. -I.. -I../lib

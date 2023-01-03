@@ -11,10 +11,9 @@
 
 #include "unace_includes.h"
 
-tAPPS_EXE_CONVERT APPS_EXE_CONVERT;
+static CHAR ToPercentStrStr[10];
 
 /*-----------------APPS_EXE_CONVERT_ToByteUnitStr------------------------*/
-
 PCHAR   APPS_EXE_CONVERT_ToByteUnitStr(PCHAR Str, ULONGLONG ByteSize)
 {
 PCHAR     UNITCHARS = "\0KMG";
@@ -89,10 +88,10 @@ INT       Percents;
 
   Percents = APPS_EXE_CONVERT_GetPercents(Value1, Value2);
 
-  sprintf(APPS_EXE_CONVERT.ToPercentStrStr, "%d.%d%%",
+  sprintf(ToPercentStrStr, "%d.%d%%",
           Percents / 10, Percents % 10);
 
-  return APPS_EXE_CONVERT.ToPercentStrStr;
+  return ToPercentStrStr;
 }
 
 /*-----------------APPS_EXE_CONVERT_FormatSize---------------------------*/

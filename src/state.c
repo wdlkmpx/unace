@@ -17,8 +17,7 @@
 
 #include "unace_includes.h"
 
-tAPPS_EXE_STATE APPS_EXE_STATE;
-tAPPS_EXE_EXTERN_STATE APPS_EXE_EXTERN_STATE;
+static PCHAR ActionString;
 
 /*-----------------APPS_EXE_STATE_Delay----------------------------------*/
 void    APPS_EXE_STATE_Delay(INT MilliSeconds)
@@ -38,14 +37,14 @@ void    APPS_EXE_STATE_Delay(INT MilliSeconds)
 
 void    BASE_STATE_EXTERN_SetExtractString(void)
 {
-  APPS_EXE_STATE.ActionString = STR.Extract;
+  ActionString = STR.Extract;
 }
 
 /*-----------------BASE_STATE_EXTERN_SetTestString-----------------------*/
 
 void    BASE_STATE_EXTERN_SetTestString(void)
 {
-  APPS_EXE_STATE.ActionString = STR.Test;
+  ActionString = STR.Test;
 }
 
 /*-----------------BASE_STATE_EXTERN_OutputProgressData------------------*/

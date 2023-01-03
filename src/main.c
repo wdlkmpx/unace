@@ -25,8 +25,6 @@
 
 #include "unace_includes.h"
 
-tAPPS_UNACE_EXE APPS_UNACE_EXE;
-
 /*-----------------APPS_UNACE_EXE_ProgramInit----------------------------*/
 
 void    APPS_UNACE_EXE_ProgramInit(INT ArgumentsNumber, PCHAR Arguments[])
