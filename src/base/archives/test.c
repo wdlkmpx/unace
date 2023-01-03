@@ -14,18 +14,6 @@
 
 tBASE_ARCHIVES_TEST BASE_ARCHIVES_TEST; //test.h
 
-/* not implemented? */
-static BOOL BASE_ARCHIVES_TEST_EXTERN_ArchiveTestBreak(BOOL IgnoreKeys, INT Sectors)
-{
-  return 1;
-}
-static void BASE_ARCHIVES_TEST_EXTERN_ArchiveTestOtherFormats(PINT IsArchive,
-                                                          INT FilePos,
-                                                          pBASE_DIRDATA_DirData TempDir)
-{
-}
-
-
 /*-----------------BASE_ARCHIVES_TEST_ArchiveTest------------------------*/
 
 INT     BASE_ARCHIVES_TEST_ArchiveTest(PCHAR FileName, INT MaxTestSecs,
@@ -66,8 +54,7 @@ tBASE_DIRDATA_DirData
       BASE_ERROR.ErrorCode = BASE_ERROR_OPEN;
     }
 
-    while (BASE_ARCHIVES_TEST_EXTERN_ArchiveTestBreak(IgnoreKeys, Sectors)
-           && Sectors < MaxTestSecs)
+    while (Sectors < MaxTestSecs)
     {
       Read = read(BASE_ARCHIVES_TEST.ArchiveHandle,
                   (PVOID)&BASE_ARCHIVES_TEST.TestBuffer[TestPos],
@@ -92,9 +79,6 @@ tBASE_DIRDATA_DirData
         IsArchive = 1;
         TempDirData = BASE_DIRDATA_Dir1;
       }
-
-      BASE_ARCHIVES_TEST_EXTERN_ArchiveTestOtherFormats(&IsArchive, FilePos,
-                                                        &TempDirData);
 
       if (IsArchive)
       {

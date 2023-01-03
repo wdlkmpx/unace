@@ -33,27 +33,10 @@ void    APPS_EXE_INPUT_EXTERN_Input(PCHAR StartStr, INT Width,
                        Discription, IsPasswInput);
 }
 
-/*-----------------APPS_EXE_INPUT_EXTERN_InputProcOutputMask-------------*/
-void APPS_EXE_INPUT_EXTERN_InputProcOutputMask(BOOL DoRegInput)
-{
-}
-/*-----------------APPS_EXE_INPUT_EXTERN_InputProcHandleKey--------------*/
-void APPS_EXE_INPUT_EXTERN_InputProcHandleKey(BOOL DoRegInput)
-{
-}
-/*-----------------APPS_EXE_INPUT_EXTERN_InputProcHandleDelete-----------*/
-void APPS_EXE_INPUT_EXTERN_InputProcHandleDelete(BOOL DoRegInput, INT InputLen,
-                                           INT Width)
-{
-}
 /*-----------------APPS_EXE_INPUT_EXTERN_InputProcInputCondition---------*/
 BOOL APPS_EXE_INPUT_EXTERN_InputProcInputCondition(BOOL DoRegInput, INT InputLen)
 {
   return 1;
-}
-/*-----------------APPS_EXE_INPUT_EXTERN_InputProcOutputMaskAtOutput-----*/
-void APPS_EXE_INPUT_EXTERN_InputProcOutputMaskAtInput(BOOL DoRegInput, INT InputLen, INT Width)
-{
 }
 /*-----------------APPS_EXE_INPUT_EXTERN_WarningYANC---------------------*/
 INT APPS_EXE_INPUT_EXTERN_WarningYANC(PCHAR TopStr, PCHAR Description1, PCHAR Description2)
@@ -94,8 +77,6 @@ INT       TimeCount,
 
   printf("\n  %s", InputStr);
 
-  APPS_EXE_INPUT_EXTERN_InputProcOutputMask(DoRegInput);
-  
 #ifndef __sun__
   fflush(stdout);
 #endif
@@ -128,17 +109,12 @@ INT       TimeCount,
 
     BASE_ERROR_EXTERN_HandleCancel(0);
 
-    APPS_EXE_INPUT_EXTERN_InputProcHandleKey(DoRegInput);
-
     if (APPS_EXE_INPUT.LastKey != 13 && APPS_EXE_INPUT.LastKey != 27)
     {
       if (APPS_EXE_INPUT.LastKey == 8)                 // Backspace
       {
         if (InputLen)
         {
-          APPS_EXE_INPUT_EXTERN_InputProcHandleDelete(DoRegInput, InputLen,
-                                                      Width);
-
           printf("\x8 \x8");
           InputLen--;
 #ifndef __sun__
@@ -157,9 +133,6 @@ INT       TimeCount,
             InputStr[InputLen++] = APPS_EXE_INPUT.LastKey;
 
             putchar(IsPasswInput ? '*' : APPS_EXE_INPUT.LastKey);
-
-            APPS_EXE_INPUT_EXTERN_InputProcOutputMaskAtInput(
-              DoRegInput, InputLen, Width);
 
 #ifndef __sun__
             fflush(stdout);

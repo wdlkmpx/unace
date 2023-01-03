@@ -54,8 +54,6 @@ void    APPS_UNACE_EXE_ProgramInit(INT ArgumentsNumber, PCHAR Arguments[])
 
   APPS_UNACE_EXE_InitOSSpecific(&APPS_EXE_COMMLINE.Arguments[0]);
 
-  BASE_ERROR_EXTERN_Init();
-
 //_________________get environment strings
 
   if (!(APPS_EXE_COMMLINE.EnvironmentSwitches = getenv("UNACE")))

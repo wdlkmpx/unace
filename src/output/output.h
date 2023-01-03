@@ -18,7 +18,6 @@ typedef struct
 
 extern tAPPS_EXE_OUTPUT APPS_EXE_OUTPUT;
 
-void    APPS_EXE_OUTPUT_GetScreenSize(void);
 void    APPS_EXE_OUTPUT_WriteRight(PCHAR Text);
 void    APPS_EXE_OUTPUT_DeleteRight(void);
 void    APPS_EXE_OUTPUT_Error(PCHAR Error);

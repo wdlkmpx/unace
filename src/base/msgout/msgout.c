@@ -16,11 +16,6 @@ void    BASE_MSGOUT_EXTERN_ListCreateBegin(PVOID *SavedScreenPtr)
                         STR.Creating_listfile__Please_wait_);
 }
 
-/*-----------------BASE_MSGOUT_EXTERN_ListCreateEnd----------------------*/
-void    BASE_MSGOUT_EXTERN_ListCreateEnd(PVOID *SavedScreenPtr)
-{
-}
-
 /*-----------------BASE_MSGOUT_EXTERN_ReadingArchive---------------------*/
 void    BASE_MSGOUT_EXTERN_ReadingArchive(PVOID *SavedScreen)
 {
@@ -28,20 +23,7 @@ void    BASE_MSGOUT_EXTERN_ReadingArchive(PVOID *SavedScreen)
                         STR.Reading_archive__Please_wait__);
 }
 
-/*-----------------BASE_MSGOUT_EXTERN_ReadingArchiveEnd------------------*/
-void    BASE_MSGOUT_EXTERN_ReadingArchiveEnd(PVOID *SavedScreen)
-{
-}
-
-
-/*-----------------BASE_MSGOUT_EXTERN_ListCreate-------------------------*/
-
-void    BASE_MSGOUT_EXTERN_ListAddingFile(PCHAR FileName)
-{
-}
-
 /*-----------------BASE_MSGOUT_EXTERN_Analyzing--------------------------*/
-
 void    BASE_MSGOUT_EXTERN_Analyzing(PCHAR FileName)
 {
   BASE_STATE_EXTERN_OutputProcess(STR.__analyzing, FileName, 0);

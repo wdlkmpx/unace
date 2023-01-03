@@ -35,8 +35,6 @@ INT     BASE_MEMORY_MemMax(void);
 INT     BASE_MEMORY_MemAvail(void);
 INT     BASE_MEMORY_MemAvailBase2(INT Base);
 INT     BASE_MEMORY_MemAvailBase2Plus(INT Base, INT Plus);
-
-void    BASE_MEMORY_EXTERN_OptimizeOtherMemory(void);
 ULONG   BASE_MEMORY_EXTERN_MaxMemoryRequirement(void);
 
 #endif

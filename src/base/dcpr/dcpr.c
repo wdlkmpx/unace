@@ -19,12 +19,6 @@
 
 tBASE_DCPR BASE_DCPR;
 
-/*-----------------BASE_DCPR_EXTERN_BlockCopyToCprDictionary-------------*/
-void    BASE_DCPR_EXTERN_BlockCopyToCprDictionary(PCHAR Buf, INT Len)
-{
-}
-
-
 /*-----------------BASE_DCPR_AddBits-------------------------------------*/
 
 void    BASE_DCPR_AddBits(INT Bits)
@@ -102,8 +96,6 @@ INT       R,
       {
         R = BASE_DCPR_PIC_Block(Buf, RestLen);
         BASE_DCPR_LZ77_CopyToDictionary(Buf, R);
-        BASE_DCPR_EXTERN_BlockCopyToCprDictionary(Buf, R);
-
         break;
       }
 
@@ -114,8 +106,6 @@ INT       R,
       {
         R = BASE_DCPR_SOUND_Block(Buf, RestLen);
         BASE_DCPR_LZ77_CopyToDictionary(Buf, R);
-        BASE_DCPR_EXTERN_BlockCopyToCprDictionary(Buf, R);
-
         break;
       }
 
@@ -168,9 +158,6 @@ INT       Result;
     case BASE_ACESTRUC_TECHNIQUE_STORE:
     {
       Result = BASE_DCPR_UnstoreBlock(Buf, Len);
-
-      BASE_DCPR_EXTERN_BlockCopyToCprDictionary(Buf, Result);
-
       break;
     }
 

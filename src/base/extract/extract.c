@@ -27,14 +27,6 @@
 
 tBASE_EXTRACT BASE_EXTRACT;
 
-/*-----------------BASE_EXTRACT_EXTERN_ExtractBegin----------------------*/
-void    BASE_EXTRACT_EXTERN_ExtractBegin(void)
-{
-}
-/*-----------------BASE_EXTRACT_EXTERN_ExtractEnd------------------------*/
-void    BASE_EXTRACT_EXTERN_ExtractEnd(void)
-{
-}
 void    BASE_FUNCS_EXTERN_DoCopy(INT Mode)
 {
   BASE_EXTRACT_Extract(1, 1);
@@ -236,10 +228,6 @@ UINT	  NTFSSecuritySize;
 
     BASE_FUNCS.DidNotCopyAll |= BASE_ERROR.DidFailCRCCheck;
 
-    BASE_STATE_EXTERN_IsCRCOkSet(&IsCRCOk,
-                                 BASE_ARCBLK.Header.File.HEAD_FLAGS
-                                   & BASE_ACESTRUC_FLAG_PASSWORD);
-
     BASE_STATE_OutputCRCOk(IsCRCOk);
   }
 
@@ -340,8 +328,6 @@ void    BASE_EXTRACT_Extract(BOOL DoWriteData, BOOL IsTest)
 {
 tLFN      ArchiveName;
 
-  BASE_EXTRACT_EXTERN_ExtractBegin();
-
   errno = 0;
 
   BASE_DCPR.Options       = BASE_OPTIONS.ExtractOptions;
@@ -379,8 +365,6 @@ tLFN      ArchiveName;
   }
 
   BASE_ARCBLK.DoOpenForReadOnly = 0;
-
-  BASE_EXTRACT_EXTERN_ExtractEnd();
 }
 
 /*-----------------BASE_EXTRACT_Test-------------------------------------*/

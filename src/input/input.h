@@ -35,20 +35,8 @@ INT     APPS_EXE_INPUT_WarningYANCProc(PCHAR TopStr, PCHAR Description1,
 void    APPS_EXE_INPUT_EXTERN_Input(PCHAR StartStr, INT Width,
                                     PCHAR TopStr,
                                     PCHAR Discription, BOOL IsPasswInput);
-
-void    APPS_EXE_INPUT_EXTERN_InputProcOutputMask(BOOL DoRegInput);
-void    APPS_EXE_INPUT_EXTERN_InputProcHandleKey(BOOL DoRegInput);
-
-void    APPS_EXE_INPUT_EXTERN_InputProcHandleDelete(BOOL DoRegInput,
-                                                    INT InputLen, INT Width);
-
 BOOL    APPS_EXE_INPUT_EXTERN_InputProcInputCondition(BOOL DoRegInput,
                                                       INT InputLen);
-
-void    APPS_EXE_INPUT_EXTERN_InputProcOutputMaskAtInput(BOOL DoRegInput,
-                                                         INT InputLen,
-                                                         INT Width);
-
 INT     APPS_EXE_INPUT_EXTERN_WarningYANC(PCHAR TopStr, PCHAR Description1,
                                           PCHAR Description2);
 

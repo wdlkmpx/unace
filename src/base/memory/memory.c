@@ -15,10 +15,6 @@
 tBASE_MEMORY BASE_MEMORY; //memory.h
 
 
-/*-----------------BASE_MEMORY_EXTERN_OptimizeOtherMemory----------------*/
-void    BASE_MEMORY_EXTERN_OptimizeOtherMemory(void)
-{
-}
 /*-----------------BASE_MEMORY_EXTERN_MaxMemoryRequirement---------------*/
 ULONG   BASE_MEMORY_EXTERN_MaxMemoryRequirement(void)
 {
@@ -244,8 +240,6 @@ INT       Size;
 void    BASE_MEMORY_Optimize(void)
 {
 INT       I, J;
-
-  BASE_MEMORY_EXTERN_OptimizeOtherMemory();
 
   I             = BASE_FILELIST.Last - BASE_FILELIST.List;
   J             = BASE_FILELIST.Pos  - BASE_FILELIST.List;

@@ -87,12 +87,6 @@ void      BASE_FILELIST_SearchListArchiveCreateProcessFile(
 
 void    BASE_FILELIST_VolumeCreate(void);
 void    BASE_FILELIST_SearchListArchiveCreate(void);
-void    BASE_FILELIST_SearchListCreate(BOOL DoAddDirFirst);
-
-INT     BASE_FILELIST_EXTERN_AddFileMoveCheck(PCHAR FileName);
-void    BASE_FILELIST_EXTERN_CreateProc(BOOL DoAddDirFirst);
-void    BASE_FILELIST_EXTERN_CreateEnd(void);
-
 BOOL    BASE_FILELIST_EXTERN_CommandLineCheck(PCHAR FileName,
                                               PCHAR CompareFileName1,
                                               PCHAR CompareFileName2);

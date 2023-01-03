@@ -327,9 +327,6 @@ INT       OldPos,
 
   BASE_DCPR.FileSize -= BASE_DCPR_LZ77.BLOCK_ByteCount;
 
-  BASE_DCPR_EXTERN_BlockCopyToCprDictionary(
-    Buf, BASE_DCPR_LZ77.BLOCK_ByteCount);
-
   return BASE_DCPR_LZ77.BLOCK_ByteCount;
 }
 

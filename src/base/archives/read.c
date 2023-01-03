@@ -179,7 +179,5 @@ INT       Result,
     BASE_ERROR.ErrorCode = BASE_ERROR_BADCRC;
   }
 
-  BASE_MSGOUT_EXTERN_ReadingArchiveEnd(&SavedScreenPtr);
-
   return Result;
 }

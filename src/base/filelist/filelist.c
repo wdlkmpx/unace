@@ -32,29 +32,6 @@ BOOL    BASE_FILELIST_EXTERN_CommandLineCheck(PCHAR FileName,
          || !BASE_CONVERT_StrICmp(CompareFileName2, APPS_EXE_COMMLINE.OutFile);
 }
 
-/*-----------------BASE_FILELIST_EXTERN_AddFileMoveCheck-----------------*/
-INT     BASE_FILELIST_EXTERN_AddFileMoveCheck(PCHAR FileName)
-{
-  return 0;
-}
-/*-----------------BASE_FILELIST_EXTERN_CreateProc-----------------------*/
-void    BASE_FILELIST_EXTERN_CreateProc(BOOL DoAddDirFirst)
-{
-  BASE_FILELIST_SearchListCreate(DoAddDirFirst);
-}
-/*-----------------BASE_FILELIST_EXTERN_CreateEnd------------------------*/
-void    BASE_FILELIST_EXTERN_CreateEnd(void)
-{
-}
-
-
-/*-----------------BASE_FILELIST_SearchListCreate------------------------*/
-void    BASE_FILELIST_SearchListCreate(BOOL DoAddDirFirst)
-{
-  BASE_FILELIST_SearchListArchiveCreate();
-}
-
-
 /*-----------------BASE_FILELIST_RemoveDrive-----------------------------*/
 
 PCHAR   BASE_FILELIST_RemoveDrive(PCHAR Path)
@@ -235,8 +212,7 @@ tBASE_LFN_DBL
     }
   }
 
-  if (BASE_FILELIST_CheckExclusion(FileName)
-      || BASE_FILELIST_EXTERN_AddFileMoveCheck(FileName))
+  if (BASE_FILELIST_CheckExclusion(FileName))
   {
     goto RETURN;
   }
@@ -302,8 +278,6 @@ tBASE_LFN_DBL
     }
   }
 
-  BASE_MSGOUT_EXTERN_ListAddingFile(FileName);
-
 RETURN:
 
   BASE_FILELIST.DoRecurseSubDirectories = SavedDoRecurseSubDirectories;
@@ -362,11 +336,9 @@ ULONG     PosIndex, LastIndex;
 
   BASE_FILELIST_Init();
 
-  BASE_FILELIST_EXTERN_CreateProc(DoAddDirFirst);
+  BASE_FILELIST_SearchListArchiveCreate(); //(DoAddDirFirst);
 
   errno = 0;
-
-  BASE_FILELIST_EXTERN_CreateEnd();
 
   if (!BASE_ERROR.ErrorCode
       && BASE_FILELIST.List == BASE_FILELIST.Last
@@ -392,8 +364,6 @@ ULONG     PosIndex, LastIndex;
   BASE_FILELIST.Last  = BASE_FILELIST.List + LastIndex;
 
   BASE_MEMORY_Optimize();
-
-  BASE_MSGOUT_EXTERN_ListCreateEnd(&SavedScreenPtr);
 
   if (BASE_ERROR.ErrorCode)
   {

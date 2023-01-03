@@ -34,13 +34,6 @@ void    APPS_EXE_STATE_Delay(INT MilliSeconds)
 }
 
 
-
-/*-----------------BASE_STATE_EXTERN_IsCRCOkSet--------------------------*/
-
-void    BASE_STATE_EXTERN_IsCRCOkSet(PBOOL IsCRCOk, BOOL IsEncrypted)
-{
-}
-
 /*-----------------BASE_STATE_EXTERN_SetExtractString--------------------*/
 
 void    BASE_STATE_EXTERN_SetExtractString(void)

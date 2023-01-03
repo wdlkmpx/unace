@@ -32,29 +32,6 @@ tBASE_ARCBLK BASE_ARCBLK; // arcblk.h
 
 // =============================================================================
 
-/*-----------------BASE_ARCBLK_EXTERN_OpenArchiveOverwriteRequest--------*/
-BOOL    BASE_ARCBLK_EXTERN_OpenArchiveOverwriteRequest(PCHAR Path, INT AccesFlags)
-{
-  return 0;
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_LoadBlockBegin---------------------*/
-void    BASE_ARCBLK_EXTERN_LoadBlockBegin(void)
-{
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_LoadBlockSetVariables--------------*/
-void    BASE_ARCBLK_EXTERN_LoadBlockSetVariables(void)
-{
-  BASE_ARCBLK_EXTERN_SetFileData();
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_OpenArchiveWriteOpen---------------*/
-BOOL    BASE_ARCBLK_EXTERN_OpenArchiveWriteOpen(INT Access, BOOL DoOutputError)
-{
-  return 1;
-}
-
 /*-----------------BASE_ARCBLK_EXTERN_CloseArchive-----------------------*/
 void    BASE_ARCBLK_EXTERN_CloseArchive(INT AddRecovery)
 {
@@ -65,22 +42,6 @@ void    BASE_ARCBLK_EXTERN_CloseArchive(INT AddRecovery)
 PCHAR   BASE_ARCBLK_EXTERN_CurrentArchiveName(void)
 {
   return BASE_ARCBLK.ArchiveFile;
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_OpenArchiveHandlePathRenaming------*/
-void    BASE_ARCBLK_EXTERN_OpenArchiveHandlePathRenaming(PCHAR Path, INT Access)
-{
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_OpenArchiveHandlePathRenaming------*/
-BOOL    BASE_ARCBLK_EXTERN_OpenArchiveCreateArchive(INT Access)
-{
-  return 1;
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_ArchiveOpenReOpen------------------*/
-void    BASE_ARCBLK_EXTERN_ArchiveOpenReOpen(INT Access)
-{
 }
 
 /*-----------------BASE_ARCBLK_EXTERN_OpenArchivesSetVariables-----------*/
@@ -104,28 +65,6 @@ void    BASE_ARCBLK_EXTERN_OpenArchivesSetVariables(INT Access, BOOL DoResetCryp
     BASE_ARCBLK.Header.Basic.HEAD_FLAGS & BASE_ACESTRUC_FLAG_LOCK;
 
   BASE_ARCBLK.ArchiveFilePos         = BASE_DIRDATA_Dir1.ArchiveBegin;
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_OpenArchiveWriteClose--------------*/
-void    BASE_ARCBLK_EXTERN_OpenArchiveWriteClose(void)
-{
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_ReadAddSizeBlockCopyToTempArchive--*/
-void    BASE_ARCBLK_EXTERN_ReadAddSizeBlockCopyToTempArchive(PCHAR Buffer, INT Read,
-                                                 INT RestLen)
-{
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_ReadAddSizeBlockEncrypt------------*/
-BOOL    BASE_ARCBLK_EXTERN_ReadAddSizeBlockEncrypt(PCHAR Buffer, INT Len)
-{
-  return 0;
-}
-
-/*-----------------BASE_ARCBLK_EXTERN_RemoveCreatedArchive---------------*/
-void    BASE_ARCBLK_EXTERN_RemoveCreatedArchive(void)
-{
 }
 
 // =============================================================================
@@ -172,15 +111,7 @@ void    BASE_ARCBLK_EXTERN_OutputArchiveInfo(INT AccesFlags,
   APPS_EXE_EXTERN_ARCBLK_OutputArchiveInfo(1);
 }
 
-
-/*-----------------BASE_ARCBLK_EXTERN_SetFileData------------------------*/
-void    BASE_ARCBLK_EXTERN_SetFileData(void)
-{
-}
-
-
 // =============================================================================
-
 
 /*-----------------BASE_ARCBLK_MainHeaderCommentSizePos------------------*/
 
@@ -304,9 +235,7 @@ UINT    BASE_ARCBLK_CalculateHeaderCRC(pBASE_ACESTRUC_HEADER Header)
 }
 
 /*-----------------BASE_ARCBLK_GetAddSize--------------------------------*/
-
-ULONGLONG
-        BASE_ARCBLK_GetAddSize(pBASE_ACESTRUC_HEADER Header)
+ULONGLONG BASE_ARCBLK_GetAddSize(pBASE_ACESTRUC_HEADER Header)
 {
   return (Header->Basic.HEAD_FLAGS & BASE_ACESTRUC_FLAG_ADDSIZE) ?
             Header->Basic.ADDSIZE : 0;
@@ -571,8 +500,6 @@ BOOL    BASE_ARCBLK_LoadBlock(void)
 BOOL      Result;
 INT       Read;
 
-  BASE_ARCBLK_EXTERN_LoadBlockBegin();
-
   BASE_ARCBLK_SkipFileBlock();
   BASE_ARCBLK.DoCopyBlockToTempArchive = 0;
 
@@ -605,7 +532,6 @@ INT       Read;
   }
 
   BASE_ARCBLK.SkipSize = BASE_ARCBLK_GetAddSize(&BASE_ARCBLK.Header);
-  BASE_ARCBLK_EXTERN_LoadBlockSetVariables();
 
   return Result;
 }
@@ -659,8 +585,6 @@ PCHAR     BufPos;
     }
   }
 
-  BASE_ARCBLK_EXTERN_ReadAddSizeBlockCopyToTempArchive(Buffer, Read, RestLen);
-
   if (BASE_ARCBLK.Header.Basic.HEAD_TYPE == BASE_ACESTRUC_BLOCK_FILE
       && (BASE_ARCBLK.Header.Basic.HEAD_FLAGS & BASE_ACESTRUC_FLAG_PASSWORD))
   {
@@ -668,12 +592,6 @@ PCHAR     BufPos;
   }
 
   Len = Read > Len ? Len : Read;
-
-
-  if (BASE_ARCBLK_EXTERN_ReadAddSizeBlockEncrypt(Buffer, Len))
-  {
-    return 0;
-  }
 
   return Len;
 }
@@ -691,28 +609,14 @@ tBASE_DIRDATA_DirData
   BASE_ARCBLK.DoOutputComments =
     DoOutputComm && BASE_OPTIONS.ExtractOptions.DoShowComments;
 
-  BASE_ARCBLK_EXTERN_OpenArchiveHandlePathRenaming(Path, Access);
-
   strcpy(BASE_ARCBLK.ArchiveFile, Path);
-
-  if (BASE_ARCBLK_EXTERN_OpenArchiveOverwriteRequest(Path, Access))
-  {
-    return 0;
-  }
 
   BASE_PATHFUNC_CompletePath(BASE_ARCBLK.ArchiveFile);
 
   BASE_ARCBLK.SkipSize = 0;
 
-  if (!BASE_ARCBLK_EXTERN_OpenArchiveWriteOpen(Access, DoOutputError))
-  {
-    return 0;
-  }
-
   if (-1 == BASE_BUFREAD_Open(BASE_ARCBLK.ArchiveFile))
   {
-    BASE_ARCBLK_EXTERN_OpenArchiveWriteClose();
-
     if (DoOutputError)
     {
 
@@ -720,11 +624,6 @@ tBASE_DIRDATA_DirData
       BASE_ERROR.ErrorCode = BASE_ERROR_OPEN;
     }
 
-    return 0;
-  }
-
-  if (!BASE_ARCBLK_EXTERN_OpenArchiveCreateArchive(Access))
-  {
     return 0;
   }
 
@@ -737,13 +636,10 @@ tBASE_DIRDATA_DirData
     
     BASE_ERROR.ErrorCode = BASE_ERROR_OPEN;
 
-    BASE_ARCBLK_EXTERN_OpenArchiveWriteClose();
     BASE_BUFREAD_Close();
 
     return 0;
   }
-
-  BASE_ARCBLK_EXTERN_ArchiveOpenReOpen(Access);
 
   BASE_ARCBLK.ArchiveBegin = BASE_DIRDATA_Dir1.ArchiveBegin;
   BASE_BUFREAD_Seek(BASE_DIRDATA_Dir1.ArchiveBegin, SEEK_SET);

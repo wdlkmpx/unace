@@ -32,12 +32,6 @@ void    APPS_EXE_OUTPUT_EXTERN_Message(INT Width, PCHAR TopStr,
 }
 
 
-/*-----------------APPS_EXE_OUTPUT_GetScreenSize-------------------------*/
-void    APPS_EXE_OUTPUT_GetScreenSize(void)
-{ /* not used */
-  APPS_EXE_OUTPUT.ScreenHeight = 80;
-}
-
 /*-----------------APPS_EXE_OUTPUT_WriteRight----------------------------*/
 
 void    APPS_EXE_OUTPUT_WriteRight(PCHAR Text)

@@ -15,6 +15,5 @@ extern tBASE_COMMENTS BASE_COMMENTS;
 
 void    BASE_COMMENTS_ReadComment(void);
 void    BASE_COMMENTS_EXTERN_Output(void);
-void    BASE_COMMENTS_EXTERN_ReadCommentEnd(void);
 
 #endif

@@ -31,8 +31,6 @@ typedef struct
 
 extern tBASE_ERROR BASE_ERROR; //error.c
 
-void    BASE_ERROR_EXTERN_HandleCancelPROC(void);
 INT     BASE_ERROR_EXTERN_HandleCancel(BOOL DoReadAllKeys);
-void    BASE_ERROR_EXTERN_Init(void);
 
 #endif

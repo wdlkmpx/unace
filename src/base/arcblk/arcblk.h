@@ -66,41 +66,12 @@ INT     BASE_ARCBLK_OpenArchive(PCHAR Path, INT Access, BOOL DoOutputError,
                                 BOOL DoOutputComm, BOOL DoResetCrypt);
 
 void    BASE_ARCBLK_EXTERN_CloseArchive(INT AddRecovery);
-void    BASE_ARCBLK_EXTERN_SetFileData(void);
-
-BOOL    BASE_ARCBLK_EXTERN_OpenArchiveOverwriteRequest(PCHAR Path,
-                                                       INT AccesFlags);
-
-void    BASE_ARCBLK_EXTERN_LoadBlockBegin(void);
-void    BASE_ARCBLK_EXTERN_LoadBlockSetVariables(void);
-
-BOOL    BASE_ARCBLK_EXTERN_OpenArchiveWriteOpen(INT Access,
-                                                BOOL DoOutputError);
-
 void    BASE_ARCBLK_EXTERN_OutputArchiveInfo(INT Access, BOOL DoResetCrypt);
 
 BOOL    BASE_ARCBLK_EXTERN_OpenArchiveOverwriteRequest(PCHAR Path,
                                                        INT Access);
 
 PCHAR   BASE_ARCBLK_EXTERN_CurrentArchiveName(void);
-
-void    BASE_ARCBLK_EXTERN_OpenArchiveHandlePathRenaming(PCHAR Path,
-                                                         INT Access);
-
-BOOL    BASE_ARCBLK_EXTERN_OpenArchiveCreateArchive(INT Access);
-void    BASE_ARCBLK_EXTERN_ArchiveOpenReOpen(INT Access);
-
 void    BASE_ARCBLK_EXTERN_OpenArchivesSetVariables(INT Access,
                                                     BOOL DoResetCrypt);
-
-void    BASE_ARCBLK_EXTERN_OpenArchiveWriteClose(void);
-
-void    BASE_ARCBLK_EXTERN_ReadAddSizeBlockCopyToTempArchive(PCHAR Buffer,
-                                                             INT Read,
-                                                             INT RestLen);
-
-BOOL    BASE_ARCBLK_EXTERN_ReadAddSizeBlockEncrypt(PCHAR Buffer, INT Len);
-
-void    BASE_ARCBLK_EXTERN_RemoveCreatedArchive(void);
-
 #endif

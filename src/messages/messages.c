@@ -203,8 +203,6 @@ PCHAR     MessagesBufEnd,
 
     if (UsingDefault)
     {
-//      BASE_ERROROUT_EXTERN_ReadingMessagesFile(APPS_EXE_MESSAGES.FileName);
-
       break;
     }
   }

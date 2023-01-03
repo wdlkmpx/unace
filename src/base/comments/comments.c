@@ -15,11 +15,6 @@
 
 tBASE_COMMENTS BASE_COMMENTS;
 
-/*-----------------BASE_COMMENTS_EXTERN_ReadCommentEnd-------------------*/
-void    BASE_COMMENTS_EXTERN_ReadCommentEnd(void)
-{
-}
-
 /*-----------------APPS_EXE_EXTERN_COMMENTS_StdOutput--------------------*/
 static void APPS_EXE_EXTERN_COMMENTS_StdOutput(void)
 {
@@ -96,6 +91,4 @@ PCHAR     CommentPos;
   
   BASE_COMMENTS.CompressedSize = CommentSize;
   BASE_DCPR_COMMENTS_GetComment();
-
-  BASE_COMMENTS_EXTERN_ReadCommentEnd();
 }

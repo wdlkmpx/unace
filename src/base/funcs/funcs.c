@@ -83,10 +83,6 @@ void    BASE_FUNCS_Copy(INT Mode)
 
     BASE_FILELIST_Done();
   }
-  else
-  {
-    BASE_ARCBLK_EXTERN_RemoveCreatedArchive();
-  }
 
   BASE_FILELIST.DoAddFileCheckIfValidFile = 0;
 }

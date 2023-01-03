@@ -43,7 +43,6 @@ void    BASE_DCPR_Init(void);
 void    BASE_DCPR_InitFile(void);
 void    BASE_DCPR_Done(void);
 void    BASE_DCPR_DoneFile(void);
-void    BASE_DCPR_EXTERN_BlockCopyToCprDictionary(PCHAR Buf, INT Len);
 void    BASE_DCPR_FillReadBuf(void);
 
 #endif
