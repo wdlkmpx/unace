@@ -1,7 +1,7 @@
 #ifndef _BASE_ACESTRUC_H_INCLUDED
 #define _BASE_ACESTRUC_H_INCLUDED
 
-#include "base/lfn/lfn.h"
+#include "base/lfn.h"
 
 #define BASE_ACESTRUC_ACESIGN "**ACE**"
 #define BASE_ACESTRUC_ACESIGNLEN 7

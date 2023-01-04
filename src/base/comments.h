@@ -1,7 +1,7 @@
 #ifndef _BASE_COMMENTS_H_INCLUDED
 #define _BASE_COMMENTS_H_INCLUDED
 
-#include "base/lfn/lfn.h"
+#include "base/lfn.h"
 
 #define BASE_COMMENTS_HASHFUNC(A, B)    (A + B)
 

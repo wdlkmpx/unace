@@ -1,8 +1,8 @@
 #ifndef _BASE_DIRDATA_H_INCLUDED
 #define _BASE_DIRDATA_H_INCLUDED
 
-#include "base/dosfuncs/dosfuncs.h"
-#include "base/lfn/lfn.h"
+#include "base/dosfuncs.h"
+#include "base/lfn.h"
 
 //------TypeDefines:
 

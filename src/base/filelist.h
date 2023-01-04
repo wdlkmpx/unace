@@ -1,8 +1,8 @@
 #ifndef _BASE_FILELIST_H_INCLUDED
 #define _BASE_FILELIST_H_INCLUDED
 
-#include "base/dosfuncs/dosfuncs.h"
-#include "base/lfn/lfn.h"
+#include "base/dosfuncs.h"
+#include "base/lfn.h"
 
 #define BASE_FILELIST_NORMAL       BASE_DOSFUNCS_NORMAL
 #define BASE_FILELIST_RDONLY       BASE_DOSFUNCS_RDONLY

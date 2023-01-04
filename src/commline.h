@@ -1,7 +1,7 @@
 #ifndef _APPS_UNACE_EXE_COMMLINE_H_INCLUDED
 #define _APPS_UNACE_EXE_COMMLINE_H_INCLUDED
 
-#include "base/lfn/lfn.h"
+#include "base/lfn.h"
 
 typedef struct
 {

@@ -1,7 +1,7 @@
 #ifndef _BASE_ARCHIVES_READ_H_INCLUDED
 #define _BASE_ARCHIVES_READ_H_INCLUDED
 
-#include "base/filelist/filelist.h"
+#include "base/filelist.h"
 
 typedef struct
 {

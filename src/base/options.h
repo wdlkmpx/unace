@@ -1,7 +1,7 @@
 #ifndef _BASE_OPTIONS_H_INCLUDED
 #define _BASE_OPTIONS_H_INCLUDED
 
-#include "base/crypt/crypt.h"
+#include "base/crypt.h"
 
 #pragma pack(push, 1) // SETNOALIGNMENT -- packprag.h
 

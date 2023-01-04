@@ -2,7 +2,7 @@
 #define _BASE_ARCBLK_H_INCLUDED
 
 #include "base/acestruc.h"
-#include "base/lfn/lfn.h"
+#include "base/lfn.h"
 
 typedef struct
 {

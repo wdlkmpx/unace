@@ -10,7 +10,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #if defined(INCL_BASE_ARCBLK)
-   #include "base/arcblk/arcblk.h"
+   #include "base/arcblk.h"
 #endif
 
 #if defined(INCL_BASE_ARCHIVES_ACE)
@@ -26,19 +26,19 @@
 #endif
 
 #if defined(INCL_BASE_BITWIDTH)
-   #include "base/bitwidth/bitwidth.h"
+   #include "base/bitwidth.h"
 #endif
 
 #if defined(INCL_BASE_BUFREAD)
-   #include "base/bufread/bufread.h"
+   #include "base/bufread.h"
 #endif
 
 #if defined(INCL_BASE_COMMENTS)
-   #include "base/comments/comments.h"
+   #include "base/comments.h"
 #endif
 
 #if defined(INCL_BASE_CONVERT)
-   #include "base/convert/convert.h"
+   #include "base/convert.h"
 #endif
 
 #if defined(INCL_BASE_CPRDCPR_HUFF)
@@ -58,11 +58,11 @@
   #endif
 
 #if defined(INCL_BASE_CRC)
-   #include "base/crc/crc.h"
+   #include "base/crc.h"
 #endif
 
 #if defined(INCL_BASE_CRYPT)
-   #include "base/crypt/crypt.h"
+   #include "base/crypt.h"
 #endif
 
 #if defined(INCL_BASE_DCPR)
@@ -94,59 +94,55 @@
 #endif
 
 #if defined(INCL_BASE_DOSFUNCS)
-   #include "base/dosfuncs/dosfuncs.h"
+   #include "base/dosfuncs.h"
 #endif
 
 #if defined(INCL_BASE_ERROR)
-   #include "base/error/error.h"
+   #include "base/error.h"
 #endif
 
 #if defined(INCL_BASE_ERROROUT)
-   #include "base/errorout/errorout.h"
+   #include "base/errorout.h"
 #endif
 
 #if defined(INCL_BASE_EXTRACT)
-   #include "base/extract/extract.h"
+   #include "base/extract.h"
 #endif
 
 #if defined(INCL_BASE_FILELIST)
-   #include "base/filelist/filelist.h"
+   #include "base/filelist.h"
 #endif
 
 #if defined(INCL_BASE_FUNCS)
-   #include "base/funcs/funcs.h"
+   #include "base/funcs.h"
 #endif
 
 #if defined(INCL_BASE_LFN)
-   #include "base/lfn/lfn.h"
+   #include "base/lfn.h"
 #endif
 
 #if defined(INCL_BASE_MEMORY)
-   #include "base/memory/memory.h"
+   #include "base/memory.h"
 #endif
 
 #if defined(INCL_BASE_MSGOUT)
-       #include "base/msgout/msgout.h"
+   #include "base/msgout.h"
 #endif
 
 #if defined(INCL_BASE_OPTIONS)
-   #include "base/options/options.h"
+   #include "base/options.h"
 #endif
 
 #if defined(INCL_BASE_PATHFUNC)
-   #include "base/pathfunc/pathfunc.h"
+   #include "base/pathfunc.h"
 #endif
 
 #if defined(INCL_BASE_QSORT)
-   #include "base/qsort/qsort.h"
+   #include "base/qsort.h"
 #endif
 
 #if defined(INCL_BASE_STATE)
-   #include "base/state/state.h"
-#endif
-
-#if defined(INCL_BASE_SYSTEM)
-   #include "base/system/system.h"
+   #include "base/state.h"
 #endif
 
 #if defined(INCL_BASE_UNINORM)
@@ -154,7 +150,7 @@
 #endif
 
 #if defined(INCL_BASE_VOLUME)
-   #include "base/volume/volume.h"
+   #include "base/volume.h"
 #endif
 
 #endif

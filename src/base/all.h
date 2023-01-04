@@ -17,7 +17,7 @@
 #endif
 
 #include "declare.h"
-#include "base/lfn/lfn.h"
+#include "base/lfn.h"
 
 #define in(v1,v2,v3) ((((INT) v1) >= ((INT) v2)) && (((INT) v1)<=((INT) v3)))
 

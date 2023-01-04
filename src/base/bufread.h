@@ -1,7 +1,7 @@
 #ifndef _BASE_BUFREAD_H_INCLUDED
 #define _BASE_BUFREAD_H_INCLUDED
 
-#include "base/lfn/lfn.h"
+#include "base/lfn.h"
 
 typedef struct
 {

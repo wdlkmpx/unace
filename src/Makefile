@@ -6,39 +6,39 @@ APP  = unace
 OBJS = acefuncs.o \
 	base/all.o \
 	base/unused.o \
-	base/arcblk/arcblk.o \
+	base/arcblk.o \
 	base/archives/ace.o \
 	base/archives/read.o \
 	base/archives/test.o \
-	base/bitwidth/bitwidth.o \
-	base/bufread/bufread.o \
-	base/comments/comments.o \
-	base/convert/convert.o \
+	base/bitwidth.o \
+	base/bufread.o \
+	base/comments.o \
+	base/convert.o \
 	base/cprdcpr/cprdcpr.o \
-	base/crc/crc.o \
-	base/crypt/crypt.o \
+	base/crc.o \
+	base/crypt.o \
 	base/dcpr/comments.o \
 	base/dcpr/dcpr.o \
 	base/dcpr/huff.o \
 	base/dcpr/lz77.o \
 	base/dcpr/pic.o \
 	base/dcpr/sound.o \
-	base/dosfuncs/dosfuncs.o \
-	base/error/error.o \
-	base/errorout/errorout.o \
-	base/extract/extract.o \
-	base/filelist/filelist.o \
-	base/funcs/funcs.o \
-	base/lfn/lfn.o \
-	base/memory/memory.o \
-	base/msgout/msgout.o \
-	base/options/options.o \
-	base/pathfunc/pathfunc.o \
-	base/qsort/qsort.o \
-	base/state/state.o \
+	base/dosfuncs.o \
+	base/error.o \
+	base/errorout.o \
+	base/extract.o \
+	base/filelist.o \
+	base/funcs.o \
+	base/lfn.o \
+	base/memory.o \
+	base/msgout.o \
+	base/options.o \
+	base/pathfunc.o \
+	base/qsort.o \
+	base/state.o \
 	base/uninorm/unincore.o \
 	base/uninorm/uninorm.o \
-	base/volume/volume.o \
+	base/volume.o \
 	commline.o \
 	convert.o \
 	input.o \
