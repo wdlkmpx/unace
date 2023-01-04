@@ -1,6 +1,8 @@
 #ifndef _BASE_ALL_H_INCLUDED
 #define _BASE_ALL_H_INCLUDED
 
+#define BASE_VERSION_VERSIONSTR "2.5  "
+
 #ifdef _WIN32
 # define WIN32_LEAN_AND_MEAN
 # include <windows.h>
@@ -16,14 +18,12 @@
 # include <unistd.h>
 #endif
 
-#include "declare.h"
+#include "wintypes.h"
 #include "base/lfn.h"
 
 #define in(v1,v2,v3) ((((INT) v1) >= ((INT) v2)) && (((INT) v1)<=((INT) v3)))
 
-#define BASE_VERSION_VERSIONSTR "2.5  "
-
-// =====================================================================
+//=====================================================================
 
 #ifdef __EMULATE_UNALIGNED__
 #include <string.h>
@@ -39,7 +39,9 @@ memmove((ptr), &__tmp, sizeof(*(ptr))); \
 #define put_unaligned(ptr, val) ((void)( *(ptr) = (val) ))
 #endif /* __EMULATE_UNALIGNED__ */
 
+
 #include "w_endian.h"
+
 #ifdef WORDS_BIGENDIAN
 #define ADJUST_ENDIANNESS16(Ptr) {\
   USHORT x = get_unaligned((USHORT*) (Ptr));\
