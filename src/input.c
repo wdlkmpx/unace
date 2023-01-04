@@ -20,38 +20,14 @@
 tAPPS_EXE_INPUT APPS_EXE_INPUT;
 
 #ifndef _WIN32
-tAPPS_EXE_INPUT_LINUX APPS_EXE_INPUT_LINUX;
+#include <termios.h>
+struct termios OldtiMode;
 #endif
 
+/*-----------------APPS_EXE_INPUT_Input------------------------------*/
 
-/*-----------------APPS_EXE_INPUT_EXTERN_Input---------------------------*/
-void    APPS_EXE_INPUT_EXTERN_Input(PCHAR StartStr, INT Width,
-                                      PCHAR TopStr,
-                                      PCHAR Discription, BOOL IsPasswInput)
-{
-  APPS_EXE_INPUT_Input(StartStr, Width, TopStr,
-                       Discription, IsPasswInput);
-}
-
-/*-----------------APPS_EXE_INPUT_EXTERN_InputProcInputCondition---------*/
-BOOL APPS_EXE_INPUT_EXTERN_InputProcInputCondition(BOOL DoRegInput, INT InputLen)
-{
-  return 1;
-}
-/*-----------------APPS_EXE_INPUT_EXTERN_WarningYANC---------------------*/
-INT APPS_EXE_INPUT_EXTERN_WarningYANC(PCHAR TopStr, PCHAR Description1, PCHAR Description2)
-{
-  return APPS_EXE_INPUT_WarningYANCProc(TopStr, Description1, Description2);
-}
-
-// ==========================================================================
-
-
-/*-----------------APPS_EXE_INPUT_InputProc------------------------------*/
-
-void    APPS_EXE_INPUT_InputProc(PCHAR StartStr, INT Width, PCHAR TopStr,
-                                 PCHAR Discription, BOOL IsPasswInput,
-                                 BOOL DoRegInput)
+void APPS_EXE_INPUT_Input (PCHAR StartStr, INT Width, PCHAR TopStr,
+                           PCHAR Discription, BOOL IsPasswInput)
 {
 BOOL      IsFirstKeyPressed,
           IsTimeOut;
@@ -127,17 +103,12 @@ INT       TimeCount,
         if ((isprint(APPS_EXE_INPUT.LastKey) || strchr("ÑîÅéôö", APPS_EXE_INPUT.LastKey))
             && InputLen < Width)
         {
-          if (APPS_EXE_INPUT_EXTERN_InputProcInputCondition(DoRegInput,
-                                                            InputLen))
-          {
             InputStr[InputLen++] = APPS_EXE_INPUT.LastKey;
 
             putchar(IsPasswInput ? '*' : APPS_EXE_INPUT.LastKey);
-
 #ifndef __sun__
             fflush(stdout);
 #endif
-          }
         }
       }
     }
@@ -170,20 +141,9 @@ INT       TimeCount,
   }
 }
 
-/*-----------------APPS_EXE_INPUT_Input----------------------------------*/
+/*-----------------APPS_EXE_INPUT_EXTERN_WarningYANC------------------------*/
 
-void    APPS_EXE_INPUT_Input(PCHAR StartStr, INT Width, PCHAR TopStr,
-                             PCHAR Discription, BOOL IsPasswInput)
-{
-  APPS_EXE_INPUT_InputProc(StartStr, Width, TopStr, Discription,
-                           IsPasswInput, 0);
-}
-
-
-/*-----------------APPS_EXE_INPUT_WarningYANCProc------------------------*/
-
-INT     APPS_EXE_INPUT_WarningYANCProc(PCHAR TopStr, PCHAR Description1,
-                                       PCHAR Description2)
+INT APPS_EXE_INPUT_EXTERN_WarningYANC(PCHAR TopStr, PCHAR Description1, PCHAR Description2)
 {
 CHAR      ShortStr1[80],
           ShortStr2[80],
@@ -294,12 +254,12 @@ BOOL    APPS_EXE_INPUT_KeyHit(void)
 void    APPS_EXE_INPUT_LINUX_SetRawMode(void)
 {
   struct termios ti;
-  if (tcgetattr(STDIN_FILENO, &APPS_EXE_INPUT_LINUX.OldtiMode) < 0)
+  if (tcgetattr(STDIN_FILENO, &OldtiMode) < 0)
   {
     return;
   }
 
-  ti = APPS_EXE_INPUT_LINUX.OldtiMode;
+  ti = OldtiMode;
 
   ti.c_iflag &= ~ICRNL;
   ti.c_iflag |= IGNBRK | BRKINT;
@@ -315,7 +275,7 @@ void    APPS_EXE_INPUT_LINUX_SetRawMode(void)
 
 void    APPS_EXE_INPUT_LINUX_UnSetRawMode(void)
 {
-  if (tcsetattr(STDIN_FILENO, TCSANOW, &APPS_EXE_INPUT_LINUX.OldtiMode) < 0)
+  if (tcsetattr(STDIN_FILENO, TCSANOW, &OldtiMode) < 0)
   {
     return;
   }

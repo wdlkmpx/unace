@@ -25,9 +25,22 @@ PCHAR APPS_EXE_CONVERT_ToPercentStr(ULONGLONG Value1, ULONGLONG Value2);
 PCHAR APPS_EXE_CONVERT_FormatSize(PCHAR SizeStr, INT Attr, ULONGLONG Size);
 #endif
 
-#if defined(INCL_APPS_EXE_INPUT)
-   #include "input.h"
+
+#if defined(INCL_APPS_EXE_INPUT) // input.h
+typedef struct {
+    INT LastKey;
+} tAPPS_EXE_INPUT;
+extern tAPPS_EXE_INPUT APPS_EXE_INPUT;
+void APPS_EXE_INPUT_Input(PCHAR StartStr, INT Width, PCHAR TopStr,
+                          PCHAR Discription, BOOL IsPasswInput);
+INT  APPS_EXE_INPUT_GetKey(void);
+BOOL APPS_EXE_INPUT_KeyHit(void);
+INT  APPS_EXE_INPUT_EXTERN_WarningYANC(PCHAR TopStr, PCHAR Description1,
+                                       PCHAR Description2);
+void APPS_EXE_INPUT_LINUX_SetRawMode(void);
+void APPS_EXE_INPUT_LINUX_UnSetRawMode(void);
 #endif
+
 
 #if defined(INCL_APPS_EXE_MESSAGES)
    #include "messages/messages.h"

@@ -50,7 +50,7 @@ tLFN      VolumeDirectory,
         {
           BASE_PATHFUNC_SplitFileName(VolumeDirectory, VolumeName, VolumeName);
 
-          APPS_EXE_INPUT_EXTERN_Input(VolumeDirectory, 70, STR.New_Path,
+          APPS_EXE_INPUT_Input(VolumeDirectory, 70, STR.New_Path,
                                       STR.Enter_new_source_path, 0);
 
           BASE_CONVERT_StrCatBefore(BASE_PATHFUNC_AddSlashToEnd(VolumeDirectory),
