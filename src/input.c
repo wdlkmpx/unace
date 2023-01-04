@@ -151,7 +151,7 @@ CHAR      ShortStr1[80],
 INT       TimeCount;
 UINT      ButtonNumber;
 PCHAR     ButtonPtr;
-PCHAR     Output;
+PCHAR     Output = NULL;
 
   APPS_EXE_CONVERT_MakeStrShorter(ShortStr1, Description1, 79);
   APPS_EXE_CONVERT_MakeStrShorter(ShortStr2, Description2, 79);
