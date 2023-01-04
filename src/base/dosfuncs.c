@@ -146,7 +146,6 @@ UINT    _dos_findnexti64(struct findi64_t *Bufi64)
     {
       if (BASE_PATHFUNC_WildCardCheck(Ent->d_name, Bufi64->SearchMask))
       {
-        memcpy(Bufi64, Dir, sizeof(Dir));
         Bufi64->size = 0;//_filelengthi64(Dir->dd_handle);
         strcpy(Bufi64->name, Ent->d_name);
         *(DIR**) &Bufi64->reserved[0] = Dir;
