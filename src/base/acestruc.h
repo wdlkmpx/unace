@@ -3,14 +3,17 @@
 
 #include "base/lfn/lfn.h"
 
+#define BASE_ACESTRUC_ACESIGN "**ACE**"
+#define BASE_ACESTRUC_ACESIGNLEN 7
+
+#define BASE_ACESTRUC_EXTENSION ".ace"
+
 #define BASE_ACESTRUC_EXTRACTVERSION 20
 
 #define BASE_ACESTRUC_HOST_MSDOS  0
 #define BASE_ACESTRUC_HOST_OS2    1
 #define BASE_ACESTRUC_HOST_WIN32  2
 #define BASE_ACESTRUC_HOST_LINUX  12
-
-#define BASE_ACESTRUC_ACESIGNLEN 7
 
 #if defined(__OS2__)
   #define BASE_ACESTRUC_CURRENTHOST BASE_ACESTRUC_HOST_OS2
@@ -234,9 +237,5 @@ typedef union {
  *pBASE_ACESTRUC_HEADER;
 
 #pragma pack(pop) // RESTOREALIGNMENT -- packprag.h
-
-extern PCHAR const BASE_ACESTRUC_ACESIGN;   // all.c
-extern PCHAR const BASE_ACESTRUC_EXTENSION; // all.c
-extern INT const BASE_ACESTRUC_IsACL;       // all.c
 
 #endif
