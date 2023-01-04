@@ -183,7 +183,7 @@ tBASE_LFN_DBL
         && in(*(ExtensionPos + 2), '0', '9'))
     {
       BASE_VOLUME_GetVolumeName(CompareFileName2, CompareFileName2,
-                           0, -1000, BASE_DIRDATA_Dir1.IsSFX);
+                                -1000, BASE_DIRDATA_Dir1.IsSFX);
     }
   }
 

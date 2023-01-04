@@ -22,6 +22,7 @@
 
 tBASE_VOLUME BASE_VOLUME; //volume.h
 
+#define ARCHIVEEXTENSIONS "ACE"
 
 /*-----------------BASE_VOLUME_EXTERN_ChangeVolumeToProcess--------------*/
 
@@ -96,8 +97,8 @@ tLFN      VolumeDirectory,
 
 /*-----------------BASE_VOLUME_GetVolumeName-----------------------------*/
 
-PCHAR   BASE_VOLUME_GetVolumeName(PCHAR NewVolumeName, PCHAR VolumeName,
-                             INT Type, INT AddToVolumeNumber, BOOL IsSFX)
+PCHAR BASE_VOLUME_GetVolumeName(PCHAR NewVolumeName, PCHAR VolumeName,
+                                INT AddToVolumeNumber, BOOL IsSFX)
 {
 PCHAR     ExtensionPos;
 INT       VolumeNumber;
@@ -135,20 +136,16 @@ INT       VolumeNumber;
     VolumeNumber = -1;
   }
 
-  if (!VolumeNumber && Type == 3)
-  {
-    VolumeNumber = AddToVolumeNumber > 0 ? 1 : -1;
-  }
-
   if (VolumeNumber == -1)
   {
-    strcpy(ExtensionPos, ARCHIVEEXTENSIONS[IsSFX ? 4 : Type]);
+    ///strcpy(ExtensionPos, ARCHIVEEXTENSIONS[IsSFX ? 4 : Type]);
+    strcpy(ExtensionPos, ARCHIVEEXTENSIONS);
   }
   else
   {
     if (VolumeNumber < 100)
     {
-      *ExtensionPos = Type ? ARCHIVEEXTENSIONS[Type][0] : 'C';
+      *ExtensionPos = 'C';
     }
     else
     {
@@ -183,7 +180,7 @@ INT       Result;
   BASE_ARCBLK_EXTERN_CloseArchive(1);
 
   BASE_VOLUME_GetVolumeName(BASE_ARCBLK.ArchiveFile,
-                            BASE_ARCBLK.ArchiveFile, 0, 1,
+                            BASE_ARCBLK.ArchiveFile, 1,
                             BASE_ARCBLK.Options.IsSFX);
 
   if (!BASE_VOLUME_EXTERN_ChangeVolumeToProcess(BASE_ARCBLK.ArchiveFile))
@@ -215,7 +212,7 @@ void    BASE_VOLUME_PreviousVolumeToProcess(void)
   BASE_VOLUME.CurrentVolumeNumber--;
 
   BASE_VOLUME_GetVolumeName(BASE_ARCBLK.ArchiveFile,
-                            BASE_ARCBLK.ArchiveFile, 0, -1,
+                            BASE_ARCBLK.ArchiveFile, -1,
                             BASE_DIRDATA_Dir1.IsSFX);
 
   if (!BASE_VOLUME_EXTERN_ChangeVolumeToProcess(BASE_ARCBLK.ArchiveFile))
@@ -243,7 +240,7 @@ tLFN      FirstVolumeName;
     strcpy(FirstVolumeName, VolumeName);
     BASE_VOLUME.CurrentVolumeNumber = 0;
 
-    BASE_VOLUME_GetVolumeName(FirstVolumeName, FirstVolumeName, 0, -100000,
+    BASE_VOLUME_GetVolumeName(FirstVolumeName, FirstVolumeName, -100000,
                               BASE_DIRDATA_Dir1.IsSFX);
 
     if (!BASE_VOLUME_EXTERN_ChangeVolumeToProcess(FirstVolumeName))

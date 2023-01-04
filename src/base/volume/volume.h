@@ -11,9 +11,7 @@ typedef struct
 extern tBASE_VOLUME BASE_VOLUME; //volume.c
 
 PCHAR   BASE_VOLUME_GetVolumeName(PCHAR NewVolumeName, PCHAR VolumeName,
-                                  INT Type, INT AddToVolumeNumber,
-                                  BOOL IsSFX);
-
+                                  INT AddToVolumeNumber, BOOL IsSFX);
 INT     BASE_VOLUME_NextVolumeToProcess(BOOL IsZeroLengthFile);
 void    BASE_VOLUME_PreviousVolumeToProcess(void);
 INT     BASE_VOLUME_FirstVolumeToProcess(PCHAR VolumeName);

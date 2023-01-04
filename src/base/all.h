@@ -21,8 +21,6 @@
 
 #define in(v1,v2,v3) ((((INT) v1) >= ((INT) v2)) && (((INT) v1)<=((INT) v3)))
 
-extern PCHAR const ARCHIVEEXTENSIONS[5]; // all.c
-
 #define BASE_VERSION_VERSIONSTR "2.5  "
 
 // =====================================================================
