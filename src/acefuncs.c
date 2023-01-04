@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 
 #define INCL_APPS_EXE_ACEFUNCS
+#define INCL_APPS_EXE_OUTPTERR
 
 #define INCL_BASE_ARCBLK
 #define INCL_BASE_COMMENTS
@@ -23,8 +25,18 @@
 #include "unace_includes.h"
 
 
-/*-----------------APPS_EXE_ACEFUNCS_List--------------------------------*/
+/*-----------------APPS_EXE_OUTPTERR_OutputError-------------------------*/
+void    APPS_EXE_OUTPTERR_OutputError(PCHAR TextStr1, PCHAR TextStr2)
+{
+  APPS_EXE_OUTPUT_EXTERN_Warning(
+    STR.Error ? STR.Error : "Error", TextStr1, TextStr2);
 
+  BASE_ERROR.HardwareError =
+    errno             = 0;
+}
+
+
+/*-----------------APPS_EXE_ACEFUNCS_List--------------------------------*/
 void    APPS_EXE_ACEFUNCS_List(BOOL Verbose)
 {
 CHAR      ShortStr[BASE_LFN_MAXLEN],

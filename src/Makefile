@@ -44,7 +44,6 @@ OBJS = acefuncs.o \
 	input.o \
 	main.o \
 	messages/messages.o \
-	outpterr.o \
 	output.o \
 	state.o
 
