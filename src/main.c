@@ -18,6 +18,7 @@
 
 #define INCL_APPS_EXE_COMMLINE
 #define INCL_APPS_EXE_MESSAGES
+#define INCL_APPS_EXE_INPUT
 #define INCL_APPS_EXE_OUTPUT
 
 #define INCL_APPS_UNACE_EXE_COMMLINE
@@ -50,7 +51,11 @@ void    APPS_UNACE_EXE_ProgramInit(INT ArgumentsNumber, PCHAR Arguments[])
   BASE_CRC_MakeCRCTable();
   BASE_BITWIDTH_Init();
 
-  APPS_UNACE_EXE_InitOSSpecific(&APPS_EXE_COMMLINE.Arguments[0]);
+  ///APPS_UNACE_EXE_InitOSSpecific (&APPS_EXE_COMMLINE.Arguments[0]);
+  APPS_EXE_OUTPUT.IsNotRedirected = isatty(fileno(stdout));  
+  APPS_EXE_OUTPUT.DoNotStdWait    = !APPS_EXE_OUTPUT.IsNotRedirected;
+  APPS_EXE_OUTPUT.ScreenHeight 	  = 80;
+  APPS_EXE_INPUT_LINUX_SetRawMode();
 
 //_________________get environment strings
 
@@ -61,7 +66,6 @@ void    APPS_UNACE_EXE_ProgramInit(INT ArgumentsNumber, PCHAR Arguments[])
 
 //_________________care about setup
 
-
   BASE_ERROR.DoNotHandleCancel = 0;
   BASE_OPTIONS.ExtractOptions.DoShowComments = 1;
 
@@ -70,13 +74,16 @@ void    APPS_UNACE_EXE_ProgramInit(INT ArgumentsNumber, PCHAR Arguments[])
   BASE_ARCHIVES_TEST.MaxTestSectors = 1024;
 }
 
+
 /*-----------------APPS_UNACE_EXE_ProgramDone----------------------------*/
 
 void    APPS_UNACE_EXE_ProgramDone(void)
 {
   BASE_DOSFUNCS_SetDir(APPS_EXE_COMMLINE.StartDir);
-  APPS_UNACE_EXE_DoneOSSpecific();
+  ///APPS_UNACE_EXE_DoneOSSpecific();
+  APPS_EXE_INPUT_LINUX_UnSetRawMode();
 }
+
 
 /*-----------------main--------------------------------------------------*/
 

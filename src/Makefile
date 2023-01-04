@@ -42,7 +42,6 @@ OBJS = acefuncs.o \
 	commline.o \
 	convert.o \
 	input.o \
-	lin.o \
 	main.o \
 	messages/messages.o \
 	outpterr.o \

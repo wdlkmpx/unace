@@ -56,8 +56,6 @@ void APPS_EXE_EXTERN_STATE_CRCError(BOOL CRCIsOk);
 INT  main(INT ArgumentsNumber, PCHAR Arguments[]);
 void APPS_UNACE_EXE_ProgramInit(INT ArgumentsNumber, PCHAR Arguments[]);
 void APPS_UNACE_EXE_ProgramDone(void);
-void APPS_UNACE_EXE_InitOSSpecific(PCHAR *ProgramName);
-void APPS_UNACE_EXE_DoneOSSpecific(void);
 #endif
 
 
