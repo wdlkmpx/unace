@@ -2,7 +2,6 @@
 #define _BASE_DCPR_H_INCLUDED
 
 #include "base/cprdcpr/huff.h"
-#include "base/cprdcpr/lz77.h"
 #include "base/options.h"
 
 //------ConstantDefines:

@@ -1,3 +1,4 @@
+#define INCL_BASE_DCPR_LZ77
 #define INCL_BASE_BITWIDTH
 
 #include "base/includes.h"

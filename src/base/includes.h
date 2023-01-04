@@ -45,10 +45,6 @@
    #include "base/cprdcpr/huff.h"
 #endif
 
-  #if defined(INCL_BASE_CPRDCPR_LZ77)
-     #include "base/cprdcpr/lz77.h"
-  #endif
-
   #if defined(INCL_BASE_CPRDCPR_PIC)
      #include "base/cprdcpr/pic.h"
   #endif
