@@ -228,11 +228,15 @@ INT     APPS_EXE_INPUT_GetKey(void)
   return Ch;
 }
 
-#ifdef _WIN32
-
-BOOL    APPS_EXE_INPUT_KeyHit(void) { }
-void    APPS_EXE_INPUT_LINUX_SetRawMode(void) { }
-void    APPS_EXE_INPUT_LINUX_UnSetRawMode(void) { }
+#ifdef _WIN32 // TODO
+BOOL APPS_EXE_INPUT_KeyHit(void)
+{
+    // see BASE_ERROR_EXTERN_HandleCancel()
+    // return FALSE otherwise it's an infinite loop
+    return FALSE;
+}
+void APPS_EXE_INPUT_LINUX_SetRawMode(void) { }
+void APPS_EXE_INPUT_LINUX_UnSetRawMode(void) { }
 
 #else
 

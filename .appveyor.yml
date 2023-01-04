@@ -6,8 +6,8 @@ image: Visual Studio 2019
 environment:
   APPVEYOR_SAVE_CACHE_ON_ERROR: false
   matrix:
-#    - compiler: mingw32
-#    - compiler: mingw64
+    - compiler: mingw32
+    - compiler: mingw64
     - compiler: cygwin
 
 platform:
