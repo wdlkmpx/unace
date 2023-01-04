@@ -171,27 +171,21 @@ USHORT    Date,
 // ============================================================================
 // lin.c
 
-static char * my_strsep(char **stringp, char *delim)
-{
-  char *start = *stringp;
-  char *cp;
-  char ch;
-
-  if (start == NULL)
-    return NULL;
-
-  for (cp = start; ch = *cp; cp++) {
-    if (strchr(delim, ch)) {
-      *cp++ = 0;
-      *stringp = cp;
-      return start;
-    }
-  }
-  *stringp = NULL;
-  return start;
-}
+#ifdef _WIN32
 #undef strsep
-#define strsep my_strsep
+char *strsep(char **stringp, const char *delim)
+{
+    char *rv = *stringp;
+    if (rv) {
+        *stringp += strcspn(*stringp, delim);
+        if (**stringp)
+            *(*stringp)++ = '\0';
+        else
+            *stringp = 0;
+    }
+    return rv;
+}
+#endif
 
 /*-----------------BASE_LFN_CompleteArg0---------------------------------*/
 void    BASE_LFN_CompleteArg0(PCHAR *Arg0)
