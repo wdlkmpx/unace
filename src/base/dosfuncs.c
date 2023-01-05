@@ -39,10 +39,9 @@ tLFN 	  SystemDir;
 
 BOOL    BASE_DOSFUNCS_FileExists(PCHAR FileName)
 {
-struct stat 
-          StatBuf;
+  struct stat  StatBuf;
 
-  return !stat(BASE_LFN_ShortName(FileName), &StatBuf)
+  return !stat(FileName, &StatBuf)
          && !strpbrk((PCHAR) FileName, "?*") && FileName[0];
 }
 
@@ -87,7 +86,7 @@ UINT    _dos_findfirsti64(CHAR *Path, UINT Attr, struct findi64_t *Bufi64)
   tLFN  DirToOpen, SearchMask;
   PCHAR ChPtr;
 
-  if (stat(BASE_LFN_ShortName(Path), &StatBuf))
+  if (stat(Path, &StatBuf))
   {
     return 1;
   }
@@ -177,7 +176,7 @@ LONGLONG __filelengthi64(INT Handle)
 BOOL	BASE_DOSFUNCS_IsDir(PCHAR Name)
 {
   struct stat StatBuf;
-  if (!stat(BASE_LFN_ShortName(Name), &StatBuf))
+  if (!stat(Name, &StatBuf))
   {
     return !(StatBuf.st_mode & S_IFDIR);
   }
@@ -227,7 +226,7 @@ UINT    BASE_DOSFUNCS_GetFileAttributes(PCHAR Path, PUINT Attr)
 {
   struct stat StatBuf;
 
-  if (stat(BASE_LFN_ShortName(Path), &StatBuf) == 0)
+  if (stat(Path, &StatBuf) == 0)
   {
     *Attr = 0;
     if (!(StatBuf.st_mode & S_IWUSR)) {
@@ -250,7 +249,7 @@ UINT    BASE_DOSFUNCS_SetFileAttributes(PCHAR Path, UINT Attr)
   struct stat StatBuf;
   if (Attr & BASE_DOSFUNCS_RDONLY)
   {
-    if (!stat(BASE_LFN_ShortName(Path), &StatBuf))
+    if (!stat(Path, &StatBuf))
     {
       chmod(Path, StatBuf.st_mode & 0555);
     }

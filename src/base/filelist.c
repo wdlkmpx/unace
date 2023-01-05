@@ -200,9 +200,6 @@ tBASE_LFN_DBL
             BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir2.Dir),
             BASE_DIRDATA_Dir2.ArchiveName);
 
-    BASE_LFN_ExtendPath(CompareFileName1, BASE_LFN_MAXLEN);
-    BASE_LFN_ExtendPath(CompareFileName2, BASE_LFN_MAXLEN);
-
     if (!BASE_CONVERT_StrICmp(CompareFileName1, CompareFileName2)
         || BASE_FILELIST_EXTERN_CommandLineCheck(FileName,
                                                  CompareFileName1,

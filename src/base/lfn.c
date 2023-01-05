@@ -27,8 +27,7 @@ tBASE_LFN BASE_LFN;
 
 INT     BASE_LFN_ChangeDir(PCHAR Directory)
 {
-//  return chdir(BASE_LFN_ShortName(Directory));
-  return chdir(BASE_LFN_ShortNameChangeDir(Directory));
+  return chdir(Directory);
 }
 
 /*-----------------BASE_LFN_GetCurrentDir--------------------------------*/
@@ -70,8 +69,7 @@ va_list   ArgumentList;
 
     BASE_LFN_CheckExistence(Path);
   }
-
-  return open(BASE_LFN_ShortName(Path), Access, Permission);
+  return open(Path, Access, Permission);
 }
 
 /*-----------------BASE_LFN_ShareOpen------------------------------------*/
@@ -90,46 +88,35 @@ INT     BASE_LFN_ShareOpen(PCHAR Path, INT Access, BOOL WriteAccess,...)
 
     BASE_LFN_CheckExistence(Path);
   }
-  return open(BASE_LFN_ShortName(Path), Access, Permission);
+  return open(Path, Access, Permission);
 }
 
 /*-----------------BASE_LFN_GetFileAttributes----------------------------*/
 
 UINT    BASE_LFN_GetFileAttributes(PCHAR Path, PUINT Attr)
 {
-  return BASE_DOSFUNCS_GetFileAttributes(BASE_LFN_ShortName(Path), Attr);
+  return BASE_DOSFUNCS_GetFileAttributes(Path, Attr);
 }
 
 /*-----------------BASE_LFN_SetFileAttributes----------------------------*/
 
 UINT    BASE_LFN_SetFileAttributes(PCHAR Path, UINT Attr)
 {
-  return BASE_DOSFUNCS_SetFileAttributes(BASE_LFN_ShortName(Path), Attr);
+  return BASE_DOSFUNCS_SetFileAttributes(Path, Attr);
 }
 
 /*-----------------BASE_LFN_RemoveFile-----------------------------------*/
 
 INT     BASE_LFN_RemoveFile(PCHAR Path)
 {
-  return remove(BASE_LFN_ShortName(Path));
+  return remove(Path);
 }
 
 /*-----------------BASE_LFN_Access---------------------------------------*/
 
 INT     BASE_LFN_Access(PCHAR Path, INT Mode)
 {
-PCHAR     ShortPath;
-
-  ShortPath = BASE_LFN_ShortName(Path);
-
-  if (!ShortPath[0])
-  {
-    errno = ENOENT;
-
-    return -1;
-  }
-
-  return access(ShortPath, Mode);
+  return access(Path, Mode);
 }
 
 /*-----------------BASE_LFN_GetFileTime----------------------------------*/
@@ -143,9 +130,9 @@ INT       Handle,
 USHORT    Date,
           Time;
 
-  if (-1 == (Handle = BASE_LFN_Open(BASE_LFN_ShortName(FileName), 0)))
+  if (-1 == (Handle = BASE_LFN_Open(FileName, 0)))
   {
-    if (_dos_findfirsti64(BASE_LFN_ShortName(FileName),
+    if (_dos_findfirsti64(FileName,
           BASE_LFN_GetFindAllFilesAndDirsAttr(), &FindStruc))
     {
       return 0;
@@ -220,24 +207,6 @@ tLFN   SearchFile, Path;
 
   strcpy(BASE_LFN.Arg0, SearchFile);
   *Arg0 = BASE_LFN.Arg0;
-}
-
-/*-----------------BASE_LFN_ExtendPath-----------------------------------*/
-PCHAR   BASE_LFN_ExtendPath(PCHAR Path, INT MaxLen)
-{
-  return Path;
-}
-
-/*-----------------BASE_LFN_ShortName------------------------------------*/
-PCHAR   BASE_LFN_ShortName(PCHAR Path)
-{
-  return Path;
-}
-
-/*-----------------BASE_LFN_LongName-------------------------------------*/
-PCHAR   BASE_LFN_LongName(PCHAR Path)
-{
-  return Path;
 }
 
 /*-----------------BASE_LFN_DriveSupportsLFN-----------------------------*/
@@ -326,14 +295,6 @@ INT     BASE_LFN_RemoveDir(PCHAR Dir)
 {
   return rmdir(Dir);
 }
-
-/*-----------------BASE_LFN_ShortNameChangeDir---------------------------*/
-PCHAR   BASE_LFN_ShortNameChangeDir(PCHAR Path)
-{
-  return Path;
-}
-
-
 
 // ============================================================================
 // nont.c

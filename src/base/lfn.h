@@ -102,12 +102,8 @@ INT     BASE_LFN_ShortenLongFileName(PCHAR ShortName, PCHAR Name,
 
 void    BASE_LFN_CompleteArg0(PCHAR *Arg0);
 void    BASE_LFN_ConvertFileName(PCHAR Path, INT Attr);
-PCHAR   BASE_LFN_ExtendPath(PCHAR Path, INT MaxLen);
 INT     BASE_LFN_MakeDir(PCHAR Dir);
 INT     BASE_LFN_RemoveDir(PCHAR Dir);
-PCHAR   BASE_LFN_ShortName(PCHAR Path);
-PCHAR   BASE_LFN_ShortNameChangeDir(PCHAR Path);
-PCHAR   BASE_LFN_LongName(PCHAR Path);
 INT     BASE_LFN_GetFindAllFilesAndDirsAttr(void);
 INT     BASE_LFN_GetFindAllFilesAttr(void);
 

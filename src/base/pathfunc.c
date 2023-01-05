@@ -306,7 +306,7 @@ void    BASE_PATHFUNC_SplitFileName(PCHAR Dir, PCHAR FileName, PCHAR Path)
 {
 PCHAR     SlashPos;
 
-  strcpy(FileName, BASE_LFN_LongName(Path));
+  strcpy(FileName, Path);
   strcpy(Dir, FileName);
   SlashPos = strrchr(Dir, BASE_PATHFUNC_SEPARATOR);
 
