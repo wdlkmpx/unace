@@ -78,8 +78,8 @@ va_list   ArgumentList;
 
 INT     BASE_LFN_ShareOpen(PCHAR Path, INT Access, BOOL WriteAccess,...)
 {
-INT       Permission;
-va_list   ArgumentList;
+  INT       Permission;
+  va_list   ArgumentList;
 
   if (Access & O_CREAT)
   {
@@ -90,10 +90,7 @@ va_list   ArgumentList;
 
     BASE_LFN_CheckExistence(Path);
   }
-
-  return
-    BASE_DOSFUNCS_ShareOpen(BASE_LFN_ShortName(Path), Access,
-                            WriteAccess, Permission);
+  return open(BASE_LFN_ShortName(Path), Access, Permission);
 }
 
 /*-----------------BASE_LFN_GetFileAttributes----------------------------*/

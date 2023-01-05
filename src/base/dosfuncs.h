@@ -63,11 +63,7 @@ LONGLONG
 
 BOOL    BASE_DOSFUNCS_IsChSizeSupported(void);
 
-LONGLONG
-        BASE_DOSFUNCS_ChSize(INT Handle, LONGLONG Size);
-
-INT     BASE_DOSFUNCS_ShareOpen(PCHAR Path, INT Access, BOOL WriteAccess,
-                                INT Permission);
+LONGLONG BASE_DOSFUNCS_ChSize(INT Handle, LONGLONG Size);
 
 UINT    BASE_DOSFUNCS_GetFileAttributes(PCHAR Path, PUINT Attr);
 UINT    BASE_DOSFUNCS_SetFileAttributes(PCHAR Path, UINT Attr);

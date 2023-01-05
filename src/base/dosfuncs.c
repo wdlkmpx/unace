@@ -221,14 +221,6 @@ void    BASE_DOSFUNCS_SetDrive(INT Drive)
   }
 }
 
-/*-----------------BASE_DOSFUNCS_ShareOpen-------------------------------*/
-
-INT     BASE_DOSFUNCS_ShareOpen(PCHAR Path, INT Access, BOOL WriteAccess,
-                                INT Permission)
-{
-  return open(Path, Access, Permission);
-}
-
 /*-----------------BASE_DOSFUNCS_GetFileAttributes-----------------------*/
 
 UINT    BASE_DOSFUNCS_GetFileAttributes(PCHAR Path, PUINT Attr)
