@@ -45,9 +45,8 @@ tBASE_DIRDATA_DirData
   if (MaxTestSecs)
   {
     errno = 0;
-    if ((BASE_ARCHIVES_TEST.ArchiveHandle =
-           BASE_LFN_ShareOpen(FileName, O_RDONLY | O_BINARY,
-                              0, S_IRWXU | S_IRWXG | S_IRWXO)) == -1)
+    BASE_ARCHIVES_TEST.ArchiveHandle = BASE_LFN_Open(FileName, O_RDONLY | O_BINARY, 0644);
+    if (BASE_ARCHIVES_TEST.ArchiveHandle == -1)
     {
       strcpy(BASE_ARCBLK.ArchiveFile, FileName);
       BASE_ERROROUT_EXTERN_OpenArchiveRead();

@@ -69,22 +69,6 @@ va_list   ArgumentList;
   return open(Path, Access, Permission);
 }
 
-/*-----------------BASE_LFN_ShareOpen------------------------------------*/
-
-INT     BASE_LFN_ShareOpen(PCHAR Path, INT Access, BOOL WriteAccess,...)
-{
-  INT       Permission;
-  va_list   ArgumentList;
-
-  if (Access & O_CREAT)
-  {
-    va_start(ArgumentList, WriteAccess);
-    Permission = va_arg(ArgumentList, INT);
-    va_end(ArgumentList);
-  }
-  return open(Path, Access, Permission);
-}
-
 /*-----------------BASE_LFN_GetFileAttributes----------------------------*/
 
 UINT    BASE_LFN_GetFileAttributes(PCHAR Path, PUINT Attr)

@@ -87,7 +87,6 @@ INT     BASE_LFN_ChangeDir(PCHAR Dir);
 PCHAR   BASE_LFN_GetCurrentDir(PCHAR Dir, size_t Size);
 PCHAR   BASE_LFN_GetCurrentDirOfDrive(INT Drive, PCHAR Dir, size_t Size);
 INT     BASE_LFN_Open(PCHAR Path, INT Access,...);
-INT     BASE_LFN_ShareOpen(PCHAR Path, INT Access, BOOL WriteAccess,...);
 UINT    BASE_LFN_GetFileAttributes(PCHAR Path, PUINT Attr);
 UINT    BASE_LFN_SetFileAttributes(PCHAR Path, UINT Attr);
 INT     BASE_LFN_RemoveFile(PCHAR Path);

@@ -110,8 +110,8 @@ INT     BASE_BUFREAD_Open(PCHAR FileName)
 {
   strcpy(BASE_BUFREAD.FileName, FileName);
 
-  if (-1 == (BASE_BUFREAD.Handle =
-               BASE_LFN_ShareOpen(FileName, O_RDONLY | O_BINARY, 0)))
+  BASE_BUFREAD.Handle = BASE_LFN_Open(FileName, O_RDONLY | O_BINARY, 0);
+  if (BASE_BUFREAD.Handle == -1)
   {
     return (-1);
   }

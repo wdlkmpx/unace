@@ -123,9 +123,8 @@ INT       Result,
       return 0;
     }
 
-    if (-1 == (BASE_ARCHIVES_TEST.ArchiveHandle =
-                 BASE_LFN_ShareOpen(ArchiveName, O_RDONLY | O_BINARY,
-                                    0, S_IRWXU | S_IRWXG | S_IRWXO)))
+    BASE_ARCHIVES_TEST.ArchiveHandle = BASE_LFN_Open(ArchiveName, O_RDONLY | O_BINARY, 0644);
+    if (BASE_ARCHIVES_TEST.ArchiveHandle ==  -1)
     {
       BASE_ERROROUT_EXTERN_OpenArchiveRead();
       BASE_ERROR.ErrorCode = BASE_ERROR_OPEN;
