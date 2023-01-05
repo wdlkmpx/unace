@@ -78,9 +78,6 @@ typedef struct
 
 extern tBASE_LFN BASE_LFN; // lfn.c
 
-BOOL    BASE_LFN_DriveSupportsLFN(PCHAR Drive);
-void    BASE_LFN_CheckExistence(PCHAR Path);
-
 INT     BASE_LFN_FindFirst(PCHAR Specification, INT Attr,
                            pBASE_LFN_FINDSTRUCT DirStruc);
 
@@ -96,10 +93,6 @@ UINT    BASE_LFN_SetFileAttributes(PCHAR Path, UINT Attr);
 INT     BASE_LFN_RemoveFile(PCHAR Path);
 INT     BASE_LFN_Access(PCHAR Path, INT Mode);
 ULONG   BASE_LFN_GetFileTime(PCHAR FileName);
-
-INT     BASE_LFN_ShortenLongFileName(PCHAR ShortName, PCHAR Name,
-                                     INT NameNumber);
-
 void    BASE_LFN_CompleteArg0(PCHAR *Arg0);
 void    BASE_LFN_ConvertFileName(PCHAR Path, INT Attr);
 INT     BASE_LFN_MakeDir(PCHAR Dir);
