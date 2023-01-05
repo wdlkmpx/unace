@@ -280,13 +280,9 @@ INT       Handle,
       }
     }
 
-    if (-1 == (Handle = BASE_LFN_Open(BASE_STATE.DestinationFileName,
-                                 O_RDWR | O_CREAT | O_TRUNC | O_BINARY,
-#ifndef __unix__
-                                 0755))) 
-#else
-                                 0644))) // Usually ACE compressed files for UNIX are not executable 
-#endif
+    Handle = BASE_LFN_Open(BASE_STATE.DestinationFileName,
+                           O_RDWR | O_CREAT | O_TRUNC | O_BINARY, 0644);
+    if (Handle == -1)
     {
       BASE_ERROROUT_EXTERN_CreateFile();
     }

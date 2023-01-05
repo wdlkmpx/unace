@@ -57,8 +57,12 @@ INT       SavedDrive;
 
 INT     BASE_LFN_Open(PCHAR Path, INT Access,...)
 {
-INT       Permission;
-va_list   ArgumentList;
+#if _WIN32
+  INT Permission = _S_IWRITE; // ignored if not creating a file
+#else
+  INT Permission = 0644;
+#endif
+  va_list ArgumentList;
 
   if (Access & O_CREAT)
   {
@@ -108,7 +112,8 @@ INT       Handle,
 USHORT    Date,
           Time;
 
-  if (-1 == (Handle = BASE_LFN_Open(FileName, 0)))
+  Handle = BASE_LFN_Open(FileName, O_RDONLY | O_BINARY);
+  if (Handle == -1)
   {
     if (_dos_findfirsti64(FileName,
           BASE_LFN_GetFindAllFilesAndDirsAttr(), &FindStruc))
