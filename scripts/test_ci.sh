@@ -1,5 +1,7 @@
 #!/bin/sh
 
+w_system=$(uname -s)
+
 if [ "$1" = "freebsd" ] ; then
     #export REPO_AUTOUPDATE=NO
     #pkg install -y ncurses
@@ -46,8 +48,21 @@ exit_error()
 }
 
 # ============================================
+# print some system info
 
 uname -a
+echo
+id
+echo
+
+case "$w_system" in
+    Darwin|FreeBSD)
+        sysctl kern.coredump
+        sysctl kern.corefile
+        ;;
+esac
+
+# ============================================
 
 #export CFLAGS="-DDEBUG_W_ENDIAN"
 export VERBOSE_ERRORS=1 # the test script read this

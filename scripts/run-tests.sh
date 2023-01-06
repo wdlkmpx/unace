@@ -1,8 +1,11 @@
 #!/bin/sh
 # Public domain
 
+scriptdir=$(dirname "$0")
+scriptdir=$(readlink -f "$scriptdir")
+w_system=$(uname -s)
+
 if [ -z "$RUN_TESTS_CFG" ] ; then
-    scriptdir=$(dirname "$0")
     RUN_TESTS_CFG=${scriptdir}/run-tests.cfg
 fi
 if [ "$1" = "-cfg" ] ; then
@@ -27,7 +30,6 @@ export CFLAGS="-DW_MTRACE -g -O0 -ggdb3 -Wextra -Wno-unused-parameter -Wno-missi
 # ===========================================================================
 # Functions
 
-scriptdir=$(dirname "$0")
 . ${scriptdir}/0functions.sh
 
 set_checksum_app
@@ -36,7 +38,7 @@ set_download_app
 set_wine()
 {
     wine=''
-    if [ "$(uname)" = "Linux" ] ; then
+    if [ "${w_system}" = "Linux" ] ; then
         wine='wine'
         if command -v wine >/dev/null ; then
             echo "WINE is not installed, cannot test .exe binaries..."
@@ -144,8 +146,20 @@ run_test()
     fi
     "$@" >>${LOGFILE} 2>&1
     exit_code=$?
-    if [ -n "$TEST_EXIT_CODE" ] ; then
-        case ${TEST_EXIT_CODE} in
+    if [ "$TEST_RUN_GDB_ON_SEGFAULT" = "yes" ] ; then
+        # segfault? try to get backtrace
+        case ${exit_code} in 132|133|134|135|136|137|138|139)
+            echo "------------------------------------" >>${LOGFILE}
+            echo "${scriptdir}/backtrace.sh -run ${@}" >>${LOGFILE}
+            echo "------------------------------------" >>${LOGFILE}
+            ${scriptdir}/backtrace.sh -run ${@} >>${LOGFILE} 2>&1
+            ;;
+        esac
+    fi
+    if [ -z "$TEST_EXIT_CODE" ] ; then
+        TEST_EXIT_CODE=0 # default
+    fi
+    case ${TEST_EXIT_CODE} in
         !*)
             if [ "!${exit_code}" = "${TEST_EXIT_CODE}" ] ; then
                 echo "[ERROR] Exit code  = ${exit_code}" >>${LOGFILE}
@@ -161,8 +175,7 @@ run_test()
                 test_error=1
             fi
             ;;
-        esac
-    fi
+    esac
     if [ -n "$TEST_ERROR_FILE" ] ; then
         if [ -e "$TEST_ERROR_FILE" ] ; then
             echo "[ERROR] $TEST_ERROR_FILE exists" >>${LOGFILE}
@@ -179,7 +192,7 @@ run_test()
         echo "OK"
     else
         echo "ERROR"
-        ERROR_LOG_FILES="$ERROR_LOG_FILES $1"
+        ERROR_LOG_FILES="$ERROR_LOG_FILES ${LOGFILE}"
     fi
     if [ "$TEST_USE_SUBDIR" = "yes" ] ; then
         cd "${xcurdirx}"
