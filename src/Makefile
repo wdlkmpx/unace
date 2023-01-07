@@ -53,7 +53,10 @@ CFLAGS += -I. -I.. -I../lib
 all: $(APP)
 
 $(APP): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(APP) $(LDFLAGS) $(LIBS)
+	@if ! test -f $(APP) && ! test -f $(APP).exe ; then \
+		echo "$(CC) $(CFLAGS) $(OBJS) -o $(APP) $(LDFLAGS) $(LIBS)"; \
+		$(CC) $(CFLAGS) $(OBJS) -o $(APP) $(LDFLAGS) $(LIBS); \
+	fi;
 
 strip: $(APP)
 	@if test -f $(APP).exe ; then \

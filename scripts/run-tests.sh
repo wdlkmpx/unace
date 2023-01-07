@@ -40,7 +40,7 @@ set_wine()
     wine=''
     if [ "${w_system}" = "Linux" ] ; then
         wine='wine'
-        if command -v wine >/dev/null ; then
+        if ! command -v wine >/dev/null ; then
             echo "WINE is not installed, cannot test .exe binaries..."
             exit 1
         fi
@@ -217,12 +217,12 @@ if [ -f Makefile ] ; then
     ${make_cmd}
 fi
 
-if [ -f ${app}.exe ] ; then # .exe binary
+if test -f ${app} ; then
+    ok=1 
+elif [ -f ${app}.exe ] ; then # .exe binary
     set_wine
-    app="${wine} ${app}"
-fi
-
-if ! test -f ${app} ; then
+    app="${wine} ${app}.exe"
+else
     echo "$app not found"
     exit 1
 fi
