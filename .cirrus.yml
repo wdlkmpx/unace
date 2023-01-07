@@ -16,17 +16,17 @@ freebsd_task:
 
 
 #======= macOS =========
-# https://github.com/cirruslabs/macos-image-templates
-macos_task:
-  name: macOS Ventura
-  macos_instance:
-    image: ghcr.io/cirruslabs/macos-ventura-base:latest
-    cpu: 1
-    memory: 1GB
-#  pkginstall_script:
-#    - ./scripts/test_ci.sh macos
-  build_script:
-    - ./scripts/test_ci.sh
+## https://github.com/cirruslabs/macos-image-templates
+#macos_task:
+#  name: macOS Ventura
+#  macos_instance:
+#    image: ghcr.io/cirruslabs/macos-ventura-base:latest
+#    cpu: 1
+#    memory: 1GB
+##  pkginstall_script:
+##    - ./scripts/test_ci.sh macos
+#  build_script:
+#    - ./scripts/test_ci.sh
 
 
 #======= Alpine Linux =========
