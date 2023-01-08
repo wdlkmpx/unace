@@ -170,30 +170,19 @@ CHAR      Epsilon;
   switch (BASE_DCPR_PIC.CurContext[BASE_DCPR_PIC.CurState].PredictorNumber)
   {
     case 0:
-    {
       Predicted = BASE_DCPR_PIC.PixelA;
-
       break;
-    }
     case 1:
-    {
       Predicted = BASE_DCPR_PIC.PixelB;
-
       break;
-    }
     case 2:
-    {
       Predicted = (BASE_DCPR_PIC.PixelA + BASE_DCPR_PIC.PixelB) >> 1;
-
       break;
-    }
     case 3:
-    {
-      Predicted =
-        BASE_DCPR_PIC.PixelA + BASE_DCPR_PIC.PixelB - BASE_DCPR_PIC.PixelC;
-
+      Predicted = BASE_DCPR_PIC.PixelA + BASE_DCPR_PIC.PixelB - BASE_DCPR_PIC.PixelC;
       break;
-    }
+    default:
+      Predicted = 0;
   }
 
   BASE_DCPR_PIC.PixelX = Epsilon + Predicted;

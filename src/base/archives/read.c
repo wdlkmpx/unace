@@ -53,14 +53,14 @@ void    BASE_ARCHIVES_READ_GetArchiveList(void)
 INT       I;
 tLFN      FileName;
 PCHAR     ArchiveFileName;
-SHORT     Attr;
+//SHORT     Attr;
 
   ArchiveFileName = BASE_ARCHIVES_READ.FileNames;
 
   for (I = 0; I < BASE_ARCHIVES_READ.FileNumber; I++)
   {
     strcpy(FileName, ArchiveFileName);
-    Attr = BASE_ARCHIVES_READ.FileData[I].Attr;
+    //Attr = BASE_ARCHIVES_READ.FileData[I].Attr;
 
     (*BASE_ARCHIVES_READ.ProcessFile)
       (FileName, BASE_ARCHIVES_READ.FileData[I]);

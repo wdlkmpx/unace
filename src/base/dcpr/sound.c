@@ -190,7 +190,7 @@ void    BASE_DCPR_SOUND_RarAdjust(INT Channel, INT Ch)
 INT       PredDif,
           I,
           MinDif,
-          MinDifPos,
+          MinDifPos = 0,
           PCh;
 
   BASE_DCPR_SOUND.SoundVar.ByteCount[Channel]++;
