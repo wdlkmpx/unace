@@ -174,7 +174,7 @@ tLFN   SearchFile, Path;
 
       while (SepStr)
       {
-       sprintf(Path, "%s/%s", strsep(&SepStr, ":"), SearchFile);
+       snprintf (Path, sizeof(Path), "%s/%s", strsep(&SepStr, ":"), SearchFile);
 
         if (!stat(Path, &st))
         {

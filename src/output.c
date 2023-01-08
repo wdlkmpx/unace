@@ -188,9 +188,9 @@ INT       TextLen1,
 
   if (IsWarning)
   {
-    sprintf(ErrorStr, "%s: %s", TopStr, ShortStr1);
+    snprintf (ErrorStr, sizeof(ErrorStr), "%s: %s", TopStr, ShortStr1);
     APPS_EXE_OUTPUT_Error(ErrorStr);
-    sprintf(ErrorStr, " %s", ShortStr2);
+    snprintf (ErrorStr, sizeof(ErrorStr), " %s", ShortStr2);
     APPS_EXE_OUTPUT_Error(ErrorStr);
   }
 }
@@ -202,6 +202,6 @@ void    APPS_EXE_OUTPUT_MessageProc(PCHAR TopStr, PCHAR MessageText)
 CHAR      WindowTopStr[80];
 
   APPS_EXE_OUTPUT_DeleteRight();
-  sprintf(WindowTopStr, "%s: %s", TopStr, MessageText);
+  snprintf (WindowTopStr, sizeof(WindowTopStr), "%s: %s", TopStr, MessageText);
   APPS_EXE_OUTPUT_Write(WindowTopStr);
 }

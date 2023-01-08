@@ -66,13 +66,13 @@ BOOL      DoWriteCompressionPercents;
     DoWriteCompressionPercents =
       BASE_STATE.FileUnComprBytes == BASE_STATE.FileSize;
 
-    sprintf(OutputStr1, "(%s)",
-            APPS_EXE_CONVERT_ToPercentStr(BASE_STATE.TotalUnComprBytes,
+    snprintf (OutputStr1, sizeof(OutputStr1), "(%s)",
+              APPS_EXE_CONVERT_ToPercentStr(BASE_STATE.TotalUnComprBytes,
                                               BASE_FILELIST.SizeOfFiles));
 
-    sprintf(OutputStr2, "%-8s", OutputStr1);
+    snprintf (OutputStr2, sizeof(OutputStr2), "%-8s", OutputStr1);
 
-    sprintf(OutputStr1, 
+    snprintf (OutputStr1, sizeof(OutputStr1),
             DoWriteCompressionPercents ? "%6s         " : "%6s %s",
             DoWriteCompressionPercents ?
               APPS_EXE_CONVERT_ToPercentStr(BASE_STATE.FileComprBytes,
@@ -112,7 +112,7 @@ CHAR      OutputStr[80];
   if (!CRCIsOk)
   {
     BASE_STATE.SumErrors++;
-    sprintf(OutputStr, "%s %s", STR.CRC_check_error_on,
+    snprintf (OutputStr, sizeof(OutputStr), "%s %s", STR.CRC_check_error_on,
                        BASE_CONVERT_ToOEM(BASE_STATE.CurrentFileName));
 
     APPS_EXE_OUTPUT_Error(OutputStr);

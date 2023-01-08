@@ -37,7 +37,7 @@ typedef struct
         PCHAR   ReadPos;
         INT     YANCPos[4];
         CHAR    YANC[5];
-        CHAR    FirstCommandLineHelpLine[81];
+        CHAR    FirstCommandLineHelpLine[85];
         PCHAR   MessagesBuf;
 } tAPPS_EXE_MESSAGES;
 

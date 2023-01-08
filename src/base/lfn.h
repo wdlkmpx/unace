@@ -20,7 +20,7 @@
   #define S_IRWXO 0x0
 #endif
 
-#define BASE_LFN_MAXLEN           320
+#define BASE_LFN_MAXLEN           350
 #define BASE_LFN_DOUBLEMAXLEN     (2 * BASE_LFN_MAXLEN)
 
 typedef CHAR tLFN[BASE_LFN_MAXLEN];

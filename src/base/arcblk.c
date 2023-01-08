@@ -83,7 +83,7 @@ CHAR      OutputStr[80];
   if (DoOutputAV
       && BASE_ARCBLK.Header.Main.HEAD_FLAGS & BASE_ACESTRUC_FLAG_AV)
   {
-    sprintf(OutputStr, "%s %d.%d.%d %s %d.%d %s", STR.created_on,
+    snprintf (OutputStr, sizeof(OutputStr), "%s %d.%d.%d %s %d.%d %s", STR.created_on,
             BASE_DIRDATA_Dir1.TimeCreated.Day,
             BASE_DIRDATA_Dir1.TimeCreated.Month,
             1980 + BASE_DIRDATA_Dir1.TimeCreated.Year,

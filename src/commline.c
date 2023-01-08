@@ -96,7 +96,7 @@ void    APPS_UNACE_EXE_COMMLINE_Init(void)
 
   if (APPS_UNACE_EXE_COMMLINE.IsSFX)
   {
-    sprintf(APPS_EXE_MESSAGES.FirstCommandLineHelpLine,
+    snprintf (APPS_EXE_MESSAGES.FirstCommandLineHelpLine, sizeof(APPS_EXE_MESSAGES.FirstCommandLineHelpLine),
             "ACE-SFX v" BASE_VERSION_VERSIONSTR "  %-42s"
             __DATE__ "  " __TIME__,
             STR.Copyright_by_ACE_Compression_Software);
@@ -141,7 +141,8 @@ CHAR      OutputStr[160],
       }
     }
 
-    sprintf(OutputStr, STR._s__d_files__totaling__s_bytes__compressed__s_,
+    snprintf (OutputStr, sizeof(OutputStr),
+            STR._s__d_files__totaling__s_bytes__compressed__s_,
             ActionStr, BASE_STATE.SummaryFileCount,
             APPS_EXE_CONVERT_ToByteUnitStr(SizeStr1, BASE_STATE.SummaryUnComprBytes),
             APPS_EXE_CONVERT_ToByteUnitStr(SizeStr2, BASE_STATE.SummaryComprBytes));
@@ -150,8 +151,8 @@ CHAR      OutputStr[160],
 
     if (BASE_STATE.SumErrors)
     {
-      sprintf(OutputStr, STR.Got_CRC_check_errors_on__d__s_,
-              BASE_STATE.SumErrors, BASE_STATE.SumErrors == 1 ?
+      snprintf (OutputStr, sizeof(OutputStr), STR.Got_CRC_check_errors_on__d__s_,
+                BASE_STATE.SumErrors, BASE_STATE.SumErrors == 1 ?
                 STR.file : STR.files);
 
       APPS_EXE_OUTPUT_Write(OutputStr);
@@ -649,8 +650,8 @@ BOOL      DoExtractToCurrentDir;
           strcpy(BASE_DIRDATA_Dir2.Dir, APPS_EXE_COMMLINE.TargetDir);
           BASE_PATHFUNC_CompletePath(BASE_DIRDATA_Dir2.Dir);
 /*
-          sprintf(TargetFile, "%st.t",
-                  BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir2.Dir));
+          snprintf (TargetFile, sizeof(TargetFile), "%st.t",
+                    BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir2.Dir));
 
           BASE_FUNCS_CreatePathDirectories(TargetFile);*/
         }

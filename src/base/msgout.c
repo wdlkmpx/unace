@@ -43,7 +43,7 @@ void    BASE_MSGOUT_EXTERN_TestBegin(PCHAR ArchiveName)
 {
 CHAR      OutputStr[80];
 
-  sprintf(OutputStr, "%s%s %s", STR.testing,
+  snprintf (OutputStr, sizeof(OutputStr), "%s%s %s", STR.testing,
           BASE_DIRDATA_Dir1.IsLocked ? STR.__LOCKED_ : "", STR.archive);
 
   BASE_STATE_EXTERN_OutputProcess(OutputStr, ArchiveName, 1);

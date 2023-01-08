@@ -45,10 +45,10 @@ INT       TimeCount,
 
   APPS_EXE_OUTPUT_DeleteRight();
 
-  sprintf(TempStr, "%s:", TopStr);
+  snprintf (TempStr, sizeof(TempStr), "%s:", TopStr);
   APPS_EXE_OUTPUT_Write(TempStr);
 
-  sprintf(TempStr, "  %s", Discription);
+  snprintf (TempStr, sizeof(TempStr), "  %s", Discription);
   APPS_EXE_OUTPUT_Write(TempStr);
 
   printf("\n  %s", InputStr);
@@ -157,8 +157,9 @@ PCHAR     Output = NULL;
   APPS_EXE_CONVERT_MakeStrShorter(ShortStr2, Description2, 79);
   APPS_EXE_OUTPUT_DeleteRight();
 
-  sprintf(TempStr, "%s:\n  %s\n  %s\n  (%s, %s, %s, %s)", TopStr,
-          ShortStr1, ShortStr2, STR.Yes, STR.Always, STR.No, STR.Cancel);
+  snprintf (TempStr, sizeof(TempStr),
+           "%s:\n  %s\n  %s\n  (%s, %s, %s, %s)", TopStr,
+           ShortStr1, ShortStr2, STR.Yes, STR.Always, STR.No, STR.Cancel);
 
   APPS_EXE_OUTPUT_Write(TempStr);
 

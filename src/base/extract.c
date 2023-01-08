@@ -74,7 +74,7 @@ UINT	  NTFSSecuritySize;
 
     if (BASE_PATHFUNC_IsNTFSStreamName(BASE_STATE.CurrentFileName))
     {
-      sprintf(PureFileName, "%s%s",
+      snprintf (PureFileName, sizeof(PureFileName), "%s%s",
           BASE_PATHFUNC_GetDevicePathLen(BASE_STATE.CurrentFileName) ?
             "" : BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir2.Dir),
           BASE_STATE.CurrentFileName);
@@ -343,7 +343,7 @@ tLFN      ArchiveName;
 
   BASE_ARCBLK.DoOpenForReadOnly = 1;
 
-  sprintf(ArchiveName, "%s%s",
+  snprintf (ArchiveName, sizeof(ArchiveName), "%s%s",
           BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir1.Dir),
           BASE_DIRDATA_Dir1.ArchiveName);
 

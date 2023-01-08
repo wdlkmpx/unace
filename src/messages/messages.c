@@ -27,7 +27,7 @@ tSTR STR; // msgstruc.h
 /*-----------------APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific----------*/
 void    APPS_EXE_MESSAGES_EXTERN_InitProgramSpecific(void)
 {
-  sprintf(APPS_EXE_MESSAGES.FirstCommandLineHelpLine,
+  snprintf (APPS_EXE_MESSAGES.FirstCommandLineHelpLine, sizeof(APPS_EXE_MESSAGES.FirstCommandLineHelpLine),
           "UNACE v" BASE_VERSION_VERSIONSTR "   %-44s"
           __DATE__ " " __TIME__
           , STR.Copyright_by_ACE_Compression_Software);  
@@ -169,7 +169,7 @@ PCHAR    *STRPos;
 PCHAR     MessagesBufEnd,
           EOLPos;
 
-  sprintf(APPS_EXE_MESSAGES.FileName, "%sACE.MSG",
+  snprintf (APPS_EXE_MESSAGES.FileName, sizeof(APPS_EXE_MESSAGES.FileName), "%sACE.MSG",
           BASE_PATHFUNC_AddSlashToEnd(APPS_EXE_COMMLINE.ProgramDir));
 
   for (UsingDefault = 0;; UsingDefault = 1)

@@ -11,7 +11,7 @@
 
 #include "unace_includes.h"
 
-static CHAR ToPercentStrStr[10];
+static CHAR ToPercentStrStr[20];
 
 /*-----------------APPS_EXE_CONVERT_ToByteUnitStr------------------------*/
 PCHAR   APPS_EXE_CONVERT_ToByteUnitStr(PCHAR Str, ULONGLONG ByteSize)
@@ -88,8 +88,8 @@ INT       Percents;
 
   Percents = APPS_EXE_CONVERT_GetPercents(Value1, Value2);
 
-  sprintf(ToPercentStrStr, "%d.%d%%",
-          Percents / 10, Percents % 10);
+  snprintf (ToPercentStrStr, sizeof(ToPercentStrStr),
+            "%d.%d%%", Percents / 10, Percents % 10);
 
   return ToPercentStrStr;
 }

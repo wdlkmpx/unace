@@ -179,7 +179,7 @@ void    BASE_ERROROUT_EXTERN_CreateFile(void)
 CHAR      OutputStr[80],
           ShortStr[80];
 
-  sprintf(OutputStr, "%s %s", STR.Could_not_create_destination_file_,
+  snprintf (OutputStr, sizeof(OutputStr), "%s %s", STR.Could_not_create_destination_file_,
     APPS_EXE_CONVERT_MakeStrShorter(ShortStr,
     	BASE_CONVERT_ToOEM(BASE_STATE.CurrentFileName), 20));
 

@@ -29,7 +29,7 @@ void    BASE_STATE_EXTERN_OutputProcess(PCHAR OperationStr, PCHAR FileName,
 CHAR      ShorterStr[80],
           OutputStr[80];
 
-  sprintf(OutputStr, "  %s %s", OperationStr,
+  snprintf (OutputStr, sizeof(OutputStr), "  %s %s", OperationStr,
           BASE_CONVERT_ToOEM(APPS_EXE_CONVERT_MakeStrShorter(ShorterStr,
                                                FileName,
                                                50 - strlen(OperationStr))));

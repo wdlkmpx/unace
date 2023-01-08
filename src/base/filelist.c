@@ -140,7 +140,7 @@ tLFN      Path;
   }
   else
   {
-    sprintf(Path, "%s%s",
+    snprintf(Path, sizeof(Path), "%s%s",
             BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir2.Dir),
             FileName);
 
@@ -196,7 +196,7 @@ tBASE_LFN_DBL
         CompareFileName2);
     }
 
-    sprintf(CompareFileName1, "%s%s",
+    snprintf(CompareFileName1, sizeof(CompareFileName1), "%s%s",
             BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir2.Dir),
             BASE_DIRDATA_Dir2.ArchiveName);
 
@@ -426,7 +426,7 @@ tBASE_LFN_DBL
          && !BASE_ERROR_EXTERN_HandleCancel(1))
   {
 
-    sprintf(FileName, "%s%s", BASE_FILELIST.AddDir, ListPosition);
+    snprintf (FileName, sizeof(FileName), "%s%s", BASE_FILELIST.AddDir, ListPosition);
     BASE_FILELIST_AddFile(FileName, 0, 0, 0);
 
     ListPosition += strlen(ListPosition) + 1;
@@ -448,7 +448,7 @@ tLFN      ArchiveName;
     BASE_ARCHIVES_READ.ProcessFile =
       BASE_FILELIST_SearchListArchiveCreateProcessFile;
 
-    sprintf(ArchiveName, "%s%s",
+    snprintf (ArchiveName, sizeof(ArchiveName), "%s%s",
             BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir1.Dir),
             BASE_DIRDATA_Dir1.ArchiveName);
 

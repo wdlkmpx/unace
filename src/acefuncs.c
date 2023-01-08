@@ -58,7 +58,7 @@ ULONG                   Raw;
 
   if (BASE_ARCBLK_OpenArchive(BASE_DIRDATA_Dir1.ArchiveName, 0, 1, 1, 1))
   {
-    sprintf(OutputStr, "%s%s %s %s",
+    snprintf(OutputStr, sizeof(OutputStr),
             STR.Contents_of,
             BASE_DIRDATA_Dir1.IsLocked ? STR.__LOCKED_ : "",
             STR.archive,
@@ -99,8 +99,9 @@ ULONG                   Raw;
         BASE_STATE.SummaryComprBytes   += BASE_ARCBLK.Header.File.PSIZE;
         BASE_STATE.SummaryFileCount++;
 
-        sprintf(
-          OutputStr, "%2d.%2d.%2d_%2d:%2d %c%c%s %s %4d%% %c%s",
+        snprintf(
+          OutputStr, sizeof(OutputStr),
+          "%2d.%2d.%2d_%2d:%2d %c%c%s %s %4d%% %c%s",
           FileTime.Fields.Day, FileTime.Fields.Month,
           (80 + FileTime.Fields.Year) % 100,
           FileTime.Fields.Hour, FileTime.Fields.Minute,

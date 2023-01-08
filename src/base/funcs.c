@@ -42,7 +42,7 @@ BOOL    BASE_FUNCS_EXTERN_CreateDestinationFileRequestOverwrite(void)
 CHAR      OutputStr[80],
           ShortStr[80];
 
-  sprintf(OutputStr, "%s %s", STR.File_already_exists_,
+  snprintf (OutputStr, sizeof(OutputStr), "%s %s", STR.File_already_exists_,
           APPS_EXE_CONVERT_MakeStrShorter(ShortStr, BASE_STATE.CurrentFileName, 30));
 
   return APPS_EXE_INPUT_EXTERN_WarningYANC(STR.Copy_noun, OutputStr, STR.Overwrite_);
@@ -55,7 +55,7 @@ BOOL    BASE_FUNCS_EXTERN_RequestOverwriteSysFile(void)
 CHAR      OutputStr[80],
           ShortStr[80];
 
-  sprintf(OutputStr, "%s %s",
+  snprintf (OutputStr, sizeof(OutputStr), "%s %s",
           BASE_CONVERT_ToOEM(APPS_EXE_CONVERT_MakeStrShorter(ShortStr,
             BASE_STATE.CurrentFileName, 26)),
           STR.is_read_only__hidden_or_system_file_);
@@ -212,8 +212,8 @@ INT       Handle,
           Input = 0,
           Len;
 
-  sprintf(BASE_STATE.DestinationFileName, "%s%s",
-          BASE_PATHFUNC_GetDevicePathLen(BASE_STATE.CurrentFileName) ?
+  snprintf (BASE_STATE.DestinationFileName, sizeof(BASE_STATE.DestinationFileName),
+           "%s%s", BASE_PATHFUNC_GetDevicePathLen(BASE_STATE.CurrentFileName) ?
             "" : BASE_PATHFUNC_AddSlashToEnd(BASE_DIRDATA_Dir2.Dir),
           BASE_STATE.CurrentFileName);
 
