@@ -108,9 +108,9 @@ ULONG   BASE_LFN_GetFileTime(PCHAR FileName)
 struct findi64_t
           FindStruc;
 INT       Handle,
-          Result;
-USHORT    Date,
-          Time;
+        Result;
+  USHORT Date = 0;
+  USHORT Time = 0;
 
   Handle = BASE_LFN_Open(FileName, O_RDONLY | O_BINARY);
   if (Handle == -1)
@@ -126,8 +126,7 @@ USHORT    Date,
 
     return Result;
   }
-
-  BASE_DOSFUNCS_GetFileTime(Handle, &Date, &Time);
+  ///BASE_DOSFUNCS_GetFileTime(Handle, &Date, &Time);
   close(Handle);
 
   return Date << 16 | Time;

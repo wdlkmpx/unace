@@ -55,23 +55,13 @@ tBASE_DOSFUNCS_FileTime
 
 void    BASE_DOSFUNCS_SetDrive(INT Drive);
 
-LONGLONG
-        BASE_DOSFUNCS_LSeek(INT Handle, LONGLONG Offset, INT Origin);
-
-LONGLONG
-        BASE_DOSFUNCS_Tell(INT Handle);
-
-BOOL    BASE_DOSFUNCS_IsChSizeSupported(void);
-
+LONGLONG BASE_DOSFUNCS_LSeek(INT Handle, LONGLONG Offset, INT Origin);
+LONGLONG BASE_DOSFUNCS_Tell(INT Handle);
 LONGLONG BASE_DOSFUNCS_ChSize(INT Handle, LONGLONG Size);
 
 UINT    BASE_DOSFUNCS_GetFileAttributes(PCHAR Path, PUINT Attr);
 UINT    BASE_DOSFUNCS_SetFileAttributes(PCHAR Path, UINT Attr);
 UINT    BASE_DOSFUNCS_GetCompressedFileAttributeByHandle(INT hFile);
-void    BASE_DOSFUNCS_GetFileSecurity(PCHAR FileName, PCHAR *Security, PUINT Size);
-void    BASE_DOSFUNCS_SetFileSecurity(PCHAR FileName, PCHAR Security);
-void    BASE_DOSFUNCS_Initialize(void);
-UINT    BASE_DOSFUNCS_GetFileTime(INT Handle, PUSHORT Date, PUSHORT Time);
 BOOL	BASE_DOSFUNCS_IsDir(PCHAR Path);
 
 void    BASE_DOSFUNCS_EXTERN_CopyFileInfoBegin(PCHAR TargetFileName,

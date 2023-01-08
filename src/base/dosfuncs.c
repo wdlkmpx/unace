@@ -257,30 +257,6 @@ UINT    BASE_DOSFUNCS_SetFileAttributes(PCHAR Path, UINT Attr)
   return 0;
 }
 
-/*-----------------BASE_DOSFUNCS_GetFileTime-----------------------------*/
-UINT    BASE_DOSFUNCS_GetFileTime(INT Handle, PUSHORT Date, PUSHORT Time)
-{
-  return 1; // error!
-}
-
-/*-----------------BASE_DOSFUNCS_Initialize------------------------------*/
-void    BASE_DOSFUNCS_Initialize(void)
-{
-}
-
-/*-----------------BASE_DOSFUNCS_GetFileSecurity------------------------*/
-void    BASE_DOSFUNCS_GetFileSecurity(PCHAR FileName, PCHAR *Security, PUINT Size)
-{
-  *Size = 0;
-  *Security = NULL;
-}
-
-/*-----------------BASE_DOSFUNCS_SetFileSecurity------------------------*/
-void    BASE_DOSFUNCS_SetFileSecurity(PCHAR FileName, PCHAR Security)
-{
-}
-
-
 // ========================================================================
 // noi64.c
 
@@ -298,12 +274,6 @@ LONGLONG BASE_DOSFUNCS_Tell(INT Handle)
 
 // ========================================================================
 // noi64lin.c
-
-/*-----------------BASE_DOSFUNCS_IsChSizeSupported-----------------------*/
-BOOL    BASE_DOSFUNCS_IsChSizeSupported(void)
-{
-  return 1;
-}
 
 /*-----------------BASE_DOSFUNCS_ChSize----------------------------------*/
 LONGLONG BASE_DOSFUNCS_ChSize(INT Handle, LONGLONG Size)

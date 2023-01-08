@@ -31,10 +31,7 @@
 void    APPS_UNACE_EXE_ProgramInit(INT ArgumentsNumber, PCHAR Arguments[])
 {
 //_________________handle memory
-
   BASE_MEMORY_InitMaxAllocate();
-  BASE_DOSFUNCS_Initialize();
-
   BASE_LFN_CompleteArg0(&Arguments[0]);
 
 //_________________handle arguments, paths

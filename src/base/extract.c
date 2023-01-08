@@ -234,7 +234,8 @@ UINT	  NTFSSecuritySize;
   if (DoWriteData)
   {
     BASE_LFN_SetFileAttributes(BASE_STATE.DestinationFileName, Attr);
-    BASE_DOSFUNCS_SetFileSecurity(BASE_STATE.DestinationFileName, NTFSSecurity);
+    // need to implement function to set ntfs security?
+    ///BASE_DOSFUNCS_SetFileSecurity(BASE_STATE.DestinationFileName, NTFSSecurity);
     BASE_MEMORY_FreeCheck(NTFSSecurity);
   }
 
