@@ -1,7 +1,9 @@
 #ifndef _BASE_ALL_H_INCLUDED
 #define _BASE_ALL_H_INCLUDED
 
-#define BASE_VERSION_VERSIONSTR "2.5  "
+#include <config.h>
+
+#define BASE_VERSION_VERSIONSTR VERSION "  "
 
 #ifdef _WIN32
 # define WIN32_LEAN_AND_MEAN
