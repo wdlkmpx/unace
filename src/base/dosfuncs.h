@@ -11,10 +11,10 @@
 #define BASE_DOSFUNCS_ARCH         0x20
 #define BASE_DOSFUNCS_COMPRESSED   0x800
 
-#ifdef __unix__
-  #define BASE_DOSFUNCS_NULLDEVICE "/dev/null"
-#else
+#if defined(_WIN32)
   #define BASE_DOSFUNCS_NULLDEVICE "NUL"
+#else
+  #define BASE_DOSFUNCS_NULLDEVICE "/dev/null"
 #endif
 
 #ifndef FINDI64_DEFINED

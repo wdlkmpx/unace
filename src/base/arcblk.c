@@ -367,13 +367,14 @@ void    BASE_ARCBLK_ConvertHeader32ToHeader64(void)
     BASE_PATHFUNC_ToSystemPathSeparatorN(
       BASE_ARCBLK.Header.File.FNAME, BASE_ARCBLK.Header.File.FNAME_SIZE);
 
-#if defined(__MACOSX__)
+#if !defined(_WIN32)
+# if defined(__MACOSX__)
     BASE_ARCBLK.Header.File.FNAME_SIZE = BASE_UNINORM_CP850ToUTF8NFD(
       BASE_ARCBLK.Header.File.FNAME, BASE_ARCBLK.Header.File.FNAME_SIZE);
-#elif defined(__unix__)
-    /* for unix, assume UTF-8 NFC normalization */
+# else /* for unix, assume UTF-8 NFC normalization */
     BASE_ARCBLK.Header.File.FNAME_SIZE = BASE_UNINORM_CP850ToUTF8NFC(
       BASE_ARCBLK.Header.File.FNAME, BASE_ARCBLK.Header.File.FNAME_SIZE);
+# endif
 #endif
   }
 }

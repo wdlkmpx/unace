@@ -348,7 +348,7 @@ INT       CurrentDirLen;
 */
   if ((Path[0] == '\\' && Path[1] != '\\')
        || (Path[0] != BASE_PATHFUNC_SEPARATOR 
-#ifndef __unix__
+#if defined(_WIN32)
        && !strchr(Path, ':')
 #endif
           )
@@ -358,7 +358,7 @@ INT       CurrentDirLen;
     strcpy(CurrentDir, BASE_PATHFUNC_AddSlashToEnd(CurrentDir));
 
 /* This is valid only under windows systems with "<drive letter>:" style file names */
-#ifndef __unix__
+#if defined(_WIN32)
     if (Path[0] == BASE_PATHFUNC_SEPARATOR)
     {
       CurrentDir[2] = 0;
@@ -371,7 +371,7 @@ INT       CurrentDirLen;
   }
 
 /* This is valid only under windows systems with "<drive letter>:" style file names */
-#ifndef __unix__
+#if defined(_WIN32)
   if (Path[1] == ':' && Path[2] != BASE_PATHFUNC_SEPARATOR)
   {
     BASE_LFN_GetCurrentDirOfDrive(BASE_CONVERT_UpCase(Path[0]) - 'A',

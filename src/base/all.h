@@ -10,9 +10,6 @@
 # include <windows.h>
 #else
 /* assume __unix__ for everything else */
-# ifndef __unix__
-#   define __unix__ 1
-# endif
 # if defined(__APPLE__) && defined(__MACH__)
 #   define __MACOSX__ 1
 # endif

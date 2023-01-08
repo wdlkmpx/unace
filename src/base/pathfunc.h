@@ -9,12 +9,12 @@ typedef struct
 
 extern tBASE_PATHFUNC BASE_PATHFUNC;
 
-#ifdef __unix__
-  #define BASE_PATHFUNC_SEPARATOR '/'
-  #define BASE_PATHFUNC_SEPARATORSTR "/"
-#else
+#if defined(_WIN32)
   #define BASE_PATHFUNC_SEPARATOR '\\'
   #define BASE_PATHFUNC_SEPARATORSTR "\\"
+#else
+  #define BASE_PATHFUNC_SEPARATOR '/'
+  #define BASE_PATHFUNC_SEPARATORSTR "/"
 #endif
 
 void    BASE_PATHFUNC_ToDOSPathSeparatorN(PCHAR Path, INT N);
