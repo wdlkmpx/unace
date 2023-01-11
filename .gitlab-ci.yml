@@ -1,0 +1,29 @@
+
+image: alpine
+
+build:
+  stage: build
+  # instead of calling g++ directly you can also use some build toolkit like make
+  # install the necessary build tools when needed
+  before_script:
+    - apk add --no-cache build-base
+  script:
+    - ./scripts/test_ci.sh
+#  artifacts:
+#    paths:
+#      - mybinary
+#      # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
+#      # cache:
+#      #   paths:
+#      #     - "*.o"
+
+## run tests using the binary built before
+#test:
+#  stage: test
+#  script:
+#    - ./runmytests.sh
+
+#deploy:
+#  stage: deploy
+#  script: echo "Define your deployment script!"
+#  environment: production
