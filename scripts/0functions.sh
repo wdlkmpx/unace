@@ -98,3 +98,17 @@ check_app_help() # $1<ret_code> $2:<app_help_cmd>
         exit 1
     fi
 }
+
+
+wrealpath() # $1:<path>
+{
+    # realpath may not exist (msys1, old macos, etc)
+    # readlink -f may not work: old macos
+    if [ -d "$1" ] ; then
+        echo $(cd "$1" ; pwd -P)
+        return $?
+    fi
+    xdirname=$(cd $(dirname "$1") ; pwd -P)
+    xbasename=$(basename "$1")
+    echo "${xdirname}/${xbasename}"
+}

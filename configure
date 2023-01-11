@@ -3,8 +3,8 @@
 #
 
 WCURDIR=$(pwd)
-WCONF_CONFIGURE=$(readlink -f "$0")
-WCONF_SCRIPTDIR=$(dirname "$WCONF_CONFIGURE")
+WCONF_SCRIPTDIR=$(cd "$(dirname "$0")" ; pwd -P)
+WCONF_CONFIGURE=${WCONF_SCRIPTDIR}/$(basename "$0")
 
 if [ "$WCURDIR" != "$WCONF_SCRIPTDIR" ] ; then
     echo "Current dir: $WCURDIR"

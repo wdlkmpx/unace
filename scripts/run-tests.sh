@@ -1,15 +1,18 @@
 #!/bin/sh
 # Public domain
 
-scriptdir=$(dirname "$0")
-scriptdir=$(readlink -f "$scriptdir")
+scdir=$(dirname "$0")
+. ${scdir}/0functions.sh
+
+scriptdir=$(wrealpath "$scdir")
+
 w_system=$(uname -s)
 
 if [ -z "$RUN_TESTS_CFG" ] ; then
     RUN_TESTS_CFG=${scriptdir}/run-tests.cfg
 fi
 if [ "$1" = "-cfg" ] ; then
-    RUN_TESTS_CFG=$(realpath "$2")
+    RUN_TESTS_CFG=$(wrealpath "$2")
     shift 2
 fi
 if [ -z "$RUN_TESTS_CFG" ] ; then
@@ -19,18 +22,21 @@ fi
 . ${RUN_TESTS_CFG} || exit 1
 
 REBUILD=no
+DEBUG_BUILD=
 case $1 in
     -rebuild) REBUILD=yes ;;
     -run)     REBUILD=no ;;
+    -debug)   REBUILD=yes ; DEBUG_BUILD=1 ;;
+    -release) REBUILD=yes ;;
     #*) help 0 ;;
 esac
 
-export CFLAGS="-DW_MTRACE -g -O0 -ggdb3 -Wextra -Wno-unused-parameter -Wno-missing-field-initializers"
+if [ "$DEBUG_BUILD" ] ; then
+    export CFLAGS="-DW_MTRACE -g -O0 -ggdb3 -Wextra -Wno-unused-parameter -Wno-missing-field-initializers"
+fi
 
 # ===========================================================================
 # Functions
-
-. ${scriptdir}/0functions.sh
 
 set_checksum_app
 set_download_app
@@ -39,6 +45,12 @@ set_wine()
 {
     wine=''
     if [ "${w_system}" = "Linux" ] ; then
+        if [ "$wine_require_msys" = "yes" ] ; then
+            echo "*** The tests currently fail on WINE (issues with paths, etc)"
+            echo "*** You must use MSYS1 or MSYS2 (MinGW distribution)"
+            echo
+            exit 1
+        fi
         wine='wine'
         if ! command -v wine >/dev/null ; then
             echo "WINE is not installed, cannot test .exe binaries..."
@@ -50,31 +62,43 @@ set_wine()
 
 check_sums_from_file()
 {
-	chksum_file="$1"
-	logfile="$2"
-	if test -z "$CHKSUM_APP" || test -z "$chksum_file" ; then
-		return 0 # ok
-	fi
-	echo "------------------------------" >>${logfile}
- 	if [ "$CHKSUM_APP" = "$CHKSUM_BSD" ] ; then
-		# --BSD--
-		while read sum file
-		do
-			filesum=$($CHKSUM_APP -q "$file")
-			if [ "$sum" != "$filesum" ] ; then
-				echo "${file}: FAILED"  >>${logfile}
-				echo "*** checksum failed. stopped" >>${logfile}
-				return 1 #error
-			fi
-		done < ${chksum_file}
-	else
-		# --GNU--
-		if ! ${CHKSUM_APP} -c ${chksum_file} >>${logfile} 2>&1 ; then
-			return 1 #error
-		fi
-	fi
-	echo "------------------------------" >>${logfile}
-	return 0 # ok
+    # file was created with xxxsum (i.e. md5sum), otherwise this will fail
+    chksum_file="$1"
+    logfile="$2"
+    if [ -z "$CHKSUM_APP" ] || [ -z "$chksum_file" ] ; then
+        return 0 # ok
+    fi
+    echo "------------------------------" >>${logfile}
+    if [ "$CHKSUM_APP" = "$CHKSUM_GNU" ] && [ "$PRINT_SUM_ON_ERROR" != "yes" ] ; then
+        # GNU style, fast
+        ${CHKSUM_APP} -c ${chksum_file} >>${logfile} 2>&1
+        retcode=$?
+        echo "------------------------------" >>${logfile}
+        return $retcode
+    fi
+    # PRINT_SUM_ON_ERROR:
+    # BSD and slow GNU: get sum from each file and compare
+    # BSD implementations are not consistent, just use something that all versions understand
+    while read sum file
+    do
+        if [ "$CHKSUM_APP" = "$CHKSUM_BSD" ] ; then
+            filesum=$($CHKSUM_APP -q "$file")
+        else # GNU
+            filesum=$($CHKSUM_APP "$file" | cut -f 1 -d " ")
+        fi
+        if [ "$sum" != "$filesum" ] ; then
+            echo "${file}: FAILED"  >>${logfile}
+            echo "Got SUM     : $filesum"
+            echo "Expected SUM: $sum"
+            echo "*** checksum failed. stopped" >>${logfile}
+            return 1 #error
+        #else
+        #    echo "${file}: [OK]"  >>${logfile}
+        fi
+    done < ${chksum_file}
+    echo "All sums are OK" >>${logfile}
+    echo "------------------------------" >>${logfile}
+    return 0 # ok
 }
 
 
@@ -106,6 +130,7 @@ ERROR_LOG_FILES=''
 
 run_test()
 {
+    n_tests=$((n_tests+1))
     unset CHKFILE DIRFILE LOGFILE
     if [ -z "$TEST_FILE" ] ; then
         echo "** a \$TEST_FILE is required for run_test()"
@@ -193,11 +218,21 @@ run_test()
     else
         echo "ERROR"
         ERROR_LOG_FILES="$ERROR_LOG_FILES ${LOGFILE}"
+        failed_tests=$((failed_tests+1))
     fi
     if [ "$TEST_USE_SUBDIR" = "yes" ] ; then
         cd "${xcurdirx}"
     fi
     unset TEST_FILE TEST_ERROR_FILE TEST_EXIT_CODE
+}
+
+
+cmdecho()
+{
+    echo "---------------"
+    echo "# $@"
+    echo "---------------"
+    "$@"
 }
 
 # ===========================================================================
@@ -206,15 +241,17 @@ if [ -f autogen.sh ] && [ ! -f configure ] ; then
     ./autogen.sh
 fi
 
-if [ -f configure ] && [ ! -f config.log ] ; then
-    ./configure ${configure_opts}
+if [ -f configure ] ; then
+    if [ "$REBUILD" = "yes" ] || [ ! -f config.log ] ; then
+        cmdecho ./configure ${configure_opts}
+    fi
 fi
 
 if [ -f Makefile ] ; then
     if [ "$REBUILD" = "yes" ] ; then
-        ${make_clean}
+        cmdecho ${make_clean}
     fi
-    ${make_cmd}
+    cmdecho ${make_cmd}
 fi
 
 if test -f ${app} ; then
@@ -228,7 +265,7 @@ else
 fi
 
 # basic check
-check_app_help ${help_ret_code} "${app} ${help_param}"
+cmdecho check_app_help ${help_ret_code} "${app} ${help_param}"
 
 # ===========================================================================
 
@@ -239,6 +276,8 @@ rm -rf "${TESTDIR}"
 mkdir -p "${TESTDIR}"
 cd ${TESTDIR}
 
+failed_tests=0
+n_tests=0
 run_tests
 
 # ===========================================================================
@@ -247,13 +286,22 @@ ret=0
 
 if [ -n "$(echo $ERROR_LOG_FILES)" ] ; then
     ret=1
-    if [ -n "$VERBOSE_ERRORS" ] ; then
+    echo
+    if [ "$VERBOSE_ERRORS" = "yes" ] ; then
+        echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
         cat $ERROR_LOG_FILES
     fi
 fi
 
 printf "\n Logs are in $TESTDIR\n"
 echo "   (that dir is deleted and created everytime the tests are run)"
+echo
+
+if [ $failed_tests -gt 0 ] ; then
+    echo "*  $failed_tests out of $n_tests tests failed"
+else
+    echo "*  All OK"
+fi
 echo
 
 exit $ret
