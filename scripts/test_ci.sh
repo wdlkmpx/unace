@@ -101,6 +101,10 @@ export VERBOSE_ERRORS='yes' # the test script read this
 # assuming we're testing a compiled binary that's built with -02 (optimizations)
 cmdecho ./scripts/run-tests.sh -rebuild
 if [ $? -ne 0 ] ; then
+    if [ "$w_system" = "Darwin" ] ; then
+        # macOS is a hostile environment, just end here
+        exit_error
+    fi
     if grep -q ' -O2' config.log ; then
         echo
         echo "################################################################"  

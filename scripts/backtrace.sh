@@ -7,6 +7,16 @@
 # https://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html
 #
 
+w_system=$(uname -s)
+
+case "$w_system" in
+    Darwin) echo "$0:
+    lldb doesn't work on macOS due to permissions or something
+    "
+        exit ;;
+esac
+
+
 usage()
 {
     echo "syntax:
@@ -60,7 +70,6 @@ backtrace_run()
             --args ${app2debug} ${app_args}
     elif [ "$BACKTRACE_APP" = "lldb" ] ; then
         # https://lldb.llvm.org/use/map.html
-        # lldb doesn't work on macOS due to permissions or something
         if [ "$(uname -m)" = "i686" ] ; then
             echo "*** WARNING: lldb may be broken in i686"
         fi
@@ -83,9 +92,8 @@ backtrace_run()
 
 app_to_core_dump() # this sets CORE_FILE
 {
-    system=$(uname -s)
     coredump_path='coredump'
-    if [ "$system" = "Linux" ] ; then
+    if [ "$w_system" = "Linux" ] ; then
         # this is 'core' by default, but can also include directory and %variables
         coredump_path=$(cat /proc/sys/kernel/core_pattern)
         echo "coredump pattern = ${coredump_path}"
@@ -104,7 +112,7 @@ app_to_core_dump() # this sets CORE_FILE
         ;;
     esac
 
-    if [ "$system" = "Linux" ] ; then
+    if [ "$w_system" = "Linux" ] ; then
         ulimit -c ${cur_ulimit}
     fi
 
