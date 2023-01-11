@@ -12,6 +12,8 @@ of archives created with the ACE archiver.
 ## Platform compatibility
 
   - Linux
+  - Windows
+  - FreeBSD
 
 ## Compiling
 
