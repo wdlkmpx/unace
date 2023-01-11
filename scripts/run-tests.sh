@@ -88,8 +88,8 @@ check_sums_from_file()
         fi
         if [ "$sum" != "$filesum" ] ; then
             echo "${file}: FAILED"  >>${logfile}
-            echo "Got SUM     : $filesum"
-            echo "Expected SUM: $sum"
+            echo "Got SUM     : $filesum" >>${logfile}
+            echo "Expected SUM: $sum" >>${logfile}
             echo "*** checksum failed. stopped" >>${logfile}
             return 1 #error
         #else

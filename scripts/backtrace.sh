@@ -60,12 +60,15 @@ backtrace_run()
             --args ${app2debug} ${app_args}
     elif [ "$BACKTRACE_APP" = "lldb" ] ; then
         # https://lldb.llvm.org/use/map.html
+        # lldb doesn't work on macOS due to permissions or something
         if [ "$(uname -m)" = "i686" ] ; then
             echo "*** WARNING: lldb may be broken in i686"
         fi
+        # -o "thread backtrace all"
+        # -o "bt all"
         lldb --batch  \
             -o "run" \
-            -o "thread backtrace all" \
+            -o "bt" \
             -- ${app2debug} ${app_args}
     else
         echo "${BACKTRACE_APP}: unknown backtrace app"
@@ -140,7 +143,8 @@ backtrace_from_core_dump()
     echo
     echo "CORE_FILE = $CORE_FILE"
     echo
-    if [ "$BACKTRACE_APP" = "gdb" ] ; then # -ex="bt full"
+    if [ "$BACKTRACE_APP" = "gdb" ] ; then
+        # -ex="bt full"
         gdb --batch --quiet \
             -ex="thread apply all backtrace" \
             ${app2debug} ${CORE_FILE}
@@ -150,7 +154,7 @@ backtrace_from_core_dump()
             echo "*** WARNING: lldb may be broken in i686"
         fi
          lldb --batch \
-            -o "thread backtrace all" \
+            -o "bt" \
             --core "$CORE_FILE" ${app2debug}
     else
         echo "${BACKTRACE_APP}: unknown backtrace app"
