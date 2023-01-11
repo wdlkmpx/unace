@@ -8,8 +8,6 @@
         (compatibility with autoconf)
 
  https://gist.github.com/PkmX/63dd23f28ba885be53a5
- https://gist.github.com/panzi/6856583
- 
  https://man7.org/linux/man-pages/man3/endian.3.html
  https://man7.org/linux/man-pages/man3/bswap.3.html
  https://man.openbsd.org/OpenBSD-5.6/byteorder.3
@@ -24,6 +22,8 @@ extern "C" {
 
 //#define DEBUG_W_ENDIAN
 
+#include <inttypes.h>
+
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
@@ -31,18 +31,15 @@ extern "C" {
 // ========================================================
 // known systems
 
-#if defined(__linux__) || defined(__HAIKU__) || defined(__CYGWIN__) || defined(__GNU__)
+#if defined(__linux__) || defined(__HAIKU__) || defined(__CYGWIN__) || defined(__GNU__) \
+                       || defined(__OpenBSD__) /* OpenBSD >= 5.6 */
 #   include <endian.h>
-#   include <byteswap.h>
-
-#elif defined(__OpenBSD__) 
-#   include <endian.h> /* OpenBSD >= 5.6 */
 
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
 #   include <sys/endian.h>
 
 #elif defined(sun) || defined(__sun)
-#  include <sys/byteorder.h>
+#   include <sys/byteorder.h>
 #   define bswap16(x) BSWAP_16(x)
 #   define bswap32(x) BSWAP_32(x)
 #   define bswap64(x) BSWAP_64(x)
@@ -53,71 +50,45 @@ extern "C" {
 #   define bswap32(x) OSSwapInt32(x)
 #   define bswap64(x) OSSwapInt64(x)
 
-#elif defined(_WIN32)
-//#   include <windows.h>
-#   if defined(_MSC_VER)
-#       include <stdlib.h>
-#       define bswap16(x) _byteswap_ushort(x)
-#       define bswap32(x) _byteswap_ulong(x)
-#       define bswap64(x) _byteswap_uint64(x)
-#   elif defined(__GNUC__) || defined(__clang__)
-#       define bswap16(x) __builtin_bswap16(x)
-#       define bswap32(x) __builtin_bswap32(x)
-#       define bswap64(x) __builtin_bswap64(x)
-#   endif
+#elif defined(_WIN32) && defined(_MSC_VER) // MSVC
+#   include <stdlib.h>
+#   define bswap16(x) _byteswap_ushort(x)
+#   define bswap32(x) _byteswap_ulong(x)
+#   define bswap64(x) _byteswap_uint64(x)
 #endif
 
 
 // ========================================================
-// may need to define custom bswapXX functions
+// make sure bswapXX is defined
 
 #if !defined(bswap16)
+#   if defined(__linux__)
+#       include <byteswap.h>
+#   endif
 #   if defined(bswap_16)
 #       define bswap16(x) bswap_16(x)
 #       define bswap32(x) bswap_32(x)
 #       define bswap64(x) bswap_64(x)
+#   elif defined(__GNUC__) || defined(__clang__)
+#       define bswap16(x) __builtin_bswap16(x)
+#       define bswap32(x) __builtin_bswap32(x)
+#       define bswap64(x) __builtin_bswap64(x)
+#   else //--
+#       define bswap16(x) ((uint16_t)(x) << 8) | ((uint16_t)(x) >> 8)
+#       define bswap32(x) \
+         ((((uint32_t)(x) & 0xff000000) >> 24) | (((uint32_t)(x) & 0x00ff0000) >>  8) | \
+          (((uint32_t)(x) & 0x0000ff00) <<  8) | (((uint32_t)(x) & 0x000000ff) << 24))
+#       define bswap64(x) \
+         ((((uint64_t)(x) & 0xff00000000000000ull) >> 56) \
+        | (((uint64_t)(x) & 0x00ff000000000000ull) >> 40) \
+        | (((uint64_t)(x) & 0x0000ff0000000000ull) >> 24) \
+        | (((uint64_t)(x) & 0x000000ff00000000ull) >> 8) \
+        | (((uint64_t)(x) & 0x00000000ff000000ull) << 8) \
+        | (((uint64_t)(x) & 0x0000000000ff0000ull) << 24) \
+        | (((uint64_t)(x) & 0x000000000000ff00ull) << 40) \
+        | (((uint64_t)(x) & 0x00000000000000ffull) << 56))
 #   endif
 #endif
-
-// also support bswap_XX() (only the GNU Libc defines them)
-#if !defined(bswap_16) && !defined(bswap_32)
-#   define bswap_16(x) bswap16(x)
-#   define bswap_32(x) bswap32(x)
-#   define bswap_64(x) bswap64(x)
-#endif
-
-#if !defined(bswap16) || !defined(bswap32) || !defined(bswap64)
-#   ifdef DEBUG_W_ENDIAN
-#       warning [DEBUG] CUSTOM swapXX functions
-#   endif
-
-#   include <inttypes.h>
-#   define bswap16(x) _bswap16(x)
-#   define bswap32(x) _bswap32(x)
-#   define bswap64(x) _bswap64(x)
-
-    static inline uint16_t _bswap16(uint16_t x)
-    {
-        return ((x << 8) & 0xff00) | ((x >> 8) & 0x00ff);
-    }
-
-    static inline uint32_t _bswap32(uint32_t x)
-    {
-        return ((x << 24) & 0xff000000 ) |
-               ((x <<  8) & 0x00ff0000 ) |
-               ((x >>  8) & 0x0000ff00 ) |
-               ((x >> 24) & 0x000000ff );
-    }
-
-    static inline uint64_t _bswap64(uint64_t x)
-    {
-        uint32_t l32, h32;
-        h32 = _bswap32((uint32_t)(x & 0x00000000ffffffffULL));
-        l32 = _bswap32((uint32_t)((x >> 32) & 0x00000000ffffffffULL));
-        return ((uint64_t)h32 << 32) | l32;
-    }
-#endif
-
 
 // ========================================================
 // define W_LITTLE_ENDIAN or W_BIG_ENDIAN
@@ -164,14 +135,8 @@ extern "C" {
 #       warning [DEBUG] BIG ENDIAN detected
 #   endif
 #   define WORDS_BIGENDIAN 1
-#   ifndef __BIG_ENDIAN__
-#       define __BIG_ENDIAN__ 1
-#   endif
 #else // little endian, default
 #   define W_LITTLE_ENDIAN 1
-#   ifndef __LITTLE_ENDIAN__
-#       define __LITTLE_ENDIAN__ 1
-#   endif
 #endif
 
 
@@ -186,34 +151,34 @@ extern "C" {
 
 #   ifdef W_LITTLE_ENDIAN
 #       define htobe16(x) bswap16(x)
-#       define htole16(x) (x)
+#       define htole16(x) (uint16_t)(x)
 #       define be16toh(x) bswap16(x)
-#       define le16toh(x) (x)
+#       define le16toh(x) (uint16_t)(x)
 
 #       define htobe32(x) bswap32(x)
-#       define htole32(x) (x)
+#       define htole32(x) (uint32_t)(x)
 #       define be32toh(x) bswap32(x)
-#       define le32toh(x) (x)
+#       define le32toh(x) (uint32_t)(x)
 
 #       define htobe64(x) bswap64(x)
-#       define htole64(x) (x)
+#       define htole64(x) (uint64_t)(x)
 #       define be64toh(x) bswap64(x)
-#       define le64toh(x) (x)
+#       define le64toh(x) (uint64_t)(x)
 
 #   else /* BIG ENDIAN */
-#       define htobe16(x) (x)
+#       define htobe16(x) (uint16_t)(x)
 #       define htole16(x) bswap16(x)
-#       define be16toh(x) (x)
+#       define be16toh(x) (uint16_t)(x)
 #       define le16toh(x) bswap16(x)
 
-#       define htobe32(x) (x)
+#       define htobe32(x) (uint32_t)(x)
 #       define htole32(x) bswap32(x)
-#       define be32toh(x) (x)
+#       define be32toh(x) (uint32_t)(x)
 #       define le32toh(x) bswap32(x)
 
-#       define htobe64(x) (x)
+#       define htobe64(x) (uint64_t)(x)
 #       define htole64(x) bswap64(x)
-#       define be64toh(x) (x)
+#       define be64toh(x) (uint64_t)(x)
 #       define le64toh(x) bswap64(x)
 #   endif
 
