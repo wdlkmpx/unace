@@ -3,8 +3,8 @@
 #
 
 WCURDIR=$(pwd)
-WCONF_SCRIPTDIR=$(cd "$(dirname "$0")" ; pwd -P)
-WCONF_CONFIGURE=${WCONF_SCRIPTDIR}/$(basename "$0")
+export WCONF_SCRIPTDIR=$(cd "$(dirname "$0")" ; pwd -P)
+export WCONF_CONFIGURE=${WCONF_SCRIPTDIR}/$(basename "$0")
 
 if [ "$WCURDIR" != "$WCONF_SCRIPTDIR" ] ; then
     echo "Current dir: $WCURDIR"
@@ -183,14 +183,9 @@ set_cc()
 		CC_IS_FULL_PATH=1 ;;
 	esac
 	GCC="no"
-	if [ -n "$CC" ] ; then
-		zz_list="$CC"
-	else
-		zz_list="cc gcc clang"
-	fi
 	printf "Checking for C compiler... "
-	ZCC="$(check_command ${zz_list})"
-	if test -z "$ZCC" ; then
+	ZCC="$(check_command ${CC:-cc gcc clang})"
+	if [ -z "$ZCC" ] ; then
 		exit_error "$CC not found"
 	fi
 	CC="$ZCC"
@@ -213,18 +208,9 @@ set_cxx()
 	esac
 	#--
 	printf "Checking for C++ compiler... "
-	if [ -n "$CXX" ] ; then
-		zz_list="$CXX"
-	else
-		zz_list="c++ g++ clang++"
-	fi
-	ZXX="$(check_command ${zz_list})"
-	if test -z "$ZXX" ; then
-		if [ -z "$CXX" ] ; then
-			echo "not found" # not a fatal error
-		else
-			exit_error "$CXX not found"
-		fi
+	ZXX="$(check_command ${CXX:-c++ g++ clang++})"
+	if [ -z "$ZXX" ] ; then
+		exit_error "$CXX not found"
 	fi
 	CXX="$ZXX"
 	echo "$CXX"
@@ -237,39 +223,28 @@ set_cxx()
 set_w_pkg_config()
 {
 	printf "Checking for pkg-config... "
-	W_PKG_CONFIG=''
-	if [ -n "${PKG_CONFIG}" ] ; then
-		W_PKG_CONFIG="$(check_command ${PKG_CONFIG})"
-		if [ -n "$W_PKG_CONFIG" ] ; then
-			echo "$W_PKG_CONFIG (environment)"
-			return 0
-		fi
+	W_PKG_CONFIG="$PKG_CONFIG"
+	if [ -z "${W_PKG_CONFIG}" ] ; then
+		W_PKG_CONFIG="$(check_command pkg-config pkgconf)"
 	fi
-	W_PKG_CONFIG="$(check_command pkg-config pkgconf)"
-	if [ -n "$W_PKG_CONFIG" ] ; then
-		echo "$W_PKG_CONFIG [$($W_PKG_CONFIG --version 2>/dev/null)]"
-	else
+	if [ -z "${W_PKG_CONFIG}" ] ; then
 		echo "no"
+		return
+	fi
+	echo "$W_PKG_CONFIG [$($W_PKG_CONFIG --version 2>/dev/null)]"
+	if [ -n "$static_link" ] ; then #force static
+		case ${W_PKG_CONFIG} in
+			*--static*) ok=1 ;;
+			*) W_PKG_CONFIG="$W_PKG_CONFIG --static" ;;
+		esac
 	fi
 }
 
-
-run_pkg_config()
-{
-	if [ -n "$static_link" ] ; then
-		pkgconfig_s='--static'
-	else
-		pkgconfig_s=''
-	fi
-	if test -n "$W_PKG_CONFIG" ; then
-		${W_PKG_CONFIG} ${pkgconfig_s} "$@"
-	else
-		pkg-config ${pkgconfig_s} "$@"
-	fi
+run_pkg_config() {
+	${W_PKG_CONFIG:-pkg-config} "$@"
 }
 
-w_pkgconfig_run()
-{
+w_pkgconfig_run() {
 	run_pkg_config "$@"
 }
 
@@ -286,30 +261,33 @@ w_pkgconfig_check() # $1=<pkg> $2=[min-version]
 	fi
 	if [ -z "$W_PKG_CONFIG" ] ; then
 		echo "no (!!pkg-config is missing!!)"
-		return 1
+		return 1  #error
 	fi
 	#--
-	if [ -n "$pc_pkg_min_ver" ] ; then
-		run_pkg_config ${pc_pkg} --exists --atleast-version=${pc_pkg_min_ver}
-	else
-		run_pkg_config ${pc_pkg} --exists
+	run_pkg_config ${pc_pkg} --exists
+	if [ $? -ne 0 ] ; then
+		echo "no"
+		return 1  #error
 	fi
-	xret=$?
-	if [ $xret -eq 0 ] ; then
-		echo "yes [$(run_pkg_config ${pc_pkg} --modversion)]"
-	else
-		if [ -n "$pc_pkg_min_ver" ] ; then
-			xxzzfound=$(run_pkg_config ${pc_pkg} --modversion 2>/dev/null)
-			if [ -n "$xxzzfound" ] ; then
-				echo "no [found $xxzzfound]"
+	xpkgverx="$(run_pkg_config ${pc_pkg} --modversion 2>/dev/null)"
+	if [ -n "$pc_pkg_min_ver" ] ; then
+		run_pkg_config ${pc_pkg} --atleast-version=${pc_pkg_min_ver}
+		if [ $? -ne 0 ] ; then
+			if [ -n "$xpkgverx" ] ; then
+				echo "no [found $xpkgverx]"
+				return 1  #error
 			else
 				echo "no"
+				return 1  #error
 			fi
-		else
-			echo "no"
 		fi
 	fi
-	return $xret
+	if [ -n "$xpkgverx" ] ; then
+		echo "yes [${xpkgverx}]"
+	else
+		echo "yes"
+	fi
+	return 0  #ok
 }
 
 
@@ -492,7 +470,6 @@ test "$NM"     || NM='nm'
 test "$RANLIB" || RANLIB='ranlib'
 test "$OBJCOPY" || OBJCOPY='objcopy'
 test "$OBJDUMP" || OBJDUMP='objdump'
-static_link=''
 # mingw
 test "$DLLTOOL" || DLLTOOL='dlltool'
 test "$WINDRES" || WINDRES='windres'
@@ -518,6 +495,11 @@ top_builddir="${WCONF_SCRIPTDIR}"
 top_srcdir="${WCONF_SCRIPTDIR}"
 builddir=.
 srcdir=.
+
+## env vars should not change some important variables
+host=
+build=
+static_link=''
 
 print_eval_var()
 {
@@ -636,7 +618,8 @@ print_extra_env_variables()
 for i in $@
 do
 	case $i in
-		--host=*) host="$(getvalue $i)" ;;
+		--build=*) build="$(getvalue $i)" ;;
+		--host=*)  host="$(getvalue $i)"  ;;
 		CFLAGS=*)   CFLAGS="$CFLAGS $(getvalue $i)"     ;;
 		CPPFLAGS=*) CPPFLAGS="$CPPFLAGS $(getvalue $i)" ;;
 		LDFLAGS=*)  LDFLAGS="$LDFLAGS $(getvalue $i)"   ;;
@@ -680,10 +663,6 @@ do
 	esac
 done
 
-if [ -n "$W_PKG_CONFIG_STATIC" ] ; then
-	static_link=1
-fi
-
 for confx in ${w_opts_configure} ${extra_configure_opts} ${extra_packages_opts}
 do
 	opt_configure_${confx} "$@"
@@ -700,7 +679,19 @@ OS_BUILD=$(uname -s)
 OS_CROSS=''
 OS_TARGET=''
 
-if test -n "$host" ; then
+MACHINE_CC=$($CC -dumpmachine 2>/dev/null)
+
+if [ -z "$build" ] ; then
+	build=${MACHINE_CC}
+fi
+
+if [ -n "$host" ] ; then
+	if [ "$host" = "$build" ] ; then
+		host=
+	fi
+fi
+
+if [ -n "$host" ] ; then
 	printf "Checking cross-compiler... "
 	CROSS_IS_FULL_PATH=''
 	CROSS_BASE_DIR=''
@@ -786,32 +777,32 @@ fi
 
 #==========================================================
 
+EXE=''
 case ${OS_BUILD} in
-	CYGWIN*) OS_BUILD="Cygwin" ;;
-	MINGW*)  OS_BUILD="MinGW"  ;;
-	MSYS*)   OS_BUILD="MinGW"  ;;
+	CYGWIN*) OS_BUILD="Cygwin" ; EXE = '.exe' ;;
+	MINGW*|MSYS*)  OS_BUILD="MinGW" ; EXE = '.exe' ;;
+	UWIN*|Windows*)OS_BUILD="MinGW" ; EXE = '.exe' ;;
+	MS-DOS*) OS_BUILD="MSDOS" ; EXE = '.exe' ;;
 esac
 
 OS_TARGET=${OS_BUILD}
 
 if [ -n "$OS_CROSS" ] ; then
 	# cross-compiling, reset OS_TARGET
+	EXE=''
 	OS_TARGET=''
 	# determine OS_TARGET again
 	case $OS_CROSS in
-		*-mingw*)   OS_TARGET='MinGW'   ;;
+		*-mingw*)   OS_TARGET='MinGW' ; EXE='.exe' ;;
 		*-darwin*)  OS_TARGET='Darwin'  ;;
 		*-linux-*)  OS_TARGET='Linux'   ;;
 		*-freebsd*) OS_TARGET='FreeBSD' ;;
+		*-openbsd*) OS_TARGET='OpenBSD' ;;
+		*-netbsd*)  OS_TARGET='NetBSD'  ;;
+		*-haiku*)   OS_TARGET='Haiku'   ;;
+		*-msdos*)   OS_TARGET='MSDOS' ; EXE='.exe' ;;
 	esac
 fi
-
-case $OS_TARGET in
-	Linux)   SYSDEFINE='__linux__=1' ;;
-	MinGW)   SYSDEFINE='__MINGW32__=1' ;;
-	FreeBSD) SYSDEFINE='__FreeBSD__=1' ;;
-	Darwin)  SYSDEFINE='__APPLE__=1' ;;
-esac
 
 TARGET_OS="$OS_TARGET"
 
@@ -864,6 +855,10 @@ CXXFLAGS="-DHAVE_CONFIG_H $CXXFLAGS"
 cat > config.mk <<EOF
 # generated by ./configure
 ${W_GNU_MAKE}
+
+SUBDIRS = ${MK_SUBDIRS}
+DISTCLEAN_FILES = ${MK_DISTCLEAN_FILES}
+MK_CHECK = ${MK_CHECK}
 
 prefix = ${prefix}
 exec_prefix = ${exec_prefix}
@@ -919,7 +914,8 @@ OBJDUMP = ${OBJDUMP}
 
 DLLTOOL = ${DLLTOOL}
 WINDRES = ${WINDRES}
-WINDMC = ${WINDMC}
+WINDMC  = ${WINDMC}
+EXE     = ${EXE}
 
 CFLAGS = ${CFLAGS}
 CPPFLAGS = ${CPPFLAGS}
@@ -930,7 +926,6 @@ LIBS = ${LIBS}
 
 #=================================================
 
-${SYSDEFINE}
 ${make_extra_flags}
 ${w_config_mk_extra_lines}
 EOF
@@ -997,6 +992,7 @@ OBJDUMP="${OBJDUMP}"
 DLLTOOL="${DLLTOOL}"
 WINDRES="${WINDRES}"
 WINDMC="${WINDMC}"
+EXE="${EXE}"
 
 CFLAGS="${CFLAGS}"
 CPPFLAGS="${CPPFLAGS}"
@@ -1007,7 +1003,6 @@ LIBS="${LIBS}"
 
 #=================================================
 
-${SYSDEFINE}
 ${config_sh_extra}
 EOF
 
@@ -1019,7 +1014,7 @@ ${env}_LIBS  = $(eval echo \$${env}_LIBS)" >> config.mk
 		#--
 		echo "${env}_CFLAGS=\"$(eval echo \$${env}_CFLAGS)\"
 ${env}_LIBS=\"$(eval echo \$${env}_LIBS)\"" >> config.sh
-    done
+	done
 fi
 
 

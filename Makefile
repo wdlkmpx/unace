@@ -1,10 +1,4 @@
 
-SUBDIRS = src 
-
-DISTCLEAN_FILES = 
-
-# ===========================================================
-
 include config.mk
 
 DISTCLEAN_FILES += config.h config.mk config.log config.sh
@@ -62,14 +56,14 @@ uninstall:
 	done
 
 check:
-	./scripts/run-tests.sh
+	$(MK_CHECK)
 
 distcheck:
 
 installcheck:
 
 dist:
-	./configure release
+	sh configure release
 
 .PHONY: subdirs $(SUBDIRS)
 
