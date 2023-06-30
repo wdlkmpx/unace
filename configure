@@ -7,10 +7,10 @@ export WCONF_SCRIPTDIR=$(cd "$(dirname "$0")" ; pwd -P)
 export WCONF_CONFIGURE=${WCONF_SCRIPTDIR}/$(basename "$0")
 
 if [ "$WCURDIR" != "$WCONF_SCRIPTDIR" ] ; then
-    echo "Current dir: $WCURDIR"
-    echo "Wconf dir  : $WCONF_SCRIPTDIR"
-    echo "Out-of-tree builds are not supported..."
-    exit 1
+	echo "Current dir: $WCURDIR"
+	echo "Wconf dir  : $WCONF_SCRIPTDIR"
+	echo "Out-of-tree builds are not supported..."
+	exit 1
 fi
 
 if ! [ -f Makefile ] ; then
@@ -18,6 +18,10 @@ if ! [ -f Makefile ] ; then
 	exit 1
 fi
 
+## env vars must not change important variables
+host=
+build=
+static_link=''
 apps_to_check=''
 extra_env_vars=''
 make_extra_flags='' # config_mk_extra
@@ -29,14 +33,33 @@ config_mk_flags=
 w_files_in=
 sysroot=
 
+unset VERSION PACKAGE PACKAGE_URL PROJECT_TYPE
+unset PROJECT_CFLAGS PROJECT_CXXFLAGS PROJECT_CPPFLAGS PROJECT_LDFLAGS PROJECT_LXXFLAGS PROJECT_LIBS
+
 #==========================================================
+
+uppercase() {
+	echo "$@" | tr '[:lower:]' '[:upper:]'
+}
+
+if [ -n "$BASH_VERSION" ] ; then
+	case $BASH_VERSION in
+		3.*|2.*|1.*) BASH_NO_CASE=1 ;;
+		*) eval 'uppercase() { echo "${@^^}" ; }' ;;
+	esac
+fi
+
+
+add_env_help() {
+	extra_env_vars="$extra_env_vars $@"
+}
 
 w_new_option() # $1=opt [$2=env_variable]
 {
 	w_opts_configure="$w_opts_configure $1"
 	w_opts_check="$w_opts_check $1"
 	if [ -n "$2" ] ; then
-		extra_env_vars="$extra_env_vars $2"
+		add_env_help "$2"
 	fi
 }
 
@@ -63,7 +86,13 @@ cmdecho()
 
 getvalue()
 {
-	echo $1 | cut -f 2 -d '='
+	zzval="$@"
+	zzres="${zzval#*=}"
+	if [ -n "$zzres" ] ; then
+		echo "$zzres"
+	else
+		echo "$zzval" | cut -f 2 -d '='
+	fi
 }
 
 include()
@@ -75,14 +104,17 @@ include()
 
 if [ -f ${WCONF_SCRIPTDIR}/configure.project ] ; then
 	. ${WCONF_SCRIPTDIR}/configure.project
+elif [ -f ${WCONF_SCRIPTDIR}/wconf.project ] ; then
+	. ${WCONF_SCRIPTDIR}/wconf.project
+else
+	echo "Need configure.project or wconf.project"
+	exit 1
 fi
+
 
 if [ -z "$PROJECT_TYPE" ] ; then
 	PROJECT_TYPE="C++"
 fi
-
-#==========================================================
-
 PACKAGE_NAME="${PACKAGE}"
 PACKAGE_STRING="${PACKAGE} ${VERSION}"
 PACKAGE_TARNAME="${PACKAGE}"
@@ -138,14 +170,17 @@ if [ "$1" = "release" ] || [ "$1" = "dist" ] ; then
 	exit 1
 fi
 
-# w_conf/gettext: ./configure po|pot
-
 #==========================================================
 
 check_command() # 1:<cmd> finds $1 in $PATH
 {
 	if [ -z "$xxpath" ] ; then
-		xxpath="$(echo "$PATH" | tr ':' ' ')"
+		if [ "$BASH_VERSION" ] ; then
+			xxpath=${PATH//:/ }
+		else
+			# dash doesn't support ${//}
+			xxpath="$(echo "$PATH" | tr ':' ' ')"
+		fi
 	fi
 	for xcmdx in $@
 	do
@@ -299,20 +334,31 @@ w_compile_c_code() # $1:code  $2:extra-CFLAGS  $3:extra-LDFLAGS
 	conftest=.wxconftest$$
 	printf "$1" > ${conftest}.c
 	printf "\n$1" >> config.log
-	echo "$CC $CFLAGS $2 ${conftest}.c -o ${conftest}.o $LDFLAGS $3" >>config.log
-	$CC $CFLAGS $2 ${conftest}.c -o ${conftest}.o $LDFLAGS $3 2>>config.log
+	echo "$CC $CFLAGS ${2} ${conftest}.c -o ${conftest}.o $LDFLAGS ${3}" >>config.log
+	$CC $CFLAGS ${2} ${conftest}.c -o ${conftest}.o $LDFLAGS ${3} 2>>config.log
 	zzzzretxx=$?
-	rm -f ${conftest}.c ${conftest}.o
+	rm -f ${conftest}.c ${conftest}.o ${conftest}.exe
 	return ${zzzzretxx}
 }
 
 
-w_check_header_and_libs() # 1:<header> 2-:[libs] is optional
+w_check_header_and_libs() # <header1> [header2..] [libs] is optional
 {
 	xheaderx=$1
 	shift
 	xlibsx=$@
 	xretval=1
+	#--
+	include_headersw="#include <${xheaderx}>"
+	for header1 in "$@" ; do
+		case $header1 in
+			*.h) include_headersw="$include_headersw
+#include <${header1}>"
+				shift
+				;;
+			*) xlibsx="$@" ; break ;;
+		esac
+	done
 	if [ -n "$xlibsx" ] ; then
 		printf "Checking for ${xheaderx} + ${xlibsx}... "
 	else
@@ -321,7 +367,7 @@ w_check_header_and_libs() # 1:<header> 2-:[libs] is optional
 	ccode="#include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
-#include <${xheaderx}>
+${include_headersw}
 int main (int argc, char **argv) { return 0; }
 "
 	w_compile_c_code "$ccode" "" "${xlibsx}"
@@ -459,6 +505,182 @@ w_require_gnu_make()
 	w_prefer_gnu_make require
 }
 
+generate_pkgconfig()
+{
+	(
+	unset name description version libs cflags filebase
+	unset requires requires_private libraries libraries_private
+	for i in "$@" ; do
+		case "$i" in
+			*=*)
+				field=$(echo "$i" | cut -f 1 -d '=')
+				value=$(echo "$i" | cut -f 2 -d '=')
+				eval ${field}='${value}'
+				;;
+			*) echo "generate_pkgconfig: $i: invalid parameter"
+				return -1 ;;
+		esac
+	done
+	if [ -z "$filebase" ] ; then
+		echo "generate_pkgconfig: filebase was not especified"
+		return -1
+	fi
+	if [ -z "$name" ] ; then
+		name="$filebase"
+	fi
+	if [ -z "$version" ] ; then
+		version="$VERSION"
+	fi
+	echo 'prefix='${prefix}'
+exec_prefix=${prefix}
+libdir='${libdir}'
+includedir='${includedir}'
+
+Name: '${name}'
+Description: '${description}'
+Version: '${version}'' > ${filebase}.pc
+	if [ -n "${requires}" ] ; then
+		echo "Requires: ${requires}" >> ${filebase}.pc
+	fi
+	if [ -n "${requires_private}" ] ; then
+		echo "Requires.private: ${requires_private}" >> ${filebase}.pc
+	fi
+	if [ -n "${libraries}" ] ; then
+		echo 'Libs: -L${libdir} '${libraries}''  >> ${filebase}.pc
+	fi
+	if [ -n "${libraries_private}" ] ; then
+		echo "Libs.private: ${libraries_private}" >> ${filebase}.pc
+	fi
+	echo 'Cflags: -I${includedir} '${cflags}'' >> ${filebase}.pc
+	)
+	if [ $? -ne 0 ] ; then
+		exit 1
+	fi
+}
+
+w_add_to_list_var() # <VAR> <newitem>
+{
+	zcurlist=$(eval echo \$${1})
+	for zzitem in ${zcurlist} ; do
+		if [ "$2" = "$zzitem" ] ; then
+			return
+		fi
+	done
+	eval "${1}='$zcurlist $2'"
+}
+
+w_add_config_h_have()
+{
+	for zzhave in ${config_h_have} ; do
+		if [ "$1" = "$zzhave" ] ; then
+			return
+		fi
+	done
+	config_h_have="$config_h_have $1"
+}
+
+w_add_config_mk_flags()
+{
+	for zzmkh in ${config_mk_flags} ; do
+		if [ "$1" = "$zzmkh" ] ; then
+			return
+		fi
+	done
+	config_mk_flags="$config_mk_flags $1"
+}
+
+set_env_flags() # PREFIX [libs] [cflags]
+{
+	eval ${1}_LIBS='${2}'
+	eval ${1}_CFLAGS='${3}'
+	eval ${1}_FOUND=1
+	w_add_config_h_have   ${1}
+	w_add_config_mk_flags ${1}
+}
+
+
+find_pkgconfig()
+{
+	unset WLAST_PC WLAST_LIBS WLAST_CFLAGS
+	unset fenv fpc fminver frequired
+	frequired='true'
+	for zzarg in "$@" ; do
+		case "$zzarg" in
+			env=*) fenv=$(getvalue "$zzarg") ;;
+			pc=*) fpc=$(getvalue "$zzarg") ;;
+			minver=*) fminver=$(getvalue "$zzarg") ;;
+			required=*) frequired=$(getvalue "$zzarg") ;;
+		esac
+	done
+	if [ -z "$fenv" ] || [ -z "$fpc" ] ; then
+		echo "syntax: find_pkgconfig  env=PREFIX pc=pcfiles [minver=minver required=false]"
+		exit 1
+	fi
+	for zzzpc in ${fpc} ; do
+		if w_pkgconfig_check ${zzzpc} ${fminver} ; then
+			WLAST_PC=${zzzpc}
+			break
+		fi
+	done
+	if [ -z "$WLAST_PC" ] ; then
+		if [ "$frequired" = "true" ] ; then
+			echo "* $fpc is required"
+			exit 1
+		fi
+		return -1
+	fi
+	WLAST_LIBS="$(run_pkg_config ${WLAST_PC} --libs 2>/dev/null)"
+	WLAST_CFLAGS="$(run_pkg_config ${WLAST_PC} --cflags 2>/dev/null)"
+	set_env_flags "${fenv}" "${WLAST_LIBS}" "${WLAST_CFLAGS}"
+	eval ${fenv}_PC='${WLAST_PC}'
+}
+
+find_customconfig()  # env config1 [config2...]
+{
+	unset fenv WLAST_CONFIG WLAST_LIBS WLAST_CFLAGS
+	fenv="$1"
+	shift
+	printf "Checking for $fenv... "
+	WLAST_CONFIG="$(check_command "$@")"
+	if [ -n "$WLAST_CONFIG" ] ; then
+		echo "yes [$WLAST_CONFIG]"
+		WLAST_CFLAGS="$(${WLAST_CONFIG} --cflags 2>/dev/null)"
+		WLAST_LIBS="$(${WLAST_CONFIG} --libs 2>/dev/null)"
+		set_env_flags "${fenv}" "${WLAST_LIBS}" "${WLAST_CFLAGS}"
+		return 0
+	else
+		echo "no"
+		return -1
+	fi
+}
+
+find_lib() 
+{
+	unset fenv flibs fheaders frequired
+	frequired='true'
+	for zzarg in "$@" ; do
+		case "$zzarg" in
+			env=*) fenv=$(getvalue "$zzarg") ;;
+			libs=*) flibs=$(getvalue "$zzarg") ;;
+			headers=*) fheaders=$(getvalue "$zzarg") ;;
+			required=*) frequired=$(getvalue "$zzarg") ;;
+		esac
+	done
+	if [ -z "$fenv" ] || [ -z "$flibs" ] || [ -z "$fheaders" ]  ; then
+		echo "syntax: find_lib  env=PREFIX libs=-lib headers=lib.h [required=false]"
+		exit 1
+	fi
+	w_check_header_and_libs ${fheaders} ${flibs}
+	if [ $? -eq 0 ] ; then
+		set_env_flags ${fenv} "$flibs" ""
+	else
+		if [ "$frequired" = "true" ] ; then
+			echo "* $fenv is required"
+			exit_error
+		fi
+	fi
+}
+
 #==========================================================
 
 #test "$CC"    || CC='cc'
@@ -495,22 +717,6 @@ top_builddir="${WCONF_SCRIPTDIR}"
 top_srcdir="${WCONF_SCRIPTDIR}"
 builddir=.
 srcdir=.
-
-## env vars should not change some important variables
-host=
-build=
-static_link=''
-
-print_eval_var()
-{
-	zzvareval=
-	for i in $@ # perform up to 2 evals
-	do
-		zzvareval="$(eval echo $i)"
-		zzvareval="$(eval echo $zzvareval)"
-	done
-	echo "$zzvareval"
-}
 
 #==========================================================
 
@@ -591,8 +797,9 @@ print_optional_features()
 	do
 		opt_print_${confx}
 	done
-	test -n "${extra_configure_opts}" || \
-	test -n "${w_opts_configure}" && printf "  \n"
+	if [ -n "${extra_configure_opts}" ] || [ -n "${w_opts_configure}" ] ; then
+		printf "  \n"
+	fi
 }
 
 print_optional_packages()
@@ -615,7 +822,7 @@ print_extra_env_variables()
 
 #==========================================================
 
-for i in $@
+for i in "$@"
 do
 	case $i in
 		--build=*) build="$(getvalue $i)" ;;
@@ -779,10 +986,10 @@ fi
 
 EXE=''
 case ${OS_BUILD} in
-	CYGWIN*) OS_BUILD="Cygwin" ; EXE = '.exe' ;;
-	MINGW*|MSYS*)  OS_BUILD="MinGW" ; EXE = '.exe' ;;
-	UWIN*|Windows*)OS_BUILD="MinGW" ; EXE = '.exe' ;;
-	MS-DOS*) OS_BUILD="MSDOS" ; EXE = '.exe' ;;
+	CYGWIN*) OS_BUILD="Cygwin" ; EXE='.exe' ;;
+	MINGW*|MSYS*)  OS_BUILD="MinGW" ; EXE='.exe' ;;
+	UWIN*|Windows*)OS_BUILD="MinGW" ; EXE='.exe' ;;
+	MS-DOS*) OS_BUILD="MSDOS" ; EXE='.exe' ;;
 esac
 
 OS_TARGET=${OS_BUILD}
@@ -848,9 +1055,19 @@ done
 #                  config.mk
 #==========================================================
 
+w_aftercheck_func
+
 # ensure -DHAVE_CONFIG_H
 CFLAGS="-DHAVE_CONFIG_H $CFLAGS "
 CXXFLAGS="-DHAVE_CONFIG_H $CXXFLAGS"
+
+# some variables might contain stuff to be evaluated
+if [ -n "$MK_SUBDIRS" ] ; then
+	MK_SUBDIRS="$(eval echo "$MK_SUBDIRS")"
+fi
+if [ -n "$MK_DISTCLEAN_FILES" ] ; then
+	MK_DISTCLEAN_FILES="$(eval echo "$MK_DISTCLEAN_FILES")"
+fi
 
 cat > config.mk <<EOF
 # generated by ./configure
@@ -1009,11 +1226,12 @@ EOF
 if [ -n "${config_mk_flags}" ] ; then
 	for env in ${config_mk_flags}
 	do
-		echo "${env}_CFLAGS = $(eval echo \$${env}_CFLAGS)
-${env}_LIBS  = $(eval echo \$${env}_LIBS)" >> config.mk
-		#--
-		echo "${env}_CFLAGS=\"$(eval echo \$${env}_CFLAGS)\"
-${env}_LIBS=\"$(eval echo \$${env}_LIBS)\"" >> config.sh
+		_xcf=$(eval echo \$${env}_CFLAGS)
+		_xlibs=$(eval echo \$${env}_LIBS)
+		echo "${env}_CFLAGS = ${_xcf}
+${env}_LIBS  = ${_xlibs}" >> config.mk
+		echo "${env}_CFLAGS=\"${_xcf}\"
+${env}_LIBS=\"${_xlibs}\"" >> config.sh
 	done
 fi
 
@@ -1030,13 +1248,19 @@ if [ -n "$W_MAKEFILES_IN" ] ; then
 	done
 fi
 
-#==========================================================
 
 . ${WCONF_SCRIPTDIR}/config.sh
+
+for infile in ${w_infiles}
+do
+	${WCONF_SCRIPTDIR}/w_conf/00_standard_infile.sh ${infile}
+done
 
 #==========================================================
 #                       config.h
 #==========================================================
+
+# use PACKAGE_* (i.e: DATADIR may break a MinGW build)
 
 cat > config.h <<EOF
 /* generated by ./configure */
@@ -1052,7 +1276,6 @@ cat > config.h <<EOF
 #define PACKAGE_BUGREPORT "${PACKAGE_BUGREPORT}"
 #define PACKAGE_VERSION "${PACKAGE_VERSION}"
 
-// use PACKAGE_* (i.e: DATADIR may break a MinGW build)
 #define PACKAGE_PREFIX "$prefix"
 #define PACKAGE_LOCALEDIR "$localedir"
 #define PACKAGE_DATADIR "$datadir"
@@ -1068,7 +1291,13 @@ if [ -n "${w_headers}" ] ; then
 	(
 		for xheader in ${w_headers}
 		do
-			zheader=$(echo "$xheader" | tr '/' '_' | tr '.' '_' | tr '[:lower:]' '[:upper:]')
+			if [ -n "$BASH_VERSION" ] ; then
+				zheader=${xheader//\//_}
+				zheader=${zheader//./_}
+			else
+				zheader="$(echo "$xheader" | tr '/' '_' | tr '.' '_')"
+			fi
+			zheader="$(uppercase "$zheader")"
 			echo "#define HAVE_${zheader} 1"
 		done
 	) >> config.h
@@ -1083,14 +1312,6 @@ if [ -n "${config_h_have}" ] ; then
 	) >> config.h
 fi
 
-#==========================================================
-
-for infile in ${w_infiles}
-do
-	${WCONF_SCRIPTDIR}/w_conf/00_standard_infile.sh ${infile}
-done
-
-#==========================================================
 
 w_finish_func
 
