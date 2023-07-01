@@ -2,7 +2,7 @@
 
 # Project name and version
 PACKAGE="unace"
-VERSION="2.6w"
+VERSION="2.7w"
 PACKAGE_URL=''
 
 # Flags that will be used in all makefiles that compile code...

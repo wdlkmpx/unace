@@ -66,6 +66,7 @@ clean:
 	find . -name '*.o' -delete
 
 install: all
+	mkdir -p $(DESTDIR)$(bindir)
 	install $(APP) $(DESTDIR)$(bindir)
 
 install-strip: strip install

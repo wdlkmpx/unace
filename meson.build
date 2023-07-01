@@ -1,6 +1,6 @@
 project('unace',
 	'c',
-	version: '2.6w'
+	version: '2.7w'
 )
 
 add_project_arguments('-DHAVE_CONFIG_H=1', language: 'c')
