@@ -3,6 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <sys/time.h>
+
 #define INCL_APPS_EXE_INPUT
 
 #define INCL_BASE_ERROR
@@ -22,6 +24,14 @@ tAPPS_EXE_INPUT APPS_EXE_INPUT;
 #ifndef _WIN32
 #include <termios.h>
 struct termios OldtiMode;
+#endif
+
+#ifndef FALSE
+#define FALSE (0)
+#endif
+
+#ifndef TRUE
+#define TRUE (!FALSE)
 #endif
 
 /*-----------------APPS_EXE_INPUT_Input------------------------------*/
@@ -229,7 +239,7 @@ INT     APPS_EXE_INPUT_GetKey(void)
   return Ch;
 }
 
-#ifdef _WIN32 // TODO
+#if defined(_WIN32) || defined(MSDOS) // TODO
 BOOL APPS_EXE_INPUT_KeyHit(void)
 {
     // see BASE_ERROR_EXTERN_HandleCancel()

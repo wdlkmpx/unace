@@ -137,9 +137,8 @@ INT       Handle,
 // ============================================================================
 // lin.c
 
-#ifdef _WIN32
-#undef strsep
-char *strsep(char **stringp, const char *delim)
+#if defined(_WIN32)
+char *_strsep(char **stringp, const char *delim)
 {
     char *rv = *stringp;
     if (rv) {
@@ -151,6 +150,8 @@ char *strsep(char **stringp, const char *delim)
     }
     return rv;
 }
+#undef strsep
+#define strsep _strsep
 #endif
 
 /*-----------------BASE_LFN_CompleteArg0---------------------------------*/

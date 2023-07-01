@@ -38,7 +38,10 @@ w_main_func()
 # function to run after performing all checks
 w_aftercheck_func()
 {
-	printf ""
+	# haiku: strsep is in libbsd
+	if [ "$TARGET_OS" = "Haiku" ] ; then
+		LIBS="$LIBS -lbsd"
+	fi
 }
 
 # function to run once everything is done, probably add stuff to config.h and config.mk

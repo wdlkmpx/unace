@@ -5,11 +5,16 @@ project('unace',
 
 add_project_arguments('-DHAVE_CONFIG_H=1', language: 'c')
 
+if host_machine.system() == 'haiku'
+	# haiku: strsep is in libbsd
+	add_project_link_arguments('-lbsd', language: 'c')
+endif
+
 cc = meson.get_compiler('c')
 config = configuration_data()
 
-config.set_quoted('prefix', get_option('prefix'))
 config.set_quoted('VERSION', meson.project_version())
+config.set_quoted('PACKAGE_PREFIX', get_option('prefix'))
 
 configure_file(output : 'config.h',
                configuration : config)
